@@ -3,9 +3,18 @@ import { motion } from 'framer-motion';
 import { Play } from 'lucide-react';
 import './styles/consulta.css';
 
-// arquivos em public/ são servidos pela raiz: public/videos/consulta.mp4 → '/videos/consulta.mp4'
+// Pode ser um link do Google Drive (compartilhado com "qualquer pessoa com o link")
+// ou um .mp4 em public/ (ex.: '/videos/consulta.mp4')
 const VIDEO = 'https://drive.google.com/file/d/1PU08Ou9HbsIoTh-aDU-fQLkpaueZkUWP/view?usp=sharing';
-const CAPA = '/videos/capas/consulta.jpg'; // opcional: se não existir, aparece o primeiro quadro do vídeo
+const CAPA = '/videos/capas/consulta.jpg'; // imagem antes do play (opcional)
+
+// link do Drive → link de incorporação (/preview)
+function driveEmbed(url) {
+    if (!url || !url.includes('drive.google.com')) return null;
+    const m = url.match(/\/d\/([\w-]+)/) || url.match(/[?&]id=([\w-]+)/);
+    return m ? 'https://drive.google.com/file/d/' + m[1] + '/preview' : null;
+}
+const DRIVE = driveEmbed(VIDEO);
 
 const EASE = [0.16, 1, 0.3, 1];
 const entra = (delay = 0) => ({
@@ -22,23 +31,32 @@ const PASSOS = [
 ];
 
 export default function Consulta() {
+    const reelRef = useRef(null);
     const videoRef = useRef(null);
     const [tocando, setTocando] = useState(false);
     const [proporcao, setProporcao] = useState(null);
 
-    // a moldura assume o formato real do vídeo: sem faixas pretas nas laterais
+    // .mp4: a moldura assume o formato real do vídeo (sem faixas pretas)
     const aoCarregar = (e) => {
         const { videoWidth, videoHeight } = e.currentTarget;
         if (videoWidth && videoHeight) setProporcao(videoWidth + ' / ' + videoHeight);
     };
 
     const assistir = () => {
-        const v = videoRef.current;
-        if (!v) return;
-        v.play();
-        setTocando(true);
+        if (DRIVE) {
+            setTocando(true);
+        } else {
+            const v = videoRef.current;
+            if (!v) return;
+            v.play()
+                .then(() => setTocando(true))
+                .catch(() => console.warn('Vídeo não encontrado:', VIDEO));
+        }
+
         // no celular o vídeo fica acima do botão: rola até ele
-        const r = v.getBoundingClientRect();
+        const el = reelRef.current;
+        if (!el) return;
+        const r = el.getBoundingClientRect();
         if (r.top < 0 || r.bottom > window.innerHeight) {
             window.scrollTo({ top: window.scrollY + r.top - (window.innerHeight - r.height) / 2, behavior: 'smooth' });
         }
@@ -49,19 +67,41 @@ export default function Consulta() {
             <div className="container">
                 <div className="consulta-card">
                     <motion.div className="consulta-video" {...entra(0)}>
-                        <div className={'reel' + (tocando ? ' is-tocando' : '')} style={proporcao ? { aspectRatio: proporcao } : undefined}>
-                            <video
-                                ref={videoRef}
-                                src={VIDEO}
-                                poster={CAPA}
-                                preload="metadata"
-                                playsInline
-                                onLoadedMetadata={aoCarregar}
-                                controls={tocando}
-                                onPause={() => setTocando(false)}
-                                onPlay={() => setTocando(true)}
-                                onEnded={() => setTocando(false)}
-                            />
+                        <div
+                            ref={reelRef}
+                            className={'reel' + (tocando ? ' is-tocando' : '')}
+                            style={proporcao ? { aspectRatio: proporcao } : undefined}
+                        >
+                            {DRIVE ? (
+                                tocando ? (
+                                    <iframe
+                                        title="Como é a minha consulta"
+                                        src={DRIVE}
+                                        allow="autoplay; fullscreen"
+                                        allowFullScreen
+                                    />
+                                ) : (
+                                    <img
+                                        className="reel-poster"
+                                        src={CAPA}
+                                        alt=""
+                                        onError={(e) => (e.currentTarget.style.display = 'none')}
+                                    />
+                                )
+                            ) : (
+                                <video
+                                    ref={videoRef}
+                                    src={VIDEO}
+                                    poster={CAPA}
+                                    preload="metadata"
+                                    playsInline
+                                    onLoadedMetadata={aoCarregar}
+                                    controls={tocando}
+                                    onPause={() => setTocando(false)}
+                                    onPlay={() => setTocando(true)}
+                                    onEnded={() => setTocando(false)}
+                                />
+                            )}
 
                             {!tocando && (
                                 <button className="reel-capa" onClick={assistir} aria-label="Assistir ao vídeo">
