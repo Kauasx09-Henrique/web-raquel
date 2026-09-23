@@ -19,7 +19,7 @@ export const ESPECIALIDADES = [
     miniatura: 'https://images.unsplash.com/photo-1550572017-edd951b55104?auto=format&fit=crop&w=900&h=1100&q=75',
     videos: [
       { titulo: "DIU e Implanon: como escolher o método", src: '/videos/contracepcao/contracepcao-1.mp4' },
-      { titulo: "A sua filha adolescente já escolheu um método contraceptivo?", src: '../public/videos/contracepcao/contracepcao-2.mp4' },
+      { titulo: "A sua filha adolescente já escolheu um método contraceptivo?", src: '/videos/contracepcao/contracepcao-2.mp4' },
     ],
     topicos: [
       { titulo: 'DIU e Implanon', texto: 'Como funcionam, para quem são indicados e o que esperar da colocação.' },
