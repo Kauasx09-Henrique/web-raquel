@@ -1,6 +1,10 @@
-const imagem = '/fotos/especialidades/reproducao.jpg';
+/* Conteúdo de cada especialidade. A página /especialidades/:id monta tudo a partir daqui.
+   foto       → foto da Dra. Raquel no topo da página (troque pelo arquivo em public/)
+   miniatura  → imagem do tema (cards "Outras especialidades")                   
+   
+   */
 
-const videoTeste = "https://www.w3schools.com/html/mov_bbb.mp4"; // Vídeo temporário para teste
+const imagem = 'fotos/especialidades/reproducao.jpg'; // em public/
 
 export const ESPECIALIDADES = [
   {
@@ -14,8 +18,8 @@ export const ESPECIALIDADES = [
     foto: '/fotos/especialidades/contracepcao.jpg',
     miniatura: 'https://images.unsplash.com/photo-1550572017-edd951b55104?auto=format&fit=crop&w=900&h=1100&q=75',
     videos: [
-      { titulo: "DIU e Implanon: como escolher o método", src: videoTeste },
-      { titulo: "A sua filha adolescente já escolheu um método contraceptivo?", src: videoTeste },
+      { titulo: "DIU e Implanon: como escolher o método", src: '/videos/contracepcao/contracepcao-1.mp4' },
+      { titulo: "A sua filha adolescente já escolheu um método contraceptivo?", src: '../public/videos/contracepcao/contracepcao-2.mp4' },
     ],
     topicos: [
       { titulo: 'DIU e Implanon', texto: 'Como funcionam, para quem são indicados e o que esperar da colocação.' },
@@ -34,13 +38,13 @@ export const ESPECIALIDADES = [
     texto:
       'Avaliação e tratamento da infertilidade, planejamento reprodutivo e preservação da fertilidade — com investigação do casal e decisões tomadas com clareza sobre tempo, chances e alternativas.',
     citacao: 'Ciência hoje para mais histórias amanhã.',
-    foto: imagem,
+    foto: {imagem},
     miniatura: 'https://images.unsplash.com/photo-1493894473891-10fc1e5dbd22?auto=format&fit=crop&w=900&h=1100&q=75',
     videos: [
-      { titulo: "Fertilidade: sua idade importa mais do que o tratamento?", src: videoTeste },
-      { titulo: "Congelamento de óvulos: quando considerar?", src: videoTeste },
-      { titulo: "Infertilidade: quando a causa está no homem?", src: videoTeste },
-      { titulo: "O que acontece no processo da estimulação ovariana?", src: videoTeste },
+      { titulo: "Fertilidade: sua idade importa mais do que o tratamento?", src: '/videos/reproducao-humana/reproducao-1.mp4' },
+      { titulo: "Congelamento de óvulos: quando considerar?", src: '/videos/reproducao-humana/reproducao-2.mp4' },
+      { titulo: "Infertilidade: quando a causa está no homem?", src: '/videos/reproducao-humana/reproducao-3.mp4' },
+      { titulo: "O que acontece no processo da estimulação ovariana?", src: '/videos/reproducao-humana/reproducao-4.mp4' },
     ],
     topicos: [
       { titulo: 'Fertilidade e idade', texto: 'O que muda com o tempo e por que planejar cedo faz diferença.' },
@@ -62,9 +66,9 @@ export const ESPECIALIDADES = [
     foto: '/fotos/especialidades/climaterio.jpg',
     miniatura: 'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=900&h=1100&q=75',
     videos: [
-      { titulo: "Climatério: o que realmente acontece com o corpo", src: videoTeste },
-      { titulo: "DIU na menopausa. Quando ele pode ser útil?", src: videoTeste },
-      { titulo: "Obesidade e menopausa: qual a relação?", src: videoTeste },
+      { titulo: "Climatério: o que realmente acontece com o corpo", src: '/videos/climaterio/climaterio-1.mp4' },
+      { titulo: "DIU na menopausa. Quando ele pode ser útil?", src: '/videos/climaterio/climaterio-2.mp4' },
+      { titulo: "Obesidade e menopausa: qual a relação?", src: '/videos/climaterio/climaterio-3.mp4' },
     ],
     topicos: [
       { titulo: 'Sintomas do climatério', texto: 'Calorões, sono, humor e libido: o que é esperado e o que merece atenção.' },
@@ -86,7 +90,7 @@ export const ESPECIALIDADES = [
     foto: '/fotos/especialidades/saude-intima.jpg',
     miniatura: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=900&h=1100&q=75',
     videos: [
-      { titulo: "Laser íntimo e Fraxx: para quem são indicados?", src: videoTeste },
+      { titulo: "Laser íntimo e Fraxx: para quem são indicados?", src: '/videos/saude-intima/saude-intima-1.mp4' },
     ],
     topicos: [
       { titulo: 'Laser íntimo e Fraxx', texto: 'Tecnologias que podem ajudar em situações selecionadas, após avaliação.' },
@@ -120,9 +124,9 @@ export const ESPECIALIDADES = [
     foto: '/fotos/especialidades/cirurgia.jpg',
     miniatura: 'https://images.unsplash.com/photo-1551190822-a9333d879b1f?auto=format&fit=crop&w=900&h=1100&q=75',
     videos: [
-      { titulo: "Histeroscopia ou laparoscopia: qual a diferença?", src: videoTeste },
-      { titulo: "Descobriu um cisto no ovário? Respira! Talvez você não precise operar", src: videoTeste },
-      { titulo: "“Tenho medo da laparoscopia”: o que você precisa saber", src: videoTeste },
+      { titulo: "Histeroscopia ou laparoscopia: qual a diferença?", src: '/videos/cirurgia/cirurgia-1.mp4' },
+      { titulo: "Descobriu um cisto no ovário? Respira! Talvez você não precise operar", src: '/videos/cirurgia/cirurgia-2.mp4' },
+      { titulo: "“Tenho medo da laparoscopia”: o que você precisa saber", src: '/videos/cirurgia/cirurgia-3.mp4' },
     ],
     topicos: [
       { titulo: 'Histeroscopia × laparoscopia', texto: 'O que cada uma faz, quando é indicada e como é a recuperação.' },
