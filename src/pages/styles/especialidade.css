@@ -213,6 +213,30 @@
 
 .video-tema:not(.is-tocando):hover video { transform: scale(1.05); }
 
+/* Google Drive: iframe e capa ocupam a moldura inteira */
+.video-tema-poster {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* player do Drive: renderiza maior e reduz, para não cortar os controles */
+.video-tema iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 125%;
+  height: 125%;
+  border: 0;
+  transform: scale(0.8);
+  transform-origin: 0 0;
+}
+
+.video-tema-poster { object-fit: cover; transition: transform 1.1s var(--ease); }
+.video-tema:hover .video-tema-poster { transform: scale(1.05); }
+.video-tema.is-tocando { background: #000; }
+
 .video-tema-capa {
   position: absolute;
   inset: 0;
