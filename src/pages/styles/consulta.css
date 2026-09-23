@@ -1,0 +1,368 @@
+/* ===========================================================
+   Seção "Como é a minha consulta" — card vinho com vídeo.
+   Usa as variáveis do index.css (--wine, --rose, --font-display…)
+   =========================================================== */
+
+/* tela cheia: o bloco vinho vai de borda a borda e ocupa a altura da tela */
+
+.consulta {
+    width: 100%;
+    background: var(--wine-900);
+}
+
+.consulta > .container {
+    max-width: none;
+    padding: 0;
+}
+
+.consulta-card {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+    gap: clamp(36px, 5vw, 80px);
+    align-items: center;
+
+    min-height: calc(100vh - var(--nav-h));
+    min-height: calc(100svh - var(--nav-h));
+
+    /* o conteúdo continua alinhado à grade de 1240px do resto do site */
+    padding:
+        clamp(56px, 8vh, 96px)
+        max(var(--gutter), calc((100vw - 1240px) / 2 + var(--gutter)));
+
+    overflow: hidden;
+    isolation: isolate;
+
+    color: #fff;
+
+    background: linear-gradient(
+        135deg,
+        var(--wine) 0%,
+        var(--wine-900) 100%
+    );
+}
+
+/* brilho rosé suave no canto — dá profundidade sem pesar */
+
+.consulta-card::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+
+    top: -30%;
+    right: -12%;
+
+    width: 60%;
+    aspect-ratio: 1;
+
+    border-radius: 50%;
+
+    background: radial-gradient(
+        circle,
+        rgba(236, 211, 205, 0.22) 0%,
+        rgba(236, 211, 205, 0) 65%
+    );
+
+    pointer-events: none;
+}
+
+/* --------------------------------- vídeo --------------------------------- */
+
+.consulta-video {
+    min-width: 0;
+}
+
+/* vídeo maior no desktop */
+.reel {
+    position: relative;
+
+    width: 100%;
+    max-width: 520px;
+
+    aspect-ratio: 9 / 16;
+
+    border-radius: 22px;
+    overflow: hidden;
+
+    background: var(--wine-900);
+
+    box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.55);
+}
+
+.reel video {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    background: var(--wine-900);
+
+    transition: transform 1.1s var(--ease);
+}
+
+/* sempre preenchendo a moldura: nada de faixas pretas */
+
+.reel:not(.is-tocando):hover video {
+    transform: scale(1.05);
+}
+
+.reel-capa {
+    position: absolute;
+    inset: 0;
+
+    display: block;
+
+    width: 100%;
+    padding: 0;
+
+    border: 0;
+
+    cursor: pointer;
+
+    background: transparent;
+}
+
+/* escurece a base para a chamada ficar legível */
+
+.reel-capa::after {
+    content: '';
+
+    position: absolute;
+    inset: 0;
+
+    background: linear-gradient(
+        to top,
+        rgba(61, 21, 32, 0.8) 0%,
+        rgba(61, 21, 32, 0) 50%
+    );
+
+    pointer-events: none;
+}
+
+.reel-play {
+    position: absolute;
+    z-index: 2;
+
+    top: 50%;
+    left: 50%;
+
+    display: grid;
+    place-items: center;
+
+    width: 76px;
+    height: 76px;
+
+    padding-left: 4px;
+
+    border-radius: 50%;
+
+    background: #fff;
+    color: var(--wine);
+
+    box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.25);
+
+    transform: translate(-50%, -50%);
+
+    transition:
+        transform 0.5s var(--ease),
+        box-shadow 0.5s ease;
+}
+
+.reel-capa:hover .reel-play {
+    transform: translate(-50%, -50%) scale(1.08);
+
+    box-shadow: 0 0 0 18px rgba(255, 255, 255, 0.18);
+}
+
+.reel-chamada {
+    position: absolute;
+    z-index: 2;
+
+    left: 24px;
+    right: 24px;
+    bottom: 24px;
+
+    font-family: var(--font-display);
+    font-size: 24px;
+    line-height: 1.2;
+
+    text-align: left;
+
+    color: #fff;
+}
+
+.reel-capa:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 4px;
+}
+
+/* --------------------------------- texto --------------------------------- */
+
+.consulta-copy {
+    min-width: 0;
+}
+
+.consulta-copy .eyebrow {
+    color: var(--rose-2);
+}
+
+.consulta-copy .titulo-secao {
+    margin-bottom: 22px;
+
+    font-family: var(--font-display);
+    font-weight: 500;
+
+    font-size: clamp(32px, 3.6vw, 50px);
+    line-height: 1.08;
+
+    color: #fff;
+
+    text-wrap: balance;
+}
+
+.consulta-copy .titulo-secao em {
+    font-style: italic;
+    color: var(--rose);
+}
+
+.consulta-texto {
+    max-width: 52ch;
+
+    margin-bottom: 36px;
+
+    font-size: 16px;
+    line-height: 1.75;
+
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* três etapas lado a lado, separadas por linhas finas */
+
+.passos {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    margin-bottom: 40px;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+
+    list-style: none;
+}
+
+.passos li {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    padding: 22px 20px 0 0;
+}
+
+.passos li + li {
+    padding-left: 20px;
+
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.passo-n {
+    font-family: var(--font-display);
+
+    font-size: 22px;
+    font-style: italic;
+    line-height: 1;
+
+    color: var(--rose-2);
+}
+
+.passos strong {
+    font-size: 15px;
+    font-weight: 700;
+
+    color: #fff;
+}
+
+.passo-txt {
+    font-size: 13.5px;
+    line-height: 1.55;
+
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* botão claro sobre o vinho */
+
+.consulta-copy .btn-light {
+    gap: 12px;
+
+    box-shadow: 0 16px 30px -18px rgba(0, 0, 0, 0.6);
+}
+
+.consulta-copy .btn-light:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 3px;
+}
+
+/* ------------------------------- responsivo ------------------------------- */
+
+@media (max-width: 1100px) {
+    .consulta-card {
+        grid-template-columns: minmax(0, 0.9fr) minmax(0, 1fr);
+        gap: 40px;
+    }
+
+    .reel {
+        max-width: 460px;
+    }
+}
+
+@media (max-width: 900px) {
+    .consulta-card {
+        grid-template-columns: 1fr;
+        min-height: 0;
+    }
+
+    .reel {
+        max-width: 380px;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 600px) {
+    .consulta-card {
+        padding: 48px var(--gutter) 56px;
+    }
+
+    .reel {
+        max-width: 100%;
+    }
+
+    .passos {
+        grid-template-columns: 1fr;
+    }
+
+    .passos li {
+        display: grid;
+        grid-template-columns: 36px minmax(0, 1fr);
+
+        column-gap: 12px;
+
+        padding: 16px 0;
+    }
+
+    .passos li + li {
+        padding-left: 0;
+
+        border-left: 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .passo-n {
+        grid-row: span 2;
+    }
+
+    .consulta-copy .btn-light {
+        width: 100%;
+        white-space: normal;
+    }
+}

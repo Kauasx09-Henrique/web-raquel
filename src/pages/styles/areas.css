@@ -1,0 +1,88 @@
+.areas { background: var(--surface); }
+
+/* seção mais larga que o resto do site: cards maiores */
+.areas > .container { max-width: 1480px; }
+
+.areas-head { max-width: 720px; margin-bottom: clamp(36px, 4vw, 56px); }
+
+.areas-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: clamp(14px, 1.4vw, 22px); }
+
+.area-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: #fff;
+  transition: transform 0.55s var(--ease), box-shadow 0.55s var(--ease), border-color 0.3s ease;
+}
+
+.area-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--rose-2);
+  box-shadow: 0 32px 54px -32px rgba(61, 21, 32, 0.42);
+}
+
+.area-img { position: relative; aspect-ratio: 4 / 5; }
+
+/* véu rosé leve: as fotos de banco ficam no mesmo tom do site */
+.area-img::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(122, 42, 58, 0.18) 0%, rgba(244, 230, 225, 0) 55%);
+  pointer-events: none;
+}
+.area-img .foto { position: absolute; inset: 0; }
+.area-card:hover .area-img img { transform: scale(1.06); }
+
+.area-corpo { display: flex; flex-direction: column; flex: 1; padding: 26px 24px 24px; }
+
+.area-titulo { min-height: 2.3em; margin-bottom: 16px; font-size: clamp(22px, 1.8vw, 27px); line-height: 1.14; }
+
+.area-tags { display: flex; flex-direction: column; gap: 5px; margin-bottom: 28px; font-size: 13.5px; line-height: 1.45; color: var(--muted); }
+
+/* botão [ SAIBA MAIS ] — preenche de vinho quando passa o mouse no card */
+.area-mais {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  align-self: stretch;
+  margin-top: auto;
+  padding: 11px 16px;
+  border-radius: 999px;
+  border: 1.5px solid var(--wine);
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--wine);
+  transition: background 0.35s ease, color 0.35s ease;
+}
+
+.area-mais svg { transition: transform 0.4s var(--ease); }
+.area-card:hover .area-mais { background: var(--wine); color: #fff; }
+.area-card:hover .area-mais svg { transform: translateX(4px); }
+
+@media (max-width: 1200px) {
+  .areas-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+/* no celular vira carrossel com arrasto */
+@media (max-width: 760px) {
+  .areas-grid {
+    display: flex;
+    gap: 14px;
+    margin: 0 calc(var(--gutter) * -1);
+    padding: 6px var(--gutter) 24px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding: 0 var(--gutter);
+    scrollbar-width: none;
+  }
+  .areas-grid::-webkit-scrollbar { display: none; }
+  .areas-grid > * { flex: 0 0 80%; scroll-snap-align: start; }
+  .area-card:hover { transform: none; }
+}
