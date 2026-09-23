@@ -15,6 +15,10 @@ node_modules/
 dist/
 build/
 .env
+public/videos/climaterio
+public/videos/reproducao-humana
+public/videos/cirurgia
+public/videos/
 
 # Editor directories and files
 .vscode/*
@@ -26,4 +30,3 @@ build/
 *.njsproj
 *.sln
 *.sw?
-public/videos/
