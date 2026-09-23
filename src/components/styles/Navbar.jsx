@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Menu, X, LogIn, LogOut } from 'lucide-react';
 import Marca from './Marca.jsx';
 import { whatsapp } from '../config.js';
+import { useLogada, sair } from './sessao.js';
 import './styles/navbar.css';
 
 const LINKS = [
@@ -15,11 +16,8 @@ const LINKS = [
 export default function Navbar() {
   const [aberto, setAberto] = useState(false);
   const [rolou, setRolou] = useState(false);
-  const [logada, setLogada] = useState(false);
-  const [saindo, setSaindo] = useState(false);
-
+  const logada = useLogada();
   const navigate = useNavigate();
-  const { pathname } = useLocation();
 
   useEffect(() => {
     const onScroll = () => setRolou(window.scrollY > 10);
@@ -35,38 +33,12 @@ export default function Navbar() {
     };
   }, [aberto]);
 
-  // Verifica a sessão sempre que muda de página (ex.: depois do login)
-  useEffect(() => {
-    let ativo = true;
-
-    fetch('/api/sessao', { credentials: 'include', cache: 'no-store' })
-      .then((r) => (r.ok ? r.json() : { logada: false }))
-      .then((d) => ativo && setLogada(d.logada === true))
-      .catch(() => ativo && setLogada(false));
-
-    return () => {
-      ativo = false;
-    };
-  }, [pathname]);
-
   const fechar = () => setAberto(false);
 
   const fazerLogout = async () => {
-    if (saindo) return;
     fechar();
-    setSaindo(true);
-
-    try {
-      const r = await fetch('/api/logout', { method: 'POST', credentials: 'include' });
-      if (!r.ok) throw new Error('Não foi possível encerrar a sessão.');
-      setLogada(false);
-      navigate('/login', { replace: true });
-    } catch (erro) {
-      console.error('Erro ao sair:', erro);
-      alert('Não foi possível encerrar a sessão. Tente novamente.');
-    } finally {
-      setSaindo(false);
-    }
+    await sair();
+    navigate('/login', { replace: true });
   };
 
   return (
@@ -88,15 +60,9 @@ export default function Navbar() {
           )}
 
           {logada ? (
-            <button
-              type="button"
-              className="nav-acesso"
-              onClick={fazerLogout}
-              disabled={saindo}
-              aria-label="Sair da conta"
-            >
+            <button type="button" className="nav-acesso" onClick={fazerLogout}>
               <LogOut size={16} strokeWidth={1.8} aria-hidden="true" />
-              {saindo ? 'Saindo...' : 'Sair'}
+              Sair
             </button>
           ) : (
             <Link to="/login" className="nav-acesso" onClick={fechar}>

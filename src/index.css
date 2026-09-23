@@ -1,6 +1,6 @@
 /* ===========================================================
    CSS GLOBAL — cores, fontes, base e botões.
-   Paleta da referência: rosé + vinho. Mulish (corpo) · Haboro (títulos)
+   Paleta oficial: rosa/bordô #9C4B5E principal + azul #20354A pontual + neutros. Mulish (corpo) · Haboro (títulos)
    =========================================================== */
 @import url('https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Great+Vibes&display=swap');
 
@@ -8,16 +8,20 @@
 @font-face { font-family: 'Haboro'; src: url('/fonts/Haboro-Italic.woff2') format('woff2'); font-weight: 400 500; font-style: italic; font-display: swap; }
 
 :root {
-  --bg: #fbf7f5;
-  --surface: #f5eae6;
-  --rose: #efd9d3;
-  --rose-2: #e2beb5;
-  --wine: #7a2a3a;
-  --wine-700: #64202f;
-  --wine-900: #3d1520;
-  --ink: #3b2a2d;
-  --muted: #7a6769;
-  --line: #ecdeda;
+  /* Paleta oficial — rosa/bordô como cor principal, azul em pontos específicos */
+  --bg: #F9F9F9;        /* neutro branco — fundo principal */
+  --surface: #EAE5E1;   /* neutro rosado — fundos e blocos editoriais */
+  --rose: #D9A5A1;      /* rosa claro — detalhes e fundos pontuais */
+  --rose-2: #D9A5A1;    /* bordas e linhas rosadas */
+  --wine: #9C4B5E;      /* COR PRINCIPAL — marca, botões, faixas, destaques */
+  --wine-700: #843D4F;
+  --wine-900: #6A3040;
+  --bordo: #9C4B5E;
+  --bordo-700: #843D4F;
+  --azul: #20354A;      /* azul — títulos e detalhes pontuais */
+  --ink: #20354A;
+  --muted: #6C757D;     /* cinza azulado — informações secundárias */
+  --line: #E6DAD6;
 
   --font-body: 'Mulish', system-ui, sans-serif;
   --font-display: 'Haboro', 'Cormorant Garamond', Georgia, serif;
@@ -57,7 +61,7 @@ h1, h2, h3 {
   text-wrap: balance;
 }
 
-.destaque { color: var(--wine); }
+.destaque { color: var(--bordo); }
 
 p { text-wrap: pretty; }
 img { display: block; max-width: 100%; }
@@ -65,7 +69,7 @@ a { color: inherit; text-decoration: none; }
 button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
 ul, ol { list-style: none; }
 :focus-visible { outline: 2px solid var(--wine); outline-offset: 3px; }
-::selection { background: var(--rose); color: var(--wine-900); }
+::selection { background: var(--rose); color: var(--azul); }
 
 /* ------------------------------ layout ------------------------------ */
 .container { width: 100%; max-width: 1240px; margin: 0 auto; padding: 0 var(--gutter); }
@@ -82,7 +86,7 @@ ul, ol { list-style: none; }
 }
 
 .titulo { font-size: clamp(32px, 3.6vw, 50px); }
-.subtitulo { margin-top: 12px; font-size: 15px; color: var(--wine); }
+.subtitulo { margin-top: 12px; font-size: 15px; color: var(--bordo); }
 .texto { font-size: 16px; line-height: 1.75; color: var(--muted); max-width: 52ch; }
 
 /* ------------------------------ marca ------------------------------ */
@@ -93,9 +97,9 @@ ul, ol { list-style: none; }
   font-family: var(--font-display);
   font-size: 40px;
   line-height: 0.9;
-  color: var(--wine);
+  color: var(--azul);
 }
-.monograma span { margin-left: -0.2em; transform: translateY(0.14em); font-style: italic; }
+.monograma span { color: var(--wine); margin-left: -0.2em; transform: translateY(0.14em); font-style: italic; }
 .marca-txt { display: flex; flex-direction: column; gap: 3px; padding-left: 14px; border-left: 1px solid var(--rose-2); }
 .marca-txt strong {
   font-family: var(--font-display);
@@ -135,8 +139,8 @@ ul, ol { list-style: none; }
 }
 .btn:hover { transform: translateY(-2px); }
 
-.btn-primary { background: var(--wine); color: #fff; box-shadow: 0 14px 30px -16px rgba(122, 42, 58, 0.8); }
-.btn-primary:hover { background: var(--wine-700); box-shadow: 0 18px 34px -16px rgba(122, 42, 58, 0.9); }
+.btn-primary { background: var(--wine); color: #fff; box-shadow: 0 14px 30px -16px rgba(156, 75, 94, 0.8); }
+.btn-primary:hover { background: var(--wine-700); box-shadow: 0 18px 34px -16px rgba(156, 75, 94, 0.9); }
 
 .btn-light { background: #fff; color: var(--wine); }
 .btn-light:hover { background: var(--surface); }
@@ -152,7 +156,7 @@ ul, ol { list-style: none; }
 
 /* ------------------------------ fotos ------------------------------ */
 /* fundo rosé enquanto a foto carrega ou se ainda não existir */
-.foto { position: relative; width: 100%; height: 100%; overflow: hidden; background: linear-gradient(150deg, #f4e4df 0%, #e7c9c1 100%); }
+.foto { position: relative; width: 100%; height: 100%; overflow: hidden; background: #EAE5E1; }
 .foto img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.1s var(--ease); }
 
 @media (prefers-reduced-motion: reduce) {

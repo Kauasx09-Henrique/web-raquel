@@ -27,7 +27,7 @@
   overflow: hidden;
   isolation: isolate;
   color: #fff;
-  background: linear-gradient(135deg, var(--wine) 0%, var(--wine-900) 100%);
+  background: var(--wine);
 }
 
 /* brilho rosé suave no canto — dá profundidade sem pesar */
@@ -40,7 +40,7 @@
   width: 60%;
   aspect-ratio: 1;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(236, 211, 205, 0.22) 0%, rgba(236, 211, 205, 0) 65%);
+  background: radial-gradient(circle, rgba(217, 165, 161, 0.22) 0%, rgba(217, 165, 161, 0) 65%);
   pointer-events: none;
 }
 
@@ -114,7 +114,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(61, 21, 32, 0.8) 0%, rgba(61, 21, 32, 0) 50%);
+  background: linear-gradient(to top, rgba(74, 32, 44, 0.8) 0%, rgba(74, 32, 44, 0) 50%);
   pointer-events: none;
 }
 

@@ -32,7 +32,7 @@
   width: 80%;
   aspect-ratio: 1;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(239, 217, 211, 0.22) 0%, rgba(239, 217, 211, 0) 65%);
+  background: radial-gradient(circle, rgba(217, 165, 161, 0.22) 0%, rgba(217, 165, 161, 0) 65%);
 }
 
 .login-monograma {
@@ -107,7 +107,7 @@
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.login-input:focus-within { border-color: var(--wine); box-shadow: 0 0 0 5px rgba(122, 42, 58, 0.1); }
+.login-input:focus-within { border-color: var(--wine); box-shadow: 0 0 0 5px rgba(156, 75, 94, 0.1); }
 .login-input.tem-erro { border-color: #b3261e; }
 
 .login-input input {
