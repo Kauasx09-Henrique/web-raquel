@@ -15,9 +15,7 @@ node_modules/
 dist/
 build/
 .env
-public/videos/climaterio
-public/videos/reproducao-humana
-public/videos/cirurgia
+
 
 # Editor directories and files
 .vscode/*
