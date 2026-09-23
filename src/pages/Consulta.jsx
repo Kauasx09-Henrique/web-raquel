@@ -4,7 +4,7 @@ import { Play } from 'lucide-react';
 import './styles/consulta.css';
 
 // arquivos em public/ são servidos pela raiz: public/videos/consulta.mp4 → '/videos/consulta.mp4'
-const VIDEO = '/videos/consulta/consulta.mp4';
+const VIDEO = 'https://drive.google.com/file/d/1PU08Ou9HbsIoTh-aDU-fQLkpaueZkUWP/view?usp=sharing';
 const CAPA = '/videos/capas/consulta.jpg'; // opcional: se não existir, aparece o primeiro quadro do vídeo
 
 const EASE = [0.16, 1, 0.3, 1];

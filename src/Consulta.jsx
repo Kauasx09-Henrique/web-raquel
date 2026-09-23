@@ -1,105 +1,149 @@
-import { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Play, X, ArrowRight } from 'lucide-react';
-import Foto from '../components/Foto.jsx';
-import { EASE, aoRolar } from '../components/animacoes.js';
-import { REEL_CONSULTA, CLINICA } from '../config.js';
+import { useRef, useState } from 'react';
+import { motion } from 'framer-motion';
+import { Play } from 'lucide-react';
 import './styles/consulta.css';
 
+// Pode ser um link do Google Drive (compartilhado com "qualquer pessoa com o link")
+// ou um .mp4 em public/ (ex.: '/videos/consulta.mp4')
+const VIDEO = 'https://drive.google.com/file/d/1PU08Ou9HbsIoTh-aDU-fQLkpaueZkUWP/view?usp=sharing';
+const CAPA = '/videos/capas/consulta.jpg'; // imagem antes do play (opcional)
+
+// link do Drive → link de incorporação (/preview)
+function driveEmbed(url) {
+    if (!url || !url.includes('drive.google.com')) return null;
+    const m = url.match(/\/d\/([\w-]+)/) || url.match(/[?&]id=([\w-]+)/);
+    return m ? 'https://drive.google.com/file/d/' + m[1] + '/preview' : null;
+}
+const DRIVE = driveEmbed(VIDEO);
+
+const EASE = [0.16, 1, 0.3, 1];
+const entra = (delay = 0) => ({
+    initial: { opacity: 0, y: 22 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true, amount: 0.25 },
+    transition: { duration: 0.9, delay, ease: EASE },
+});
+
+const PASSOS = [
+    { n: '01', titulo: 'Escuta', texto: 'Sua história e o que te trouxe até aqui.' },
+    { n: '02', titulo: 'Avaliação', texto: 'Exame e exames quando necessários.' },
+    { n: '03', titulo: 'Plano de cuidado', texto: 'Construído junto com você.' },
+];
+
 export default function Consulta() {
-  const [aberto, setAberto] = useState(false);
+    const reelRef = useRef(null);
+    const videoRef = useRef(null);
+    const [tocando, setTocando] = useState(false);
+    const [proporcao, setProporcao] = useState(null);
 
-  // fecha com Esc e trava o scroll do fundo enquanto o vídeo está aberto
-  useEffect(() => {
-    if (!aberto) return;
-    const esc = (e) => e.key === 'Escape' && setAberto(false);
-    window.addEventListener('keydown', esc);
-    document.body.style.overflow = 'hidden';
-    return () => {
-      window.removeEventListener('keydown', esc);
-      document.body.style.overflow = '';
+    // .mp4: a moldura assume o formato real do vídeo (sem faixas pretas)
+    const aoCarregar = (e) => {
+        const { videoWidth, videoHeight } = e.currentTarget;
+        if (videoWidth && videoHeight) setProporcao(videoWidth + ' / ' + videoHeight);
     };
-  }, [aberto]);
 
-  return (
-    <section className="secao consulta" id="consulta">
-      <div className="container consulta-grid">
-        <motion.div {...aoRolar(0)}>
-          <button
-            type="button"
-            className="video-card"
-            onClick={() => setAberto(true)}
-            aria-label="Assistir: o que acontece na consulta"
-          >
-            <Foto src={REEL_CONSULTA.capa} alt="" posicao="50% 25%" />
-            <span className="video-play">
-              <Play size={24} fill="currentColor" strokeWidth={0} />
-            </span>
-            <span className="video-legenda">O que acontece na consulta?</span>
-          </button>
-        </motion.div>
+    const assistir = () => {
+        if (DRIVE) {
+            setTocando(true);
+        } else {
+            const v = videoRef.current;
+            if (!v) return;
+            v.play()
+                .then(() => setTocando(true))
+                .catch(() => console.warn('Vídeo não encontrado:', VIDEO));
+        }
 
-        <div className="consulta-copy">
-          <motion.span className="eyebrow" {...aoRolar(0.05)}>
-            Como é a minha consulta?
-          </motion.span>
-          <motion.h2 className="titulo" {...aoRolar(0.1)}>
-            Mais do que uma consulta, um momento para cuidar de você.
-          </motion.h2>
-          <motion.p className="texto" {...aoRolar(0.15)}>
-            Cada mulher chega ao consultório com uma história, uma necessidade e um momento de vida
-            diferentes. Minha consulta começa pela escuta, passa por uma avaliação individualizada e
-            termina com um plano de cuidado construído junto com você.
-          </motion.p>
-          <motion.div {...aoRolar(0.2)}>
-            <button type="button" className="btn btn-primary" onClick={() => setAberto(true)}>
-              <Play size={13} fill="currentColor" strokeWidth={0} />
-              Assista: como é a minha consulta
-              <ArrowRight size={15} />
-            </button>
-          </motion.div>
-        </div>
-      </div>
+        // no celular o vídeo fica acima do botão: rola até ele
+        const el = reelRef.current;
+        if (!el) return;
+        const r = el.getBoundingClientRect();
+        if (r.top < 0 || r.bottom > window.innerHeight) {
+            window.scrollTo({ top: window.scrollY + r.top - (window.innerHeight - r.height) / 2, behavior: 'smooth' });
+        }
+    };
 
-      <AnimatePresence>
-        {aberto && (
-          <motion.div
-            className="modal"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setAberto(false)}
-          >
-            <motion.div
-              className="modal-video"
-              initial={{ y: 30, scale: 0.96 }}
-              animate={{ y: 0, scale: 1 }}
-              exit={{ y: 20, scale: 0.97 }}
-              transition={{ duration: 0.5, ease: EASE }}
-              onClick={(e) => e.stopPropagation()}
-            >
-              {REEL_CONSULTA.embed ? (
-                <iframe
-                  title="Como é a minha consulta"
-                  src={REEL_CONSULTA.embed}
-                  allow="autoplay; encrypted-media; picture-in-picture"
-                  allowFullScreen
-                />
-              ) : (
-                <div className="modal-vazio">
-                  <p>Assista ao vídeo completo no Instagram da Dra. Raquel.</p>
-                  <a className="btn btn-light" href={CLINICA.instagram} target="_blank" rel="noopener noreferrer">
-                    Abrir no Instagram
-                  </a>
+    return (
+        <section className="consulta" id="consulta">
+            <div className="container">
+                <div className="consulta-card">
+                    <motion.div className="consulta-video" {...entra(0)}>
+                        <div
+                            ref={reelRef}
+                            className={'reel' + (tocando ? ' is-tocando' : '')}
+                            style={proporcao ? { aspectRatio: proporcao } : undefined}
+                        >
+                            {DRIVE ? (
+                                tocando ? (
+                                    <iframe
+                                        title="Como é a minha consulta"
+                                        src={DRIVE}
+                                        allow="autoplay; fullscreen"
+                                        allowFullScreen
+                                    />
+                                ) : (
+                                    <img
+                                        className="reel-poster"
+                                        src={CAPA}
+                                        alt=""
+                                        onError={(e) => (e.currentTarget.style.display = 'none')}
+                                    />
+                                )
+                            ) : (
+                                <video
+                                    ref={videoRef}
+                                    src={VIDEO}
+                                    poster={CAPA}
+                                    preload="metadata"
+                                    playsInline
+                                    onLoadedMetadata={aoCarregar}
+                                    controls={tocando}
+                                    onPause={() => setTocando(false)}
+                                    onPlay={() => setTocando(true)}
+                                    onEnded={() => setTocando(false)}
+                                />
+                            )}
+
+                            {!tocando && (
+                                <button className="reel-capa" onClick={assistir} aria-label="Assistir ao vídeo">
+                                    <span className="reel-play">
+                                        <Play size={22} fill="currentColor" strokeWidth={0} />
+                                    </span>
+                                    <span className="reel-chamada">O que acontece na consulta?</span>
+                                </button>
+                            )}
+                        </div>
+                    </motion.div>
+
+                    <div className="consulta-copy">
+                        <motion.p className="eyebrow" {...entra(0.05)}>Como é a minha consulta?</motion.p>
+                        <motion.h2 className="titulo-secao" {...entra(0.1)}>
+                            Mais do que uma consulta, <em>um momento para cuidar de você.</em>
+                        </motion.h2>
+                        <motion.p className="consulta-texto" {...entra(0.16)}>
+                            Cada mulher chega ao consultório com uma história, uma necessidade e um momento
+                            de vida diferentes. Minha consulta começa pela escuta, passa por uma avaliação
+                            individualizada e termina com um plano de cuidado construído junto com você.
+                        </motion.p>
+
+                        <motion.ol className="passos" {...entra(0.22)}>
+                            {PASSOS.map((p) => (
+                                <li key={p.n}>
+                                    <span className="passo-n">{p.n}</span>
+                                    <strong>{p.titulo}</strong>
+                                    <span className="passo-txt">{p.texto}</span>
+                                </li>
+                            ))}
+                        </motion.ol>
+
+                        <motion.div {...entra(0.28)}>
+                            <button className="btn btn-light" onClick={assistir}>
+                                <Play size={14} fill="currentColor" strokeWidth={0} />
+                                Assista: como é a minha consulta
+                            </button>
+                        </motion.div>
+                    </div>
                 </div>
-              )}
-            </motion.div>
-            <button type="button" className="modal-fechar" onClick={() => setAberto(false)} aria-label="Fechar vídeo">
-              <X size={20} />
-            </button>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </section>
-  );
+            </div>
+        </section>
+    );
 }
