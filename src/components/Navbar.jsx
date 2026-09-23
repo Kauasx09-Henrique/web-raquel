@@ -11,6 +11,7 @@ const LINKS = [
   { to: '/#consulta', label: 'A consulta' },
   { to: '/#areas', label: 'Especialidades' },
   { to: '/#onde-atendo', label: 'Onde atendo' },
+  { to: '/login', label: 'Login' },
 ];
 
 export default function Navbar() {

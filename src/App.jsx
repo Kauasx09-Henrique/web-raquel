@@ -9,6 +9,9 @@ import Areas from './pages/Areas.jsx';
 import Clinica from './pages/Clinica.jsx';
 import Especialidade from './pages/Especialidades.jsx';
 
+import Login from './pages/Login.jsx';
+import Conteudos from './pages/Conteudos.jsx';
+
 const ALTURA_MENU = 84;
 
 function ScrollManager() {
@@ -59,6 +62,8 @@ export default function App() {
         <Route path="/especialidades/:id" element={<Especialidade />} />
         <Route path="/especialidades" element={<Navigate to="/#areas" replace />} />
         <Route path="*" element={<Navigate to="/" replace />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/conteudos" element={<Conteudos />} />
       </Routes>
       <Footer />
       <WhatsFab />
