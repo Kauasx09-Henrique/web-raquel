@@ -1,7 +1,7 @@
 .areas { background: var(--surface); }
 
 /* seção mais larga que o resto do site: cards maiores */
-.areas > .container { max-width: 1480px; }
+.areas > .container { max-width: 1780px; }
 
 .areas-head { max-width: 720px; margin-bottom: clamp(36px, 4vw, 56px); }
 

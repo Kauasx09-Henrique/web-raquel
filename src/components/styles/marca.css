@@ -1,0 +1,15 @@
+/* Logo no menu e no rodapé */
+.marca { display: inline-flex; align-items: center; flex: none; line-height: 0; }
+
+.marca-logo {
+  display: block;
+  width: auto;
+  height: 62px;          /* altura da logo horizontal no desktop — ajuste aqui */
+  max-width: 110%;
+  object-fit: contain;
+}
+
+/* celular: monograma RMG */
+@media (max-width: 460px) {
+  .marca-logo { height: 44px; }
+}

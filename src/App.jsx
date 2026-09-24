@@ -4,13 +4,12 @@ import Navbar from './components/Navbar.jsx';
 import Footer from './components/Footer.jsx';
 import WhatsFab from './components/WhatsFab.jsx';
 import Home from './pages/Home.jsx';
+import Sobre from './pages/Sobre.jsx';
+import Publicacoes from './pages/Publicacoes.jsx';
 import Consulta from './pages/Consulta.jsx';
 import Areas from './pages/Areas.jsx';
 import Clinica from './pages/Clinica.jsx';
 import Especialidade from './pages/Especialidades.jsx';
-
-import Login from './pages/Login.jsx';
-import Conteudos from './pages/Conteudos.jsx';
 
 const ALTURA_MENU = 84;
 
@@ -45,6 +44,7 @@ function PaginaInicial() {
   return (
     <main>
       <Home />
+      <Sobre />
       <Consulta />
       <Areas />
       <Clinica />
@@ -59,11 +59,10 @@ export default function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<PaginaInicial />} />
+        <Route path="/publicacoes" element={<Publicacoes />} />
         <Route path="/especialidades/:id" element={<Especialidade />} />
         <Route path="/especialidades" element={<Navigate to="/#areas" replace />} />
         <Route path="*" element={<Navigate to="/" replace />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/conteudos" element={<Conteudos />} />
       </Routes>
       <Footer />
       <WhatsFab />
