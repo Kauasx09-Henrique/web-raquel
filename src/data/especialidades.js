@@ -22,8 +22,8 @@ export const ESPECIALIDADES = [
     foto: '/fotos/especialidades/contracepcao.jpg',
     miniatura: 'https://i.pinimg.com/1200x/74/71/df/7471df6ede1b93f092d0804c6eebcaaf.jpg',
     videos: [
-      { titulo: 'DIU e Implanon: como escolher o método', src: 'https://drive.google.com/file/d/1FaEG5ZZzWorUGjzbsfSn_Iie5k8vDicl/view?usp=sharing', capa: '/videos/capas/contracepcao-1.jpg' },
-      { titulo: 'A sua filha adolescente já escolheu um método contraceptivo?', src: 'https://drive.google.com/file/d/1hnxDu51Mrmsv3RMSt6YFqVD4h8soSIfg/view?usp=sharing', capa: '/videos/capas/contracepcao-2.jpg' },
+      { titulo: 'DIU e Implanon: como escolher o método', src: 'https://drive.google.com/file/d/1FaEG5ZZzWorUGjzbsfSn_Iie5k8vDicl/view?usp=sharing', capa: '/capas/diu-X-implanon.png' },
+      { titulo: 'A sua filha adolescente já escolheu um método contraceptivo?', src: 'https://drive.google.com/file/d/1hnxDu51Mrmsv3RMSt6YFqVD4h8soSIfg/view?usp=sharing', capa: '/capas/adolescente.png' },
     ],
     topicos: [
       { titulo: 'DIU e Implanon', texto: 'Como funcionam, para quem são indicados e o que esperar da colocação.' },
@@ -45,10 +45,10 @@ export const ESPECIALIDADES = [
     foto: 'https://i.pinimg.com/736x/5c/84/9c/5c849c6fdc650e789bc1b145466b009e.jpg', // Usando a constante aqui!
     miniatura: 'https://images.unsplash.com/photo-1493894473891-10fc1e5dbd22?auto=format&fit=crop&w=900&h=1100&q=75',
     videos: [
-      { titulo: 'Fertilidade: sua idade importa mais do que o tratamento?', src: 'https://drive.google.com/file/d/1GQSHQFWi3d1Prl66AqR3kNpXyoJJ-n6r/view?usp=sharing', capa: '/videos/capas/reproducao-1.jpg' },
-      { titulo: 'Congelamento de óvulos: quando considerar?', src: 'https://drive.google.com/file/d/1I_avoIn1fQLuu_Edv-Pg0lqqKsYUpk96/view?usp=sharing', capa: '/videos/capas/reproducao-2.jpg' },
-      { titulo: 'Infertilidade: quando a causa está no homem?', src: 'https://drive.google.com/file/d/1pnvoGgMMn6ewaNf7hovKFedg1WpOcMHr/view?usp=sharing', capa: '/videos/capas/reproducao-3.jpg' },
-      { titulo: 'O que acontece no processo da estimulação ovariana?', src: 'https://drive.google.com/file/d/1GQSHQFWi3d1Prl66AqR3kNpXyoJJ-n6r/view?usp=sharing', capa: '/videos/capas/reproducao-4.jpg' },
+      { titulo: 'Fertilidade: sua idade importa mais do que o tratamento?', src: 'https://drive.google.com/file/d/1GQSHQFWi3d1Prl66AqR3kNpXyoJJ-n6r/view?usp=sharing', capa: '/capas/infertilidade.png' },
+      { titulo: 'Congelamento de óvulos: quando considerar?', src: 'https://drive.google.com/file/d/1I_avoIn1fQLuu_Edv-Pg0lqqKsYUpk96/view?usp=sharing', capa: '/capas/congelamento.png' },
+      { titulo: 'Infertilidade: quando a causa está no homem?', src: 'https://drive.google.com/file/d/1pnvoGgMMn6ewaNf7hovKFedg1WpOcMHr/view?usp=sharing', capa: '/capas/infertilidade-homem.png' },
+      { titulo: 'O que acontece no processo da estimulação ovariana?', src: 'https://drive.google.com/file/d/1GQSHQFWi3d1Prl66AqR3kNpXyoJJ-n6r/view?usp=sharing', capa: '/capas/estimulacao.png' },
     ],
     topicos: [
       { titulo: 'Fertilidade e idade', texto: 'O que muda com o tempo e por que planejar cedo faz diferença.' },
@@ -70,9 +70,9 @@ export const ESPECIALIDADES = [
     foto: CLIMATERIO, // Usando a constante aqui!
     miniatura: 'https://i.pinimg.com/1200x/0b/17/00/0b1700872d018c0a839572868a6c8f44.jpg',
     videos: [
-      { titulo: 'Climatério: o que realmente acontece com o corpo', src: 'https://drive.google.com/file/d/14sx5lfU50NiNRfz1AGLqMFD4jntnx8x6/view?usp=sharing', capa: '/videos/capas/climaterio-1.jpg' },
-      { titulo: 'DIU na menopausa. Quando ele pode ser útil?', src: 'https://drive.google.com/drive/folders/1yspoypFb1eUCtWiC0qNOUlTzOmcNUe3u', capa: '/videos/capas/climaterio-2.jpg' },
-      { titulo: 'Obesidade e menopausa: qual a relação?', src: 'https://drive.google.com/file/d/1n6RWIqw04DGdyDg7gIfXcl0nNBHJ1Dy9/view?usp=sharing', capa: '/videos/capas/climaterio-3.jpg' },
+      { titulo: 'Climatério: o que realmente acontece com o corpo', src: 'https://drive.google.com/file/d/14sx5lfU50NiNRfz1AGLqMFD4jntnx8x6/view?usp=sharing', capa: '/capas/climaterio.png' },
+      { titulo: 'DIU na menopausa. Quando ele pode ser útil?', src: 'https://drive.google.com/file/d/1mXHzoM8lXYmTDvyW2XLWlygbVwKoyFn-/view?usp=sharing', capa: '/capas/diu-X-menopausa.png' },
+      { titulo: 'Obesidade e menopausa: qual a relação?', src: 'https://drive.google.com/file/d/1n6RWIqw04DGdyDg7gIfXcl0nNBHJ1Dy9/view?usp=sharing', capa: '/capas/obesidade.png' },
     ],
     topicos: [
       { titulo: 'Sintomas do climatério', texto: 'Calorões, sono, humor e libido: o que é esperado e o que merece atenção.' },
@@ -94,7 +94,7 @@ export const ESPECIALIDADES = [
     foto: INTIMA, // Usando a constante aqui!
     miniatura: 'https://plus.unsplash.com/premium_photo-1702598850330-7e442c887df7?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     videos: [
-      { titulo: 'Laser íntimo e Fraxx: para quem são indicados?', src: 'https://drive.google.com/file/d/17oL1LXYB7GGkaqJ7r-I0sU2nRiK8c0ew/view?usp=sharing', capa: '/videos/capas/saude-intima-1.jpg' },
+      { titulo: 'Laser íntimo e Fraxx: para quem são indicados?', src: 'https://drive.google.com/file/d/17oL1LXYB7GGkaqJ7r-I0sU2nRiK8c0ew/view?usp=sharing', capa: '/capas/desconforto.png' },
     ],
     topicos: [
       { titulo: 'Laser íntimo e Fraxx', texto: 'Tecnologias que podem ajudar em situações selecionadas, após avaliação.' },
@@ -128,9 +128,9 @@ export const ESPECIALIDADES = [
     foto: FOTO_REPRODUCAO, // Usando a constante aqui!
     miniatura: FOTO_CIRURGIA, // Usando a constante aqui!
     videos: [
-      { titulo: 'Histeroscopia ou laparoscopia: qual a diferença?', src: 'https://drive.google.com/file/d/1JoPLm18j42r-MHE_XqnG0IectAGgB7LM/view?usp=drive_link', capa: '/videos/capas/cirurgia-1.jpg' },
-      { titulo: 'Descobriu um cisto no ovário? Respira! Talvez você não precise operar', src: 'https://drive.google.com/file/d/1g_zVK2ebeKVqfYOMSDrK6fsnhvWxLXME/view?usp=drive_link', capa: '/videos/capas/cirurgia-2.jpg' },
-      { titulo: '“Tenho medo da laparoscopia”: o que você precisa saber', src: 'https://drive.google.com/file/d/1PFI0hroJAS7PnNdJkf_g3Kk9kLaGEGNY/view?usp=drive_link', capa: '/videos/capas/cirurgia-3.jpg' },
+      { titulo: 'Histeroscopia ou laparoscopia: qual a diferença?', src: 'https://drive.google.com/file/d/1JoPLm18j42r-MHE_XqnG0IectAGgB7LM/view?usp=drive_link', capa: '/capas/histeroscopia-X-laparoscopia.png' },
+      { titulo: 'Descobriu um cisto no ovário? Respira! Talvez você não precise operar', src: 'https://drive.google.com/file/d/1g_zVK2ebeKVqfYOMSDrK6fsnhvWxLXME/view?usp=drive_link', capa: '/capas/cisto-ovario.png' },
+      { titulo: '“Tenho medo da laparoscopia”: o que você precisa saber', src: 'https://drive.google.com/file/d/1PFI0hroJAS7PnNdJkf_g3Kk9kLaGEGNY/view?usp=drive_link', capa: '/capas/laparoscopia.png' },
     ],
     topicos: [
       { titulo: 'Histeroscopia × laparoscopia', texto: 'O que cada uma faz, quando é indicada e como é a recuperação.' },

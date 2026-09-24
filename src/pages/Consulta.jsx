@@ -6,7 +6,7 @@ import './styles/consulta.css';
 // Pode ser um link do Google Drive (compartilhado com "qualquer pessoa com o link")
 // ou um .mp4 em public/ (ex.: '/videos/consulta.mp4')
 const VIDEO = 'https://drive.google.com/file/d/1PU08Ou9HbsIoTh-aDU-fQLkpaueZkUWP/view?usp=sharing';
-const CAPA = '/videos/capas/consulta.jpg'; // imagem antes do play (opcional)
+const CAPA = '/capas/consulta.png'; // imagem antes do play (opcional)
 
 // link do Drive → link de incorporação (/preview)
 function driveEmbed(url) {

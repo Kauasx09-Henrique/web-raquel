@@ -124,7 +124,7 @@ function Conteudo({ esp }) {
                                                     return;
                                                 }
                                                 setAtual(i);
-                                                setAutoPlay(true);
+                                                setAutoPlay(false);
                                             }}
                                         >
                                             <span className="esp-playlist-n">{String(i + 1).padStart(2, '0')}</span>
