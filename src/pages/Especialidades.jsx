@@ -14,10 +14,8 @@ export default function Especialidade() {
     const { id } = useParams();
     const esp = buscarEspecialidade(id);
 
-    // id que não existe → volta para a lista de especialidades da home
     if (!esp) return <Navigate to="/#areas" replace />;
 
-    // key={esp.id}: ao trocar de tema a página remonta e as animações rodam de novo
     return <Conteudo key={esp.id} esp={esp} />;
 }
 
@@ -41,7 +39,6 @@ function Conteudo({ esp }) {
 
     return (
         <main className="esp">
-            {/* ------------------------------ topo ------------------------------ */}
             <section className="esp-hero">
                 <div className="esp-hero-copy">
                     <motion.nav className="esp-trilha" aria-label="Você está em" {...aoCarregar(0)}>
@@ -78,8 +75,7 @@ function Conteudo({ esp }) {
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 1.5, ease: EASE }}
                 >
-                    <Foto src={'/fotos/especialidades/' + esp.id + '.jpg'} alt="" prioridade />
-                    <motion.blockquote
+                    <Foto src={esp.foto} alt="" posicao={esp.posicaoFoto || 'center 15%'} prioridade />                    <motion.blockquote
                         initial={{ opacity: 0, y: 16 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 1, delay: 0.6, ease: EASE }}
@@ -89,11 +85,9 @@ function Conteudo({ esp }) {
                 </motion.div>
             </section>
 
-            {/* ------------------------------ vídeos ---------------------------- */}
             <section className="esp-video" id="video">
                 <div className="esp-video-inner">
                     <motion.div className="esp-video-midia" {...aoRolar(0)}>
-                        {/* key={video.src}: ao trocar de vídeo o player remonta com o novo arquivo */}
                         <VideoTema
                             key={video.src}
                             src={video.src}
@@ -154,7 +148,6 @@ function Conteudo({ esp }) {
                 </div>
             </section>
 
-            {/* ------------------------- temas / conteúdo ------------------------ */}
             <section className="secao esp-topicos">
                 <div className="container">
                     <motion.header className="esp-secao-head" {...aoRolar(0)}>
@@ -199,7 +192,6 @@ function Conteudo({ esp }) {
                 </div>
             </section>
 
-            {/* ------------------------------ agendar ---------------------------- */}
             <section className="esp-cta">
                 <motion.div className="container esp-cta-inner" {...aoRolar(0)}>
                     <h2>
@@ -212,7 +204,6 @@ function Conteudo({ esp }) {
                 </motion.div>
             </section>
 
-            {/* -------------------------- outras áreas --------------------------- */}
             <section className="secao esp-outras">
                 <div className="container">
                     <div className="esp-outras-head">
@@ -234,7 +225,7 @@ function Conteudo({ esp }) {
                         {outras.map((o, i) => (
                             <motion.div key={o.id} {...aoRolar(i * 0.06)}>
                                 <Link className="esp-mini" to={'/especialidades/' + o.id}>
-                                    <Foto src={'/fotos/areas/' + o.id + '.jpg'} alt="" />
+                                    <Foto src={o.miniatura} alt="" />
                                     <span className="esp-mini-info">
                                         <em>{o.n}</em>
                                         <strong>{o.titulo}</strong>
@@ -252,7 +243,6 @@ function Conteudo({ esp }) {
     );
 }
 
-/* carrossel simples (scroll-snap), usado na Saúde Íntima */
 function Situacoes({ dados }) {
     const trilho = useRef(null);
     const [pos, setPos] = useState(0);

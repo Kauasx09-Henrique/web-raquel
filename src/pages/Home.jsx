@@ -6,7 +6,7 @@ import { EASE, aoCarregar, aoRolar } from '../components/animacoes.js';
 import { whatsapp } from '../config.js';
 import './styles/home.css';
 
-const fotoHero = '/fotos/teste.jpg'; // public/fotos/ensaio.jpg
+const fotoHero = '/fotos/hero-home.jpg'; // public/fotos/ensaio.jpg
 
 const DIFERENCIAIS = [
     { icone: GraduationCap, texto: 'Experiência e atualização constante' },

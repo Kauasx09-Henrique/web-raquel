@@ -11,7 +11,7 @@
 }
 
 /* a foto sangra até a borda direita e se dissolve no rosé à esquerda */
-.hero-foto { position: absolute; top: 0; right: 0; bottom: 0; width: 62%; }
+.hero-foto { position: absolute; top: -5rem; right: 0; bottom: 0; width: 42%; }
 
 .hero-foto::after {
   content: '';
@@ -48,13 +48,13 @@
 .hero-citacao {
   position: absolute;
   z-index: 2;
-  top: 50%;
+  top: 80%;
   right: clamp(24px, 4vw, 64px);
   max-width: 240px;
   padding-left: 22px;
   border-left: 1px solid rgba(255, 255, 255, 0.75);
   color: #fff;
-  text-shadow: 0 2px 18px rgba(74, 32, 44, 0.35);
+  text-shadow: 0 2px 18px #20354A;
   translate: 0 -70%;
 }
 

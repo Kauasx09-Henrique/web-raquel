@@ -14,15 +14,28 @@ const entra = (delay = 0) => ({
 });
 
 const FOTOS = [
-    { src: '/clinica/fachada.jpg', legenda: 'Fachada' },
+    { src: '/fotos/clinica/fachada.jpg', legenda: 'Fachada' },
     { src: '/clinica/recepcao.jpg', legenda: 'Recepção' },
     { src: '/clinica/consultorio.jpg', legenda: 'Consultório' },
-    { src: '/clinica/atendimento.png', legenda: 'Sala de atendimento' },
+    { src: '/clinica/atendimento.png', legenda: ' sala de atendimento' },
     { src: '/clinica/detalhe.jpg', legenda: 'Conforto e privacidade' },
 ];
 
+// ENDEREÇO COMPLETO — edite aqui
+const ENDERECO = {
+    linha1: 'SHLS 716, Bloco X, sala 000',
+    linha2: 'Asa Sul — Brasília, DF',
+    cep: 'CEP 70390-000',
+};
+
+// WhatsApp da clínica (os dois números)
+const TELEFONES = [
+    { exibir: '(61) 99372-6416', wa: '5561993726416' },
+    { exibir: '(61) 98422-7299', wa: '5561984227299' },
+];
+
 const INFOS = [
-    { icone: MapPin, titulo: 'Endereço', texto: 'Clínica Saúde da Mulher\nAsa Sul — Brasília, DF' },
+    { icone: MapPin, titulo: 'Endereço', texto: 'Clínica Saúde da Mulher\n' + ENDERECO.linha1 + '\n' + ENDERECO.linha2 + '\n' + ENDERECO.cep },
     { icone: Clock, titulo: 'Horário', texto: 'Segunda a sexta\ndas 8h às 18h' },
     { icone: Car, titulo: 'Acesso', texto: 'Estacionamento\nno local' },
 ];
@@ -101,6 +114,21 @@ export default function Clinica() {
                                     </span>
                                 </li>
                             ))}
+                            <li>
+                                <span className="info-icone">
+                                    <WhatsIcon size={17} />
+                                </span>
+                                <span>
+                                    <strong>WhatsApp da clínica</strong>
+                                    <span className="clinica-telefones">
+                                        {TELEFONES.map((t) => (
+                                            <a key={t.wa} href={'https://wa.me/' + t.wa} target="_blank" rel="noopener noreferrer">
+                                                {t.exibir}
+                                            </a>
+                                        ))}
+                                    </span>
+                                </span>
+                            </li>
                         </ul>
                         <a className="btn btn-outline" href={LINK_MAPA} target="_blank" rel="noopener noreferrer">
                             Como chegar <ArrowUpRight size={14} />
@@ -115,6 +143,14 @@ export default function Clinica() {
                             referrerPolicy="strict-origin-when-cross-origin"
                             allowFullScreen
                         />
+                    </motion.div>
+
+                    {/* endereço completo abaixo do mapa */}
+                    <motion.div className="clinica-endereco" {...entra(0.12)}>
+                        <MapPin size={16} strokeWidth={1.8} />
+                        <p>
+                            <strong>Clínica Saúde da Mulher</strong> · {ENDERECO.linha1} · {ENDERECO.linha2} · {ENDERECO.cep}
+                        </p>
                     </motion.div>
                 </div>
             </div>

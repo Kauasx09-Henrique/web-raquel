@@ -1,11 +1,11 @@
 .areas { background: var(--surface); }
 
 /* seção mais larga que o resto do site: cards maiores */
-.areas > .container { max-width: 1780px; }
+.areas > .container { max-width: 1480px; }
 
 .areas-head { max-width: 720px; margin-bottom: clamp(36px, 4vw, 56px); }
 
-.areas-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: clamp(14px, 1.4vw, 22px); }
+.areas-grid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: clamp(14px, 1.4vw, 22px); }
 
 .area-card {
   display: flex;

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, useAnimation } from 'framer-motion';
 import { Eye, EyeOff, ArrowRight, Lock, Loader2 } from 'lucide-react';
+import Swal from 'sweetalert2';
 import './styles/login.css';
 
 const EASE = [0.16, 1, 0.3, 1];
@@ -16,30 +17,59 @@ export default function Login() {
   const tremer = useAnimation();
   const [codigo, setCodigo] = useState('');
   const [ver, setVer] = useState(false);
-  const [erro, setErro] = useState('');
+  const [erro, setErro] = useState(false);
   const [enviando, setEnviando] = useState(false);
 
   const entrar = async (e) => {
     e.preventDefault();
     if (!codigo.trim() || enviando) return;
+
     setEnviando(true);
-    setErro('');
+    setErro(false);
+
     try {
       const r = await fetch('/api/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ codigo }),
       });
+
       if (r.ok) {
+        await Swal.fire({
+          icon: 'success',
+          title: 'Acesso liberado!',
+          text: 'Você será redirecionado para os conteúdos.',
+          timer: 2000,
+          showConfirmButton: false,
+          iconColor: '#9C4B5E'
+        });
         navigate('/conteudos', { replace: true });
         return;
       }
+
       const info = await r.json().catch(() => ({}));
-      if (r.status !== 401) console.error('Login falhou:', r.status, info);
-      setErro(r.status === 401 ? 'Código incorreto. Confira e tente novamente.' : `Não foi possível entrar agora (erro ${r.status}${info.erro ? ': ' + info.erro : ''}).`);
+      const mensagemErro = r.status === 401
+        ? 'Código incorreto. Confira e tente novamente.'
+        : `Não foi possível entrar agora (erro ${r.status}${info.erro ? ': ' + info.erro : ''}).`;
+
+      setErro(true);
       tremer.start({ x: [0, -10, 10, -6, 6, 0], transition: { duration: 0.45 } });
+
+      Swal.fire({
+        icon: 'error',
+        title: 'Acesso negado',
+        text: mensagemErro,
+        confirmButtonColor: '#9C4B5E'
+      });
+
     } catch {
-      setErro('Sem conexão. Tente novamente.');
+      setErro(true);
+      Swal.fire({
+        icon: 'warning',
+        title: 'Sem conexão',
+        text: 'Verifique sua internet e tente novamente.',
+        confirmButtonColor: '#9C4B5E'
+      });
     } finally {
       setEnviando(false);
     }
@@ -78,12 +108,12 @@ export default function Login() {
                 value={codigo}
                 onChange={(e) => {
                   setCodigo(e.target.value);
-                  if (erro) setErro('');
+                  if (erro) setErro(false);
                 }}
                 placeholder="••••••"
                 autoComplete="one-time-code"
                 autoFocus
-                aria-invalid={!!erro}
+                aria-invalid={erro}
               />
               <button type="button" onClick={() => setVer((v) => !v)} aria-label={ver ? 'Esconder código' : 'Mostrar código'}>
                 {ver ? <EyeOff size={18} /> : <Eye size={18} />}
@@ -91,9 +121,7 @@ export default function Login() {
             </div>
           </label>
 
-          <p className="login-erro" role="alert">{erro}</p>
-
-          <button type="submit" className="btn btn-primary login-btn" disabled={enviando || !codigo.trim()}>
+          <button type="submit" className="btn btn-primary login-btn" style={{ marginTop: '24px' }} disabled={enviando || !codigo.trim()}>
             {enviando ? <Loader2 size={17} className="girando" /> : null}
             {enviando ? 'Entrando…' : 'Entrar'}
             {!enviando && <ArrowRight size={16} />}
