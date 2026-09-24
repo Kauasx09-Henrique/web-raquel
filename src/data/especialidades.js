@@ -8,7 +8,8 @@ const FOTO_REPRODUCAO = '/fotos/cirurgia-zoom.jpg';
 const FOTO_CIRURGIA = '/fotos/cirurgia1.jpg'; 
 const CLIMATERIO ='/fotos/climaterio.jpg';
 const  INTIMA = '/fotos/saude-intima.png';
-const ULTRASSONOGRAFIA = '/fotos/ultrassonografia.jpg';
+const ULTRASSONOGRAFIA = '/fotos/especialidades/ultrasonografia/ultrassonografia.jpeg';
+const CARD_ULTRASSONOGRAFIA = '/fotos/especialidades/ultrasonografia/us1.jpeg';
 
 export const ESPECIALIDADES = [
   {
@@ -150,7 +151,7 @@ export const ESPECIALIDADES = [
       'A ultrassonografia transvaginal avalia útero, endométrio e ovários com alta definição. É fundamental na investigação de sintomas, no acompanhamento da fertilidade e no planejamento de tratamentos — realizada com cuidado, privacidade e explicação de cada etapa.',
     citacao: 'Diagnóstico preciso, cuidado próximo.',
     foto: ULTRASSONOGRAFIA, // Usando a constante aqui!', 
-    miniatura: 'https://i.pinimg.com/736x/d9/02/60/d902605b634265a07484e582801c3ce5.jpg',
+    miniatura: CARD_ULTRASSONOGRAFIA, // Usando a constante aqui!',
     videos: [
       { titulo: 'Ultrassonografia transvaginal: como é o exame?', src: '', capa: '/videos/capas/ultrassonografia-1.jpg' },
     ],
