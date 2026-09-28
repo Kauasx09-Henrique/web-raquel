@@ -7,9 +7,11 @@ import './styles/navbar.css';
 
 const LINKS = [
   { to: '/#inicio', label: 'Início' },
+  { to: '/#sobre', label: 'Sobre' },
   { to: '/#consulta', label: 'A consulta' },
   { to: '/#areas', label: 'Especialidades' },
   { to: '/#onde-atendo', label: 'Onde atendo' },
+  { to: '/publicacoes', label: 'Publicações' },
 ];
 
 export default function Navbar() {
@@ -83,7 +85,7 @@ export default function Navbar() {
 
           {logada && (
             <Link to="/conteudos" onClick={fechar}>
-              Conteúdos
+              Área exclusiva
             </Link>
           )}
 
@@ -101,7 +103,7 @@ export default function Navbar() {
           ) : (
             <Link to="/login" className="nav-acesso" onClick={fechar}>
               <LogIn size={16} strokeWidth={1.8} aria-hidden="true" />
-              Login
+              Área exclusiva para pacientes
             </Link>
           )}
 
