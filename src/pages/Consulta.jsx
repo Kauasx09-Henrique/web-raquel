@@ -6,7 +6,7 @@ import './styles/consulta.css';
 
 // Vídeo hospedado na pasta public/
 // public/consulta.mp4
-const VIDEO = '/consulta.mp4';
+const VIDEO = 'videos/consulta.mp4';
 
 const CAPA = '/capas/consulta.png'; // imagem antes do play
 
