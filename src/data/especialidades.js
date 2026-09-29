@@ -20,6 +20,9 @@ const VIDEO_REPRODUCAO_FERTILIDADE = '/reproducao.mp4';
 const VIDEO_REPRODUCAO_CONGELAMENTO = '/congelamento.mp4';
 const VIDEO_REPRODUCAO_INFERTILIDADE = '/infertilidade.mp4';
 const VIDEO_REPRODUCAO_ESTIMULACAO = '/estimulacao.mp4';
+const VIDEO_REPRODUCAO_OBESIDADE = '/obesidade.mp4';
+const VIDEO_REPRODUCAO_MENOPAUSA = '/menopausa.mp4';
+const VIDEO_REPRODUCAO_CLIMATERIO = '/climaterio.mp4';
 
 
 export const ESPECIALIDADES = [
@@ -82,9 +85,9 @@ export const ESPECIALIDADES = [
     foto: CLIMATERIO, // Usando a constante aqui!
     miniatura: 'https://i.pinimg.com/1200x/0b/17/00/0b1700872d018c0a839572868a6c8f44.jpg',
     videos: [
-      { titulo: 'Climatério: o que realmente acontece com o corpo', src: 'https://drive.google.com/file/d/14sx5lfU50NiNRfz1AGLqMFD4jntnx8x6/view?usp=sharing', capa: '/capas/climaterio.png' },
-      { titulo: 'DIU na menopausa. Quando ele pode ser útil?', src: 'https://drive.google.com/file/d/1mXHzoM8lXYmTDvyW2XLWlygbVwKoyFn-/view?usp=sharing', capa: '/capas/diu-X-menopausa.png' },
-      { titulo: 'Obesidade e menopausa: qual a relação?', src: 'https://drive.google.com/file/d/1n6RWIqw04DGdyDg7gIfXcl0nNBHJ1Dy9/view?usp=sharing', capa: '/capas/obesidade.png' },
+      { titulo: 'Climatério: o que realmente acontece com o corpo', src: VIDEO_REPRODUCAO_CLIMATERIO, capa: '/capas/climaterio.png' },
+      { titulo: 'DIU na menopausa. Quando ele pode ser útil?', src: VIDEO_REPRODUCAO_MENOPAUSA, capa: '/capas/diu-X-menopausa.png' },
+      { titulo: 'Obesidade e menopausa: qual a relação?', src: VIDEO_REPRODUCAO_OBESIDADE, capa: '/capas/obesidade.png' },
     ],
     topicos: [
       { titulo: 'Sintomas do climatério', texto: 'Calorões, sono, humor e libido: o que é esperado e o que merece atenção.' },
