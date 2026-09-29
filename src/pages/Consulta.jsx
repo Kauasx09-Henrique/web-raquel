@@ -4,7 +4,7 @@ import { Play } from 'lucide-react';
 import './styles/consulta.css';
 
 // Vídeo do YouTube
-const VIDEO = 'https://www.youtube.com/embed/FzNy4YCOnYg';
+// const VIDEO = 'https://www.youtube.com/embed/FzNy4YCOnYg';
 
 const CAPA = '/capas/consulta.png';
 
@@ -77,12 +77,15 @@ export default function Consulta() {
                             }
                         >
                             {tocando ? (
-                                <iframe
-                                    title="Como é a minha consulta"
-                                    src={"./consulta.mp4"}
-                                    allow="autoplay; fullscreen"
-                                    allowFullScreen
+                                <video
+                                    src="/consulta.mp4"
+                                    poster={CAPA}
+                                    preload="metadata"
+                                    playsInline
+                                    controls
                                 />
+
+
                             ) : (
                                 <>
                                     <img
