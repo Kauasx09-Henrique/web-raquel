@@ -117,7 +117,7 @@ export default function Consulta() {
 
                             <video
                                 ref={videoRef}
-                                src={VIDEO}
+                                src={"/consulta.mp4"}
                                 poster={CAPA}
                                 preload="metadata"
                                 playsInline
