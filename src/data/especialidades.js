@@ -14,6 +14,13 @@ const CARD_ULTRASSONOGRAFIA = '/fotos/especialidades/ultrasonografia/us1.jpeg';
 // videos
 
 const VIDEO_INTIMA = '/saude-intima.mp4';
+const VIDEO_CLIMATERIO_FILHA = '/climaterio-filha.mp4';
+const VIDEO_CLIMATERIO_DIU = '/climaterio-diu.mp4';
+const VIDEO_REPRODUCAO_FERTILIDADE = '/reproducao.mp4';
+const VIDEO_REPRODUCAO_CONGELAMENTO = '/congelamento.mp4';
+const VIDEO_REPRODUCAO_INFERTILIDADE = '/infertilidade.mp4';
+const VIDEO_REPRODUCAO_ESTIMULACAO = '/estimulacao.mp4';
+
 
 export const ESPECIALIDADES = [
   {
@@ -27,8 +34,8 @@ export const ESPECIALIDADES = [
     foto: '/fotos/especialidades/contracepcao.jpg',
     miniatura: 'https://i.pinimg.com/1200x/74/71/df/7471df6ede1b93f092d0804c6eebcaaf.jpg',
     videos: [
-      { titulo: 'DIU e Implanon: como escolher o método', src: 'https://drive.google.com/file/d/1FaEG5ZZzWorUGjzbsfSn_Iie5k8vDicl/view?usp=sharing', capa: '/capas/diu-X-implanon.png' },
-      { titulo: 'A sua filha adolescente já escolheu um método contraceptivo?', src: 'https://drive.google.com/file/d/1hnxDu51Mrmsv3RMSt6YFqVD4h8soSIfg/view?usp=sharing', capa: '/capas/adolescente.png' },
+      { titulo: 'DIU e Implanon: como escolher o método', src: VIDEO_CLIMATERIO_DIU, capa: '/capas/diu-X-implanon.png' },
+      { titulo: 'A sua filha adolescente já escolheu um método contraceptivo?', src: VIDEO_CLIMATERIO_FILHA, capa: '/capas/adolescente.png' },
     ],
     topicos: [
       { titulo: 'DIU e Implanon', texto: 'Como funcionam, para quem são indicados e o que esperar da colocação.' },
@@ -50,10 +57,10 @@ export const ESPECIALIDADES = [
     foto: 'https://i.pinimg.com/736x/5c/84/9c/5c849c6fdc650e789bc1b145466b009e.jpg', // Usando a constante aqui!
     miniatura: 'https://images.unsplash.com/photo-1493894473891-10fc1e5dbd22?auto=format&fit=crop&w=900&h=1100&q=75',
     videos: [
-      { titulo: 'Fertilidade: sua idade importa mais do que o tratamento?', src: 'https://drive.google.com/file/d/1GQSHQFWi3d1Prl66AqR3kNpXyoJJ-n6r/view?usp=sharing', capa: '/capas/infertilidade.png' },
-      { titulo: 'Congelamento de óvulos: quando considerar?', src: 'https://drive.google.com/file/d/1I_avoIn1fQLuu_Edv-Pg0lqqKsYUpk96/view?usp=sharing', capa: '/capas/congelamento.png' },
-      { titulo: 'Infertilidade: quando a causa está no homem?', src: 'https://drive.google.com/file/d/1pnvoGgMMn6ewaNf7hovKFedg1WpOcMHr/view?usp=sharing', capa: '/capas/infertilidade-homem.png' },
-      { titulo: 'O que acontece no processo da estimulação ovariana?', src: 'https://drive.google.com/file/d/1GQSHQFWi3d1Prl66AqR3kNpXyoJJ-n6r/view?usp=sharing', capa: '/capas/estimulacao.png' },
+      { titulo: 'Fertilidade: sua idade importa mais do que o tratamento?', src: VIDEO_REPRODUCAO_FERTILIDADE, capa: '/capas/infertilidade.png' },
+      { titulo: 'Congelamento de óvulos: quando considerar?', src: VIDEO_REPRODUCAO_CONGELAMENTO, capa: '/capas/congelamento.png' },
+      { titulo: 'Infertilidade: quando a causa está no homem?', src: VIDEO_REPRODUCAO_INFERTILIDADE, capa: '/capas/infertilidade-homem.png' },
+      { titulo: 'O que acontece no processo da estimulação ovariana?', src: VIDEO_REPRODUCAO_ESTIMULACAO, capa: '/capas/estimulacao.png' },
     ],
     topicos: [
       { titulo: 'Fertilidade e idade', texto: 'O que muda com o tempo e por que planejar cedo faz diferença.' },
