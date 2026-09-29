@@ -11,6 +11,10 @@ const  INTIMA = '/fotos/saude-intima.png';
 const ULTRASSONOGRAFIA = '/fotos/especialidades/ultrasonografia/ultrassonografia.jpeg';
 const CARD_ULTRASSONOGRAFIA = '/fotos/especialidades/ultrasonografia/us1.jpeg';
 
+// videos
+
+const VIDEO_INTIMA = '/saude-intima.mp4';
+
 export const ESPECIALIDADES = [
   {
     id: 'contracepcao',
@@ -95,7 +99,7 @@ export const ESPECIALIDADES = [
     foto: INTIMA, // Usando a constante aqui!
     miniatura: 'https://plus.unsplash.com/premium_photo-1702598850330-7e442c887df7?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     videos: [
-      { titulo: 'Laser íntimo e Fraxx: para quem são indicados?', src: 'https://drive.google.com/file/d/17oL1LXYB7GGkaqJ7r-I0sU2nRiK8c0ew/view?usp=sharing', capa: '/capas/desconforto.png' },
+      { titulo: 'Laser íntimo e Fraxx: para quem são indicados?', src: VIDEO_INTIMA, capa: '/capas/desconforto.png' },
     ],
     topicos: [
       { titulo: 'Laser íntimo e Fraxx', texto: 'Tecnologias que podem ajudar em situações selecionadas, após avaliação.' },
