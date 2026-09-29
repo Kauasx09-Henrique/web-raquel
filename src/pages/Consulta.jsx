@@ -1,12 +1,14 @@
+
 import { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Play } from 'lucide-react';
 import './styles/consulta.css';
 
-// Vídeo do YouTube
-// const VIDEO = 'https://www.youtube.com/embed/FzNy4YCOnYg';
+// Vídeo hospedado na pasta public/
+// public/consulta.mp4
+const VIDEO = '/consulta.mp4';
 
-const CAPA = '/capas/consulta.png';
+const CAPA = '/capas/consulta.png'; // imagem antes do play
 
 const EASE = [0.16, 1, 0.3, 1];
 
@@ -14,33 +16,61 @@ const entra = (delay = 0) => ({
     initial: { opacity: 0, y: 22 },
     whileInView: { opacity: 1, y: 0 },
     viewport: { once: true, amount: 0.25 },
-    transition: { duration: 0.9, delay, ease: EASE },
+    transition: {
+        duration: 0.9,
+        delay,
+        ease: EASE,
+    },
 });
 
 const PASSOS = [
     {
         n: '01',
         titulo: 'Escuta',
-        texto: 'Sua história e o que te trouxe até aqui.'
+        texto: 'Sua história e o que te trouxe até aqui.',
     },
     {
         n: '02',
         titulo: 'Avaliação',
-        texto: 'Exame e exames quando necessários.'
+        texto: 'Exame e exames quando necessários.',
     },
     {
         n: '03',
         titulo: 'Plano de cuidado',
-        texto: 'Construído junto com você.'
+        texto: 'Construído junto com você.',
     },
 ];
 
 export default function Consulta() {
     const reelRef = useRef(null);
-    const [tocando, setTocando] = useState(false);
+    const videoRef = useRef(null);
 
+    const [tocando, setTocando] = useState(false);
+    const [proporcao, setProporcao] = useState(null);
+
+    // Descobre automaticamente a proporção real do vídeo
+    const aoCarregar = (e) => {
+        const { videoWidth, videoHeight } = e.currentTarget;
+
+        if (videoWidth && videoHeight) {
+            setProporcao(`${videoWidth} / ${videoHeight}`);
+        }
+    };
+
+    // Inicia o vídeo
     const assistir = () => {
-        setTocando(true);
+        const video = videoRef.current;
+
+        if (!video) return;
+
+        video
+            .play()
+            .then(() => {
+                setTocando(true);
+            })
+            .catch((erro) => {
+                console.error('Erro ao reproduzir vídeo:', erro);
+            });
 
         // No celular, rola até o vídeo
         const el = reelRef.current;
@@ -65,6 +95,9 @@ export default function Consulta() {
             <div className="container">
                 <div className="consulta-card">
 
+                    {/* =========================
+                        VÍDEO
+                    ========================== */}
                     <motion.div
                         className="consulta-video"
                         {...entra(0)}
@@ -75,51 +108,53 @@ export default function Consulta() {
                                 'reel' +
                                 (tocando ? ' is-tocando' : '')
                             }
+                            style={
+                                proporcao
+                                    ? { aspectRatio: proporcao }
+                                    : undefined
+                            }
                         >
-                            {tocando ? (
-                                <video
-                                    src="/consulta.mp4"
-                                    poster={CAPA}
-                                    preload="metadata"
-                                    playsInline
-                                    controls
-                                />
 
+                            <video
+                                ref={videoRef}
+                                src={VIDEO}
+                                poster={CAPA}
+                                preload="metadata"
+                                playsInline
+                                onLoadedMetadata={aoCarregar}
+                                controls={tocando}
+                                onPlay={() => setTocando(true)}
+                                onPause={() => setTocando(false)}
+                                onEnded={() => setTocando(false)}
+                            />
 
-                            ) : (
-                                <>
-                                    <img
-                                        className="reel-poster"
-                                        src={CAPA}
-                                        alt=""
-                                        onError={(e) => {
-                                            e.currentTarget.style.display =
-                                                'none';
-                                        }}
-                                    />
+                            {/* Capa + botão de play */}
+                            {!tocando && (
+                                <button
+                                    className="reel-capa"
+                                    onClick={assistir}
+                                    aria-label="Assistir ao vídeo"
+                                >
+                                    <span className="reel-play">
+                                        <Play
+                                            size={22}
+                                            fill="currentColor"
+                                            strokeWidth={0}
+                                        />
+                                    </span>
 
-                                    <button
-                                        className="reel-capa"
-                                        onClick={assistir}
-                                        aria-label="Assistir ao vídeo"
-                                    >
-                                        <span className="reel-play">
-                                            <Play
-                                                size={22}
-                                                fill="currentColor"
-                                                strokeWidth={0}
-                                            />
-                                        </span>
-
-                                        <span className="reel-chamada">
-                                            O que acontece na consulta?
-                                        </span>
-                                    </button>
-                                </>
+                                    <span className="reel-chamada">
+                                        O que acontece na consulta?
+                                    </span>
+                                </button>
                             )}
+
                         </div>
                     </motion.div>
 
+                    {/* =========================
+                        TEXTO
+                    ========================== */}
                     <div className="consulta-copy">
 
                         <motion.p
@@ -144,13 +179,16 @@ export default function Consulta() {
                             {...entra(0.16)}
                         >
                             Cada mulher chega ao consultório com uma
-                            história, uma necessidade e um momento de
-                            vida diferentes. Minha consulta começa pela
-                            escuta, passa por uma avaliação
-                            individualizada e termina com um plano de
-                            cuidado construído junto com você.
+                            história, uma necessidade e um momento
+                            de vida diferentes. Minha consulta começa
+                            pela escuta, passa por uma avaliação
+                            individualizada e termina com um plano
+                            de cuidado construído junto com você.
                         </motion.p>
 
+                        {/* =========================
+                            PASSOS
+                        ========================== */}
                         <motion.ol
                             className="passos"
                             {...entra(0.22)}
@@ -172,6 +210,9 @@ export default function Consulta() {
                             ))}
                         </motion.ol>
 
+                        {/* =========================
+                            BOTÃO
+                        ========================== */}
                         <motion.div {...entra(0.28)}>
                             <button
                                 className="btn btn-light"
