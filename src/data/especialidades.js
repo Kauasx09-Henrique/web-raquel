@@ -23,6 +23,10 @@ const VIDEO_REPRODUCAO_ESTIMULACAO = '/estimulacao.mp4';
 const VIDEO_REPRODUCAO_OBESIDADE = '/obesidade.mp4';
 const VIDEO_REPRODUCAO_MENOPAUSA = '/menopausa.mp4';
 const VIDEO_REPRODUCAO_CLIMATERIO = '/climaterio.mp4';
+const VIDEO_CIRURGIA_HISTEROSCOPIA = '/histeroscopia.mp4';  
+const VIDEO_CIRURGIA_LAPAROSCOPIA = '/laparoscopia.mp4';
+const VIDEO_CIRURGIA_CISTO = '/cisto.mp4';
+
 
 
 export const ESPECIALIDADES = [
@@ -143,9 +147,9 @@ export const ESPECIALIDADES = [
     foto: FOTO_REPRODUCAO, // Usando a constante aqui!
     miniatura: FOTO_CIRURGIA, // Usando a constante aqui!
     videos: [
-      { titulo: 'Histeroscopia ou laparoscopia: qual a diferença?', src: 'https://drive.google.com/file/d/1JoPLm18j42r-MHE_XqnG0IectAGgB7LM/view?usp=drive_link', capa: '/capas/histeroscopia-X-laparoscopia.png' },
-      { titulo: 'Descobriu um cisto no ovário? Respira! Talvez você não precise operar', src: 'https://drive.google.com/file/d/1g_zVK2ebeKVqfYOMSDrK6fsnhvWxLXME/view?usp=drive_link', capa: '/capas/cisto-ovario.png' },
-      { titulo: '“Tenho medo da laparoscopia”: o que você precisa saber', src: 'https://drive.google.com/file/d/1PFI0hroJAS7PnNdJkf_g3Kk9kLaGEGNY/view?usp=drive_link', capa: '/capas/laparoscopia.png' },
+      { titulo: 'Histeroscopia ou laparoscopia: qual a diferença?', src: VIDEO_CIRURGIA_HISTEROSCOPIA, capa: '/capas/histeroscopia-X-laparoscopia.png' },
+      { titulo: 'Descobriu um cisto no ovário? Respira! Talvez você não precise operar', src: VIDEO_CIRURGIA_CISTO, capa: '/capas/cisto-ovario.png' },
+      { titulo: '“Tenho medo da laparoscopia”: o que você precisa saber', src: VIDEO_CIRURGIA_LAPAROSCOPIA, capa: '/capas/laparoscopia.png' },
     ],
     topicos: [
       { titulo: 'Histeroscopia × laparoscopia', texto: 'O que cada uma faz, quando é indicada e como é a recuperação.' },
