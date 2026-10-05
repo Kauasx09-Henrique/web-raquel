@@ -1,25 +1,36 @@
-/* Conteúdo de cada especialidade. A página /especialidades/:id monta tudo a partir daqui.
-   foto       → foto no topo da página da especialidade
-   miniatura  → imagem do card na página inicial e em "Outras especialidades"
-*/
-
-// CONSTANTES NO TOPO DO ARQUIVO:
 const FOTO_REPRODUCAO = '/fotos/cirurgia-zoom.jpg'; 
 const FOTO_CIRURGIA = '/fotos/cirurgia1.jpg'; 
 const CLIMATERIO ='/fotos/climaterio.jpg';
 const  INTIMA = '/fotos/saude-intima.png';
-const ULTRASSONOGRAFIA = '/fotos/especialidades/ultrasonografia/ultrassonografia.jpeg';
-const CARD_ULTRASSONOGRAFIA = '/fotos/especialidades/ultrasonografia/us1.jpeg';
 
-// videos
+// SEPARANDO CADA UM PARA FICAR MAIS ORGANIZADO E FACILITAR A TROCA DE FOTOS NO FUTURO
+
+// CONTRACEPÇÃO
+
+const CARD_CONTRACEPCAO = 'https://i.pinimg.com/1200x/74/71/df/7471df6ede1b93f092d0804c6eebcaaf.jpg';
+const VIDEO_DIU_IMPLACON = '/videos/DIU-Implanon.mp4';
+const VIDEO_CLIMATERIO_FILHA = '/videos/contracepcao-filha.mp4';
+
+  
+//ULTRASSONOGRAFIA
+
+const CARD_ULTRASSONOGRAFIA = '/fotos/especialidades/cards/card.jpeg';
+const VIDEO_ULTRASSONOGRAFIA = '/ultrassonografia.mp4';
+const MINIATURA_ULTRASSONOGRAFIA = '/fotos/especialidades/miniaturas/ultrassonografia.jpeg';   
+
+// REPRODUÇÃO HUMANA
+
+const MINIATURA_REPRODUCAO = '/fotos/especialidades/miniaturas/reproducao.jpeg';
+const VIDEO_REPRODUCAO_FERTILIDADE = '/videos/fertilidade.mp4';
+const VIDEO_REPRODUCAO_CONGELAMENTO = '/videos/congelamento.mp4';
+const VIDEO_REPRODUCAO_INFERTILIDADE = '/videos/infertilidade.mp4';
+const VIDEO_REPRODUCAO_ESTIMULACAO = '/videos/estimulacao.mp4';
+
+
+
 
 const VIDEO_INTIMA = '/saude-intima.mp4';
-const VIDEO_CLIMATERIO_FILHA = '/climaterio-filha.mp4';
-const VIDEO_CLIMATERIO_DIU = '/climaterio-diu.mp4';
-const VIDEO_REPRODUCAO_FERTILIDADE = '/reproducao.mp4';
-const VIDEO_REPRODUCAO_CONGELAMENTO = '/congelamento.mp4';
-const VIDEO_REPRODUCAO_INFERTILIDADE = '/infertilidade.mp4';
-const VIDEO_REPRODUCAO_ESTIMULACAO = '/estimulacao.mp4';
+
 const VIDEO_REPRODUCAO_OBESIDADE = '/obesidade.mp4';
 const VIDEO_REPRODUCAO_MENOPAUSA = '/menopausa.mp4';
 const VIDEO_REPRODUCAO_CLIMATERIO = '/climaterio.mp4';
@@ -39,9 +50,9 @@ export const ESPECIALIDADES = [
       'A avaliação contraceptiva é individualizada: considera sua idade, histórico de saúde, rotina, desejo reprodutivo e preferências. A partir daí, decidimos juntas qual caminho faz sentido agora — e quando vale rever essa escolha.',
     citacao: 'Mais liberdade para viver o seu tempo.',
     foto: '/fotos/especialidades/contracepcao.jpg',
-    miniatura: 'https://i.pinimg.com/1200x/74/71/df/7471df6ede1b93f092d0804c6eebcaaf.jpg',
+    miniatura: CARD_CONTRACEPCAO,
     videos: [
-      { titulo: 'DIU e Implanon: como escolher o método', src: VIDEO_CLIMATERIO_DIU, capa: '/capas/diu-X-implanon.png' },
+      { titulo: 'DIU e Implanon: como escolher o método', src: VIDEO_DIU_IMPLACON, capa: '/capas/diu-X-implanon.png' },
       { titulo: 'A sua filha adolescente já escolheu um método contraceptivo?', src: VIDEO_CLIMATERIO_FILHA, capa: '/capas/adolescente.png' },
     ],
     topicos: [
@@ -62,7 +73,7 @@ export const ESPECIALIDADES = [
       'Avaliação e tratamento da infertilidade, planejamento reprodutivo e preservação da fertilidade — com investigação do casal e decisões tomadas com clareza sobre tempo, chances e alternativas.',
     citacao: 'Ciência hoje para mais histórias amanhã.',
     foto: 'https://i.pinimg.com/736x/5c/84/9c/5c849c6fdc650e789bc1b145466b009e.jpg', // Usando a constante aqui!
-    miniatura: 'https://images.unsplash.com/photo-1493894473891-10fc1e5dbd22?auto=format&fit=crop&w=900&h=1100&q=75',
+    miniatura: MINIATURA_REPRODUCAO,
     videos: [
       { titulo: 'Fertilidade: sua idade importa mais do que o tratamento?', src: VIDEO_REPRODUCAO_FERTILIDADE, capa: '/capas/infertilidade.png' },
       { titulo: 'Congelamento de óvulos: quando considerar?', src: VIDEO_REPRODUCAO_CONGELAMENTO, capa: '/capas/congelamento.png' },
@@ -168,10 +179,10 @@ export const ESPECIALIDADES = [
     texto:
       'A ultrassonografia transvaginal avalia útero, endométrio e ovários com alta definição. É fundamental na investigação de sintomas, no acompanhamento da fertilidade e no planejamento de tratamentos — realizada com cuidado, privacidade e explicação de cada etapa.',
     citacao: 'Diagnóstico preciso, cuidado próximo.',
-    foto: ULTRASSONOGRAFIA, // Usando a constante aqui!', 
-    miniatura: CARD_ULTRASSONOGRAFIA, // Usando a constante aqui!',
+    foto: MINIATURA_ULTRASSONOGRAFIA, // Usando a constante aqui!
+    miniatura: CARD_ULTRASSONOGRAFIA, // Usando a constante aqui!
     videos: [
-      { titulo: 'Ultrassonografia transvaginal: como é o exame?', src: '', capa: '/videos/capas/ultrassonografia-1.jpg' },
+      { titulo: 'Ultrassonografia transvaginal: como é o exame?', src: VIDEO_ULTRASSONOGRAFIA, capa: '/capas/ultrasonografia.png' },
     ],
     topicos: [
       { titulo: 'Como é o exame', texto: 'Rápido, feito no consultório e com orientação em cada etapa.' },

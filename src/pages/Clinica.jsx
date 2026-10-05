@@ -23,7 +23,7 @@ const FOTOS = [
 
 // ENDEREÇO COMPLETO — edite aqui
 const ENDERECO = {
-    linha1: 'SHLS 716, Bloco X, sala 000',
+    linha1: 'SHLS 716, Blocos 3,4,5, Centro Clínico Sudoeste, sala 210',
     linha2: 'Asa Sul — Brasília, DF',
     cep: 'CEP 70390-000',
 };
