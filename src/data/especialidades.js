@@ -1,42 +1,47 @@
-const FOTO_REPRODUCAO = '/fotos/cirurgia-zoom.jpg'; 
-const FOTO_CIRURGIA = '/fotos/cirurgia1.jpg'; 
-const CLIMATERIO ='/fotos/climaterio.jpg';
-const  INTIMA = '/fotos/saude-intima.png';
 
 // SEPARANDO CADA UM PARA FICAR MAIS ORGANIZADO E FACILITAR A TROCA DE FOTOS NO FUTURO
-
 // CONTRACEPÇÃO
 
 const CARD_CONTRACEPCAO = 'https://i.pinimg.com/1200x/74/71/df/7471df6ede1b93f092d0804c6eebcaaf.jpg';
 const VIDEO_DIU_IMPLACON = '/videos/DIU-Implanon.mp4';
 const VIDEO_CLIMATERIO_FILHA = '/videos/contracepcao-filha.mp4';
-
-  
-//ULTRASSONOGRAFIA
-
-const CARD_ULTRASSONOGRAFIA = '/fotos/especialidades/cards/card.jpeg';
-const VIDEO_ULTRASSONOGRAFIA = '/ultrassonografia.mp4';
-const MINIATURA_ULTRASSONOGRAFIA = '/fotos/especialidades/miniaturas/ultrassonografia.jpeg';   
+ 
 
 // REPRODUÇÃO HUMANA
 
-const MINIATURA_REPRODUCAO = '/fotos/especialidades/miniaturas/reproducao.jpeg';
+const CARD_REPRODUCAO = 'https://i.pinimg.com/736x/5c/84/9c/5c849c6fdc650e789bc1b145466b009e.jpg';
+const MINIATURA_REPRODUCAO = 'https://i.pinimg.com/736x/6f/59/7b/6f597bc7cc04be65f2581ecd5f5e9dc6.jpg';
 const VIDEO_REPRODUCAO_FERTILIDADE = '/videos/fertilidade.mp4';
 const VIDEO_REPRODUCAO_CONGELAMENTO = '/videos/congelamento.mp4';
 const VIDEO_REPRODUCAO_INFERTILIDADE = '/videos/infertilidade.mp4';
 const VIDEO_REPRODUCAO_ESTIMULACAO = '/videos/estimulacao.mp4';
 
+// CLIMATÉRIO
 
+const CARD_CLIMATERIO ='/fotos/climaterio.jpg';
+const MINIATURA_CLIMATERIO = 'https://i.pinimg.com/1200x/0b/17/00/0b1700872d018c0a839572868a6c8f44.jpg';
+const VIDEO_REPRODUCAO_MENOPAUSA = '/videos/menopausa.mp4';
+const VIDEO_REPRODUCAO_OBESIDADE = '/videos/obesidade.mp4';
+const VIDEO_REPRODUCAO_CLIMATERIO = '/videos/climaterio.mp4';
 
+// SAÚDE ÍNTIMA
+const  CARD_INTIMA = '/fotos/saude-intima.png';
+const MINIATURA_INTIMA = 'https://plus.unsplash.com/premium_photo-1702598850330-7e442c887df7?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D';
+const VIDEO_INTIMA = '/videos/saude-intima.mp4';
 
-const VIDEO_INTIMA = '/saude-intima.mp4';
+// CIRURGIA GINECOLÓGICA
 
-const VIDEO_REPRODUCAO_OBESIDADE = '/obesidade.mp4';
-const VIDEO_REPRODUCAO_MENOPAUSA = '/menopausa.mp4';
-const VIDEO_REPRODUCAO_CLIMATERIO = '/climaterio.mp4';
-const VIDEO_CIRURGIA_HISTEROSCOPIA = '/histeroscopia.mp4';  
-const VIDEO_CIRURGIA_LAPAROSCOPIA = '/laparoscopia.mp4';
-const VIDEO_CIRURGIA_CISTO = '/cisto.mp4';
+const CARD_CIRURGIA = '/fotos/cirurgia-zoom.jpg'; 
+const MINIATURA_CIRURGIA = '/fotos/cirurgia1.jpg'; 
+const VIDEO_CIRURGIA_HISTEROSCOPIA = '/videos/histeroscopia.mp4';  
+const VIDEO_CIRURGIA_LAPAROSCOPIA = '/videos/laparoscopia.mp4';
+const VIDEO_CIRURGIA_CISTO = '/videos/cisto.mp4';
+
+//ULTRASSONOGRAFIA
+
+const CARD_ULTRASSONOGRAFIA = '/fotos/especialidades/cards/card.jpeg';
+const VIDEO_ULTRASSONOGRAFIA = '/videos/ultrassonografia.mp4';
+const MINIATURA_ULTRASSONOGRAFIA = '/fotos/especialidades/miniaturas/ultrassonografia.jpeg';   
 
 
 
@@ -72,7 +77,7 @@ export const ESPECIALIDADES = [
     texto:
       'Avaliação e tratamento da infertilidade, planejamento reprodutivo e preservação da fertilidade — com investigação do casal e decisões tomadas com clareza sobre tempo, chances e alternativas.',
     citacao: 'Ciência hoje para mais histórias amanhã.',
-    foto: 'https://i.pinimg.com/736x/5c/84/9c/5c849c6fdc650e789bc1b145466b009e.jpg', // Usando a constante aqui!
+    foto: CARD_REPRODUCAO, // Usando a constante aqui!
     miniatura: MINIATURA_REPRODUCAO,
     videos: [
       { titulo: 'Fertilidade: sua idade importa mais do que o tratamento?', src: VIDEO_REPRODUCAO_FERTILIDADE, capa: '/capas/infertilidade.png' },
@@ -97,8 +102,8 @@ export const ESPECIALIDADES = [
     texto:
       'Sono, humor, libido, composição corporal, saúde óssea e cardiovascular fazem parte da avaliação. O tratamento é individualizado — hormonal ou não — de acordo com seus sintomas, histórico e objetivos.',
     citacao: 'Vitalidade em todas as fases.',
-    foto: CLIMATERIO, // Usando a constante aqui!
-    miniatura: 'https://i.pinimg.com/1200x/0b/17/00/0b1700872d018c0a839572868a6c8f44.jpg',
+    foto: CARD_CLIMATERIO, // Usando a constante aqui!
+    miniatura: MINIATURA_CLIMATERIO,
     videos: [
       { titulo: 'Climatério: o que realmente acontece com o corpo', src: VIDEO_REPRODUCAO_CLIMATERIO, capa: '/capas/climaterio.png' },
       { titulo: 'DIU na menopausa. Quando ele pode ser útil?', src: VIDEO_REPRODUCAO_MENOPAUSA, capa: '/capas/diu-X-menopausa.png' },
@@ -121,8 +126,8 @@ export const ESPECIALIDADES = [
     texto:
       'Sintomas íntimos podem interferir na autoestima, na sexualidade, no conforto e na qualidade de vida. A avaliação ginecológica permite identificar as causas e discutir as opções de tratamento mais adequadas para cada mulher.',
     citacao: 'Conforto, segurança e bem-estar em todas as fases da sua vida.',
-    foto: INTIMA, // Usando a constante aqui!
-    miniatura: 'https://plus.unsplash.com/premium_photo-1702598850330-7e442c887df7?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    foto: CARD_INTIMA, // Usando a constante aqui!
+    miniatura: MINIATURA_INTIMA,
     videos: [
       { titulo: 'Laser íntimo e Fraxx: para quem são indicados?', src: VIDEO_INTIMA, capa: '/capas/desconforto.png' },
     ],
@@ -155,8 +160,8 @@ export const ESPECIALIDADES = [
     texto:
       'Indicação criteriosa, preparo pré-operatório, técnica minimamente invasiva sempre que possível e acompanhamento próximo na recuperação. Há situações em que a melhor conduta é justamente evitar a cirurgia — e isso também é discutido.',
     citacao: 'Tecnologia a serviço da sua saúde e bem-estar.',
-    foto: FOTO_REPRODUCAO, // Usando a constante aqui!
-    miniatura: FOTO_CIRURGIA, // Usando a constante aqui!
+    foto: CARD_CIRURGIA, // Usando a constante aqui!
+    miniatura: MINIATURA_CIRURGIA, // Usando a constante aqui!
     videos: [
       { titulo: 'Histeroscopia ou laparoscopia: qual a diferença?', src: VIDEO_CIRURGIA_HISTEROSCOPIA, capa: '/capas/histeroscopia-X-laparoscopia.png' },
       { titulo: 'Descobriu um cisto no ovário? Respira! Talvez você não precise operar', src: VIDEO_CIRURGIA_CISTO, capa: '/capas/cisto-ovario.png' },
