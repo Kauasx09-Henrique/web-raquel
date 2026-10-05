@@ -1,15 +1,13 @@
-// Publicações da Dra. Raquel — edite aqui (títulos, links, status)
-// tipo: 'gratuito' → botão "Acessar" | 'compra' → botão "Comprar" | 'producao' → "Em breve" (sem link)
 
 export const PUBLICACOES = [
   {
     id: 'sbra-covid',
     categoria: 'Posicionamento',
     titulo: 'Interfaces: Reprodução Humana e COVID-19',
-    fonte: 'Sociedade Brasileira de Reprodução Assistida (SBRA)',
+    fonte: 'Sociedade Brasileira de Reprodução Assistida (SBRA) / JBRA',
     participacao: 'Participação na produção',
     tipo: 'gratuito',
-    link: 'https://sbra.com.br/publicacoes/interfaces-reproducao-humana-e-covid-19/',
+    link: 'https://biblioteca.cofen.gov.br/wp-content/uploads/2020/05/ReprodHumCovid19.pdf',
   },
   {
     id: 'foliculo-vazio',
@@ -25,7 +23,7 @@ export const PUBLICACOES = [
     categoria: 'Capítulo de livro',
     titulo: 'Manual de Condutas Ginecológicas do Hospital Materno Infantil de Brasília',
     fonte: 'Hospital Materno Infantil de Brasília (HMIB)',
-    participacao: 'Autoria de capítulo',
+    participacao: 'Co-autoria de capítulo: Otimizando a fertilidade',
     tipo: 'compra',
     link: 'https://books.google.com/books/about/Manual_de_Condutas_Ginecol%C3%B3gicas_do_Hos.html?hl=pt-BR&id=MGQGEQAAQBAJ',
   },
@@ -34,7 +32,7 @@ export const PUBLICACOES = [
     categoria: 'Capítulo de livro',
     titulo: 'Manual de Reprodução Humana da SBRH',
     fonte: 'Sociedade Brasileira de Reprodução Humana (SBRH)',
-    participacao: 'Autoria de capítulo',
+    participacao: 'Co-autoria de capítulo: Gestação de sítio desconhecido',
     tipo: 'producao',
     link: '',
   },
