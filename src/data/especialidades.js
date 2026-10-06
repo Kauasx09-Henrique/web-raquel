@@ -41,7 +41,7 @@ const VIDEO_CIRURGIA_CISTO = '/videos/cisto.mp4';
 
 const CARD_ULTRASSONOGRAFIA = '/fotos/especialidades/cards/card.jpeg';
 const VIDEO_ULTRASSONOGRAFIA = '/videos/ultrassonografia.mp4';
-const MINIATURA_ULTRASSONOGRAFIA = '/fotos/especialidades/miniaturas/ultrassonografia.jpeg';   
+const MINIATURA_ULTRASSONOGRAFIA = '/fotos/especialidades/miniaturas/teste-preta.png';   
 
 
 

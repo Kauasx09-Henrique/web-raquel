@@ -15,7 +15,6 @@ const DIFERENCIAIS = [
     { icone: Flower2, texto: 'Acompanhamento em todas as fases' },
 ];
 
-// Hero + faixa de diferenciais. Sem <main> aqui: ele fica no App.jsx.
 export default function Home() {
     return (
         <>
