@@ -7,8 +7,9 @@ import {
 } from 'lucide-react';
 import VideoTema from '../components/VideoTema.jsx';
 import { driveEmbed, driveImagem } from '../components/drive.js';
-import './styles/especialidade.css'; // estilos do player (VideoTema)
+import './styles/especialidade.css';
 import './styles/conteudos.css';
+import VideoModal from './VideoModal'; // Importando a nova Área de Estudos
 
 const EASE = [0.16, 1, 0.3, 1];
 
@@ -100,7 +101,6 @@ function Guia({ guia, onAbrir }) {
   );
 }
 
-// Arraste para comparar antes × depois
 function Comparador({ item }) {
   const [pos, setPos] = useState(50);
   return (
@@ -133,7 +133,6 @@ function Comparador({ item }) {
   );
 }
 
-// Card de caso real com imagem desfocada até a paciente escolher ver
 function CardCaso({ caso, revelado, onRevelar, onAbrir, i }) {
   const foto = caso.tipo === 'foto';
   return (
@@ -229,7 +228,7 @@ export default function Conteudos() {
   const categorias = useMemo(() => ['Todos', ...new Set((dados?.casos || []).map((c) => c.categoria))], [dados]);
 
   const sair = async () => {
-    await fetch('/api/logout', { method: 'POST', credentials: 'include' }).catch(() => {});
+    await fetch('/api/logout', { method: 'POST', credentials: 'include' }).catch(() => { });
     navigate('/login', { replace: true });
   };
 
@@ -393,9 +392,9 @@ export default function Conteudos() {
         </AnimatePresence>
       </section>
 
-      {/* visualizador: vídeo, foto ou PDF */}
+      {/* INTEGRAÇÃO DOS MODAIS: PDF/Foto vs Novo VideoModal */}
       <AnimatePresence>
-        {aberto && (
+        {aberto && aberto.tipo !== 'video' && (
           <motion.div className="conteudo-modal" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setAberto(null)}>
             <motion.div
               className={'conteudo-modal-caixa' + (aberto.tipo === 'pdf' ? ' is-pdf' : aberto.tipo === 'foto' ? ' is-foto' : '')}
@@ -407,7 +406,6 @@ export default function Conteudos() {
             >
               {aberto.tipo === 'pdf' && <iframe className="cx-modal-pdf" src={driveEmbed(aberto.src) || aberto.src} title={aberto.titulo} allow="autoplay" />}
               {aberto.tipo === 'foto' && <img className="cx-modal-foto" src={driveImagem(aberto.src, 2000)} alt={aberto.titulo} />}
-              {aberto.tipo === 'video' && <VideoTema key={aberto.id} src={aberto.src} chamada={aberto.titulo} autoPlay />}
               <div className="conteudo-modal-info">
                 <span>{aberto.tema || aberto.categoria || 'Guia'}</span>
                 <p>{aberto.titulo}</p>
@@ -417,6 +415,15 @@ export default function Conteudos() {
               <X size={20} />
             </button>
           </motion.div>
+        )}
+
+        {/* CHAMANDO NOSSA ÁREA DE ESTUDOS (VideoModal) SE FOR VÍDEO */}
+        {aberto && aberto.tipo === 'video' && (
+          <VideoModal
+            key="modal-video"
+            conteudo={aberto}
+            fecharModal={() => setAberto(null)}
+          />
         )}
       </AnimatePresence>
     </main>

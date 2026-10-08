@@ -14,6 +14,7 @@ import Clinica from './pages/Clinica.jsx';
 import Especialidade from './pages/Especialidades.jsx';
 import Login from './pages/Login.jsx';
 import Conteudos from './pages/Conteudos.jsx';
+import videoTema from './components/VideoTema.jsx';
 
 const ALTURA_MENU = 84;
 
@@ -92,6 +93,7 @@ export default function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/conteudos" element={<Conteudos />} />
         <Route path="*" element={<Navigate to="/" replace />} />
+        <Route path="/video/:id" element={<videoTema />} />
       </Routes>
 
       <Footer />
