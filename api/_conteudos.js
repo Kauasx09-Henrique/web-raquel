@@ -1,14 +1,7 @@
-// Conteúdos da área exclusiva. Fica no servidor: só chega ao navegador depois do login.
-// Links do Google Drive precisam estar como "Qualquer pessoa com o link".
-// Item com link vazio ('') não aparece no site — a aba mostra "Em breve".
 
-/* ------------------------------------------------------------------
-   VÍDEOS — aparecem na aba do tema e em "Todos os vídeos"
-   tema: 'Reprodução Humana' | 'Climatério' | 'Saúde Íntima' | 'Contracepção' | 'Cirurgias'
------------------------------------------------------------------- */
 export const CONTEUDOS = [
   // Contracepção
-  { id: 'contra-1', tema: 'Contracepção', titulo: 'DIU e Implanon: como escolher o método', src: 'https://drive.google.com/file/d/1FaEG5ZZzWorUGjzbsfSn_Iie5k8vDicl/view' },
+  { id: 'contra-1', tema: 'Contracepção', titulo: 'DIU e Implanon: como escolher o método', src: '/aulas/fertilidade.mp4' },
   { id: 'contra-2', tema: 'Contracepção', titulo: 'A sua filha adolescente já escolheu um método contraceptivo?', src: 'https://drive.google.com/file/d/1hnxDu51Mrmsv3RMSt6YFqVD4h8soSIfg/view' },
 
   // Reprodução Humana
@@ -31,9 +24,7 @@ export const CONTEUDOS = [
   { id: 'cir-3', tema: 'Cirurgias', titulo: '“Tenho medo da laparoscopia”: o que você precisa saber', src: 'https://drive.google.com/file/d/1PFI0hroJAS7PnNdJkf_g3Kk9kLaGEGNY/view' },
 ];
 
-/* ------------------------------------------------------------------
-   GUIAS — PDF no Drive (link de compartilhamento)
------------------------------------------------------------------- */
+
 export const GUIAS = {
   reproducao: {
     titulo: 'Guia da Fertilidade',
