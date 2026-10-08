@@ -9,7 +9,7 @@ import VideoTema from '../components/VideoTema.jsx';
 import { driveEmbed, driveImagem } from '../components/drive.js';
 import './styles/especialidade.css';
 import './styles/conteudos.css';
-import VideoModal from './VideoModal'; // Importando a nova Área de Estudos
+import VideoModal from './VideoModal';
 
 const EASE = [0.16, 1, 0.3, 1];
 
@@ -22,14 +22,12 @@ const ABAS = [
 ];
 
 const INTRO = {
-  reproducao: { eyebrow: 'Reprodução Humana', titulo: <>Sua jornada pela <em>fertilidade</em></>, texto: 'O guia completo e os vídeos para entender cada etapa — da investigação ao tratamento.' },
-  climaterio: { eyebrow: 'Climatério', titulo: <>Uma nova fase, <em>com cuidado</em></>, texto: 'Informação clara sobre as mudanças do corpo e as opções para viver bem o climatério.' },
-  intimas: { eyebrow: 'Cirurgias íntimas', titulo: <>Expectativas <em>reais</em></>, texto: 'Casos reais de pacientes da Dra. Raquel para você visualizar o que é possível alcançar — com naturalidade.' },
-  casos: { eyebrow: 'Casos reais', titulo: <>O que a medicina <em>enxerga</em></>, texto: 'Imagens e vídeos curtos de procedimentos e diagnósticos reais, para entender o que acontece dentro do corpo.' },
-  videos: { eyebrow: 'Biblioteca', titulo: <>Todos os <em>vídeos</em></>, texto: 'Vídeos curtos, feitos pela Dra. Raquel, para você entender cada etapa do seu cuidado.' },
+  reproducao: { eyebrow: 'Reprodução Humana', titulo: <>A sua jornada pela <em>fertilidade</em></>, texto: 'O guia completo e os vídeos para entender cada etapa.' },
+  climaterio: { eyebrow: 'Climatério', titulo: <>Uma nova fase, <em>com cuidado</em></>, texto: 'Informação clara sobre as mudanças do corpo.' },
+  intimas: { eyebrow: 'Cirurgias íntimas', titulo: <>Expectativas <em>reais</em></>, texto: 'Casos reais de pacientes para visualizar o que é possível alcançar.' },
+  casos: { eyebrow: 'Casos reais', titulo: <>O que a medicina <em>vê</em></>, texto: 'Imagens e vídeos curtos de procedimentos reais.' },
+  videos: { eyebrow: 'Biblioteca', titulo: <>Todos os <em>vídeos</em></>, texto: 'Vídeos curtos para entender cada etapa do seu cuidado.' },
 };
-
-/* ---------------------------- blocos ---------------------------- */
 
 function EmBreve({ texto = 'Conteúdo em preparação. Em breve por aqui.' }) {
   return (
@@ -55,9 +53,7 @@ function GradeVideos({ videos, onAbrir }) {
           transition={{ duration: 0.5, delay: i * 0.04, ease: EASE }}
         >
           <span className="conteudo-num">{String(i + 1).padStart(2, '0')}</span>
-          <span className="conteudo-play">
-            <Play size={16} fill="currentColor" strokeWidth={0} />
-          </span>
+          <span className="conteudo-play"><Play size={16} fill="currentColor" strokeWidth={0} /></span>
           <span className="conteudo-tema">{c.tema}</span>
           <span className="conteudo-titulo">{c.titulo}</span>
         </motion.button>
@@ -78,20 +74,13 @@ function Guia({ guia, onAbrir }) {
         <span className="cx-guia-capa-rodape">Dra. Raquel Meirelles Guimarães</span>
       </div>
       <div className="cx-guia-txt">
-        <span className="cx-rotulo">
-          <BookOpen size={14} strokeWidth={1.8} /> Material exclusivo
-        </span>
+        <span className="cx-rotulo"><BookOpen size={14} strokeWidth={1.8} /> Material exclusivo</span>
         <h3>{guia.titulo}</h3>
         <p>{guia.descricao}</p>
         {pronto ? (
           <div className="cx-guia-acoes">
-            <button type="button" className="btn btn-primary" onClick={() => onAbrir({ tipo: 'pdf', titulo: guia.titulo, src: guia.link })}>
-              Ler o guia
-            </button>
-            <a className="btn-link" href={guia.link} target="_blank" rel="noopener noreferrer">
-              Abrir em nova aba
-              <span className="btn-link-icone"><ArrowUpRight size={16} strokeWidth={2} /></span>
-            </a>
+            <button type="button" className="btn btn-primary" onClick={() => onAbrir({ tipo: 'pdf', titulo: guia.titulo, src: guia.link })}>Ler o guia</button>
+            <a className="btn-link" href={guia.link} target="_blank" rel="noopener noreferrer">Abrir num novo separador <span className="btn-link-icone"><ArrowUpRight size={16} strokeWidth={2} /></span></a>
           </div>
         ) : (
           <span className="cx-selo-embreve"><Clock size={14} strokeWidth={1.8} /> Em produção</span>
@@ -107,23 +96,11 @@ function Comparador({ item }) {
     <figure className="cx-comp">
       <div className="cx-comp-area" style={{ '--pos': pos + '%' }}>
         <img src={driveImagem(item.depois)} alt={item.procedimento + ' — depois'} loading="lazy" draggable="false" />
-        <div className="cx-comp-antes">
-          <img src={driveImagem(item.antes)} alt={item.procedimento + ' — antes'} loading="lazy" draggable="false" />
-        </div>
+        <div className="cx-comp-antes"><img src={driveImagem(item.antes)} alt={item.procedimento + ' — antes'} loading="lazy" draggable="false" /></div>
         <span className="cx-comp-tag cx-comp-tag-antes">Antes</span>
         <span className="cx-comp-tag cx-comp-tag-depois">Depois</span>
-        <span className="cx-comp-linha" aria-hidden="true">
-          <span className="cx-comp-alca"><MoveHorizontal size={18} strokeWidth={1.8} /></span>
-        </span>
-        <input
-          className="cx-comp-range"
-          type="range"
-          min="0"
-          max="100"
-          value={pos}
-          onChange={(e) => setPos(Number(e.target.value))}
-          aria-label={'Comparar antes e depois — ' + item.procedimento}
-        />
+        <span className="cx-comp-linha" aria-hidden="true"><span className="cx-comp-alca"><MoveHorizontal size={18} strokeWidth={1.8} /></span></span>
+        <input className="cx-comp-range" type="range" min="0" max="100" value={pos} onChange={(e) => setPos(Number(e.target.value))} />
       </div>
       <figcaption>
         <strong>{item.procedimento}</strong>
@@ -145,23 +122,14 @@ function CardCaso({ caso, revelado, onRevelar, onAbrir, i }) {
       transition={{ duration: 0.5, delay: i * 0.04, ease: EASE }}
     >
       <button type="button" className="cx-caso-midia" onClick={() => (revelado ? onAbrir(caso) : onRevelar(caso.id))}>
-        {foto ? (
-          <img src={driveImagem(caso.src, 900)} alt={caso.titulo} loading="lazy" />
-        ) : (
-          <span className="cx-caso-video-fundo" />
-        )}
+        {foto ? <img src={driveImagem(caso.src, 900)} alt={caso.titulo} loading="lazy" /> : <span className="cx-caso-video-fundo" />}
         {!revelado ? (
           <span className="cx-caso-aviso">
             <Eye size={18} strokeWidth={1.6} />
-            <strong>Imagem médica</strong>
-            <small>Toque para visualizar</small>
+            <strong>Imagem médica</strong><small>Toque para visualizar</small>
           </span>
         ) : (
-          !foto && (
-            <span className="conteudo-play cx-caso-play">
-              <Play size={16} fill="currentColor" strokeWidth={0} />
-            </span>
-          )
+          !foto && <span className="conteudo-play cx-caso-play"><Play size={16} fill="currentColor" strokeWidth={0} /></span>
         )}
       </button>
       <div className="cx-caso-info">
@@ -171,8 +139,6 @@ function CardCaso({ caso, revelado, onRevelar, onAbrir, i }) {
     </motion.article>
   );
 }
-
-/* ---------------------------- página ---------------------------- */
 
 export default function Conteudos() {
   const navigate = useNavigate();
@@ -193,25 +159,16 @@ export default function Conteudos() {
     let ativo = true;
     fetch('/api/conteudos', { credentials: 'include', cache: 'no-store' })
       .then((r) => {
-        if (r.status === 401) {
-          navigate('/login', { replace: true });
-          return null;
-        }
-        return r.json().then((d) => {
-          if (!r.ok || !Array.isArray(d.conteudos)) throw new Error(`erro ${r.status}${d.erro ? ': ' + d.erro : ''}`);
-          return d;
-        });
+        if (r.status === 401) { navigate('/login', { replace: true }); return null; }
+        return r.json().then((d) => { if (!r.ok || !Array.isArray(d.conteudos)) throw new Error(`erro ${r.status}`); return d; });
       })
       .then((d) => ativo && d && setDados({ conteudos: d.conteudos, guias: d.guias || {}, antesDepois: d.antesDepois || [], casos: d.casos || [] }))
       .catch((e) => {
         if (!ativo) return;
-        console.error('Falha ao carregar conteúdos:', e);
         setFalha(e.message || 'erro desconhecido');
         setDados({ conteudos: [], guias: {}, antesDepois: [], casos: [] });
       });
-    return () => {
-      ativo = false;
-    };
+    return () => { ativo = false; };
   }, [navigate]);
 
   useEffect(() => {
@@ -219,10 +176,7 @@ export default function Conteudos() {
     const esc = (e) => e.key === 'Escape' && setAberto(null);
     window.addEventListener('keydown', esc);
     document.body.style.overflow = 'hidden';
-    return () => {
-      window.removeEventListener('keydown', esc);
-      document.body.style.overflow = '';
-    };
+    return () => { window.removeEventListener('keydown', esc); document.body.style.overflow = ''; };
   }, [aberto]);
 
   const categorias = useMemo(() => ['Todos', ...new Set((dados?.casos || []).map((c) => c.categoria))], [dados]);
@@ -250,34 +204,23 @@ export default function Conteudos() {
       <section className="conteudos-topo">
         <div className="container conteudos-topo-inner">
           <div>
-            <p className="eyebrow">Área exclusiva para pacientes</p>
-            <h1>
-              Bem-vinda ao seu <em>espaço</em>
-            </h1>
-            <p className="conteudos-lead">
-              Guias, vídeos e casos reais preparados pela Dra. Raquel para acompanhar você em cada etapa do cuidado.
-            </p>
+            <p className="eyebrow">Área exclusiva</p>
+            <h1>Bem-vinda ao seu <em>espaço</em></h1>
+            <p className="conteudos-lead">Guias, vídeos e casos reais preparados para acompanhar cada etapa do cuidado.</p>
           </div>
-          <button type="button" className="btn btn-outline conteudos-sair" onClick={sair}>
-            <LogOut size={14} /> Sair
-          </button>
+          <button type="button" className="btn btn-outline conteudos-sair" onClick={sair}><LogOut size={14} /> Sair</button>
         </div>
 
         <div className="container">
-          <nav className="cx-abas" role="tablist" aria-label="Seções da área exclusiva">
+          <nav className="cx-abas" role="tablist">
             {ABAS.map((a) => {
               const Icone = a.icone;
               return (
                 <button
-                  key={a.id}
-                  type="button"
-                  role="tab"
-                  aria-selected={aba === a.id}
-                  className={'cx-aba' + (aba === a.id ? ' is-ativo' : '')}
-                  onClick={() => trocarAba(a.id)}
+                  key={a.id} type="button" role="tab" aria-selected={aba === a.id}
+                  className={'cx-aba' + (aba === a.id ? ' is-ativo' : '')} onClick={() => trocarAba(a.id)}
                 >
-                  <Icone size={16} strokeWidth={1.7} />
-                  {a.rotulo}
+                  <Icone size={16} strokeWidth={1.7} /> {a.rotulo}
                   {aba === a.id && <motion.span layoutId="cx-aba-marca" className="cx-aba-marca" transition={{ duration: 0.5, ease: EASE }} />}
                 </button>
               );
@@ -287,29 +230,14 @@ export default function Conteudos() {
       </section>
 
       <section className="container conteudos-corpo">
-        {falha && (
-          <p className="conteudos-vazio">
-            Não foi possível carregar os conteúdos.
-            <small>({falha})</small>
-          </p>
-        )}
-
         <AnimatePresence mode="wait">
-          <motion.div
-            key={aba}
-            className="cx-painel"
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.45, ease: EASE }}
-          >
+          <motion.div key={aba} className="cx-painel" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.45, ease: EASE }}>
             <header className="cx-intro">
               <p className="eyebrow">{intro.eyebrow}</p>
               <h2>{intro.titulo}</h2>
               <p>{intro.texto}</p>
             </header>
 
-            {/* Reprodução / Climatério: guia + vídeos */}
             {(aba === 'reproducao' || aba === 'climaterio') && (
               <>
                 <Guia guia={dados.guias[aba]} onAbrir={setAberto} />
@@ -318,72 +246,29 @@ export default function Conteudos() {
               </>
             )}
 
-            {/* Cirurgias íntimas: antes e depois + vídeos */}
             {aba === 'intimas' && (
               <>
-                <div className="cx-nota">
-                  <ShieldCheck size={18} strokeWidth={1.6} />
-                  <p>
-                    Imagens publicadas com autorização das pacientes. Cada corpo é único — os resultados variam e são
-                    discutidos individualmente em consulta.
-                  </p>
-                </div>
+                <div className="cx-nota"><ShieldCheck size={18} strokeWidth={1.6} /><p>Imagens publicadas com autorização. Os resultados variam.</p></div>
                 {dados.antesDepois.length ? (
-                  <div className="cx-comp-grade">
-                    {dados.antesDepois.map((item) => (
-                      <Comparador key={item.id} item={item} />
-                    ))}
-                  </div>
-                ) : (
-                  <EmBreve texto="Os casos de antes e depois estão sendo organizados." />
-                )}
+                  <div className="cx-comp-grade">{dados.antesDepois.map((item) => <Comparador key={item.id} item={item} />)}</div>
+                ) : <EmBreve />}
                 <h3 className="cx-subtitulo">Vídeos sobre saúde íntima</h3>
                 <GradeVideos videos={videosDoTema} onAbrir={setAberto} />
               </>
             )}
 
-            {/* Casos reais */}
             {aba === 'casos' && (
               <>
-                <div className="cx-nota">
-                  <Eye size={18} strokeWidth={1.6} />
-                  <p>Este conteúdo contém imagens médicas reais. Elas ficam desfocadas até você escolher visualizar.</p>
-                </div>
-                {dados.casos.length > 0 && (
-                  <div className="conteudos-filtros" role="tablist" aria-label="Filtrar por categoria">
-                    {categorias.map((c) => (
-                      <button
-                        key={c}
-                        type="button"
-                        role="tab"
-                        aria-selected={categoria === c}
-                        className={categoria === c ? 'is-ativo' : undefined}
-                        onClick={() => setCategoria(c)}
-                      >
-                        {c}
-                        <span>{c === 'Todos' ? dados.casos.length : dados.casos.filter((x) => x.categoria === c).length}</span>
-                      </button>
-                    ))}
-                  </div>
-                )}
+                <div className="cx-nota"><Eye size={18} strokeWidth={1.6} /><p>Conteúdo médico real. Imagens desfocadas até escolha de visualização.</p></div>
                 {casosVisiveis.length ? (
                   <motion.div layout className="cx-casos-grade">
                     <AnimatePresence mode="popLayout">
                       {casosVisiveis.map((c, i) => (
-                        <CardCaso
-                          key={c.id}
-                          caso={c}
-                          i={i}
-                          revelado={!!revelados[c.id]}
-                          onRevelar={(id) => setRevelados((r) => ({ ...r, [id]: true }))}
-                          onAbrir={setAberto}
-                        />
+                        <CardCaso key={c.id} caso={c} i={i} revelado={!!revelados[c.id]} onRevelar={(id) => setRevelados((r) => ({ ...r, [id]: true }))} onAbrir={setAberto} />
                       ))}
                     </AnimatePresence>
                   </motion.div>
-                ) : (
-                  <EmBreve texto="Os casos reais estão sendo selecionados." />
-                )}
+                ) : <EmBreve />}
               </>
             )}
 
@@ -392,38 +277,24 @@ export default function Conteudos() {
         </AnimatePresence>
       </section>
 
-      {/* INTEGRAÇÃO DOS MODAIS: PDF/Foto vs Novo VideoModal */}
       <AnimatePresence>
         {aberto && aberto.tipo !== 'video' && (
           <motion.div className="conteudo-modal" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setAberto(null)}>
             <motion.div
               className={'conteudo-modal-caixa' + (aberto.tipo === 'pdf' ? ' is-pdf' : aberto.tipo === 'foto' ? ' is-foto' : '')}
-              initial={{ y: 30, scale: 0.96 }}
-              animate={{ y: 0, scale: 1 }}
-              exit={{ y: 20, scale: 0.97 }}
-              transition={{ duration: 0.5, ease: EASE }}
+              initial={{ y: 30, scale: 0.96 }} animate={{ y: 0, scale: 1 }} exit={{ y: 20, scale: 0.97 }} transition={{ duration: 0.5, ease: EASE }}
               onClick={(e) => e.stopPropagation()}
             >
               {aberto.tipo === 'pdf' && <iframe className="cx-modal-pdf" src={driveEmbed(aberto.src) || aberto.src} title={aberto.titulo} allow="autoplay" />}
               {aberto.tipo === 'foto' && <img className="cx-modal-foto" src={driveImagem(aberto.src, 2000)} alt={aberto.titulo} />}
-              <div className="conteudo-modal-info">
-                <span>{aberto.tema || aberto.categoria || 'Guia'}</span>
-                <p>{aberto.titulo}</p>
-              </div>
+              <div className="conteudo-modal-info"><span>{aberto.tema || aberto.categoria || 'Guia'}</span><p>{aberto.titulo}</p></div>
             </motion.div>
-            <button type="button" className="conteudo-modal-fechar" onClick={() => setAberto(null)} aria-label="Fechar">
-              <X size={20} />
-            </button>
+            <button type="button" className="conteudo-modal-fechar" onClick={() => setAberto(null)} aria-label="Fechar"><X size={20} /></button>
           </motion.div>
         )}
 
-        {/* CHAMANDO NOSSA ÁREA DE ESTUDOS (VideoModal) SE FOR VÍDEO */}
         {aberto && aberto.tipo === 'video' && (
-          <VideoModal
-            key="modal-video"
-            conteudo={aberto}
-            fecharModal={() => setAberto(null)}
-          />
+          <VideoModal key="modal-video" conteudo={aberto} fecharModal={() => setAberto(null)} />
         )}
       </AnimatePresence>
     </main>
