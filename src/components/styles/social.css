@@ -1,0 +1,231 @@
+
+/* ===========================================================
+   INSTAGRAM FEED
+   =========================================================== */
+
+.insta-section {
+  padding: clamp(60px, 8vw, 100px) 0;
+  background-color: var(--bg, #f8f9fa);
+}
+
+.insta-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 48px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.insta-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.insta-card {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  border-radius: 16px;
+  overflow: hidden;
+  background-color: #e4e4e7;
+  display: block;
+}
+
+.insta-card img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  transition: transform 0.6s var(--ease);
+}
+
+.insta-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(156, 75, 94, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.insta-card:hover img {
+  transform: scale(1.05);
+}
+
+.insta-card:hover .insta-overlay {
+  opacity: 1;
+}
+
+
+.insta-widget-container {
+  width: 100%;
+  min-width: 0;
+  margin-top: 32px;
+  overflow: hidden;
+}
+
+.insta-widget-container .zyff-instagram {
+  width: 100%;
+  max-width: 100%;
+}
+
+.insta-widget-container img {
+  object-position: center top !important;
+}
+
+.insta-widget-container iframe {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  border: 0;
+}
+
+
+.doctoralia-section {
+  padding: clamp(60px, 8vw, 100px) 0;
+  background-color: #ffffff;
+}
+
+.doctoralia-header {
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.doctoralia-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 32px;
+  margin-bottom: 48px;
+}
+
+.doctoralia-card {
+  background: var(--surface, #fcfcfc);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  padding: 40px 32px;
+  border-radius: 24px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);
+  position: relative;
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.doctoralia-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 50px rgba(74, 32, 44, 0.08);
+}
+
+.quote-icon {
+  color: var(--rose);
+  opacity: 0.2;
+  position: absolute;
+  top: 32px;
+  right: 32px;
+}
+
+.estrelas {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 24px;
+}
+
+.avaliacao-texto {
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--muted, #52525b);
+  margin-bottom: 32px;
+  flex-grow: 1;
+  font-style: italic;
+}
+
+.avaliacao-rodape {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  padding-top: 16px;
+}
+
+.avaliacao-rodape strong {
+  color: var(--azul);
+  font-family: var(--font-display);
+  font-size: 18px;
+}
+
+.avaliacao-rodape span {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.doctoralia-cta {
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+@media (max-width: 768px) {
+  .insta-section,
+  .doctoralia-section {
+    padding: 60px 0;
+  }
+
+  .insta-header {
+    margin-bottom: 32px;
+  }
+
+  .insta-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .insta-card {
+    border-radius: 12px;
+  }
+
+  .insta-widget-container {
+    margin-top: 24px;
+  }
+
+  .doctoralia-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .doctoralia-card {
+    padding: 32px 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .insta-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .insta-grid {
+    gap: 8px;
+  }
+
+  .doctoralia-card {
+    padding: 28px 20px;
+  }
+}
+.insta-widget-container img {
+  object-position: center top !important;
+}
+
+.insta-widget-container {
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.insta-widget-container iframe {
+  max-width: 100%;
+}

@@ -16,6 +16,9 @@ import Login from './pages/Login.jsx';
 import Conteudos from './pages/Conteudos.jsx';
 import videoTema from './components/VideoTema.jsx';
 
+import Instagram from './components/Instagram.jsx';
+import Doctoralia from './components/Doctoralia.jsx';
+
 const ALTURA_MENU = 84;
 
 function ScrollManager() {
@@ -65,8 +68,10 @@ function PaginaInicial() {
     <main>
       <Home />
       <Sobre />
+      <Instagram />
       <Consulta />
       <Areas />
+      <Doctoralia />
       <Clinica />
     </main>
   );
