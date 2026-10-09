@@ -37,7 +37,6 @@ export default function Navbar() {
     };
   }, [aberto]);
 
-  // Verifica a sessão sempre que muda de página (ex.: depois do login)
   useEffect(() => {
     let ativo = true;
 

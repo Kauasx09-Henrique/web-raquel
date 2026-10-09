@@ -8,7 +8,6 @@
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* o desfoque fica num pseudo-elemento: assim o menu mobile (position: fixed) não fica preso na barra */
 .nav::before {
   content: '';
   position: absolute;
@@ -59,7 +58,6 @@
 
 .nav-btn { padding: 13px 22px; font-size: 10.5px; }
 
-/* Login / Sair */
 .nav-links .nav-acesso {
   display: inline-flex;
   align-items: center;

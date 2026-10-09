@@ -20,7 +20,6 @@
 .fab.is-visivel { opacity: 1; transform: none; pointer-events: auto; }
 .fab:hover { background: var(--wine-700); }
 
-/* anel que pulsa devagar */
 .fab::after {
   content: '';
   position: absolute;

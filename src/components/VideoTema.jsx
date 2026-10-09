@@ -1,7 +1,6 @@
 import React from 'react';
 
 export default function VideoTema({ src, chamada, autoPlay }) {
-  // Converte o link do Google Drive para o formato embed, se necessário
   const getVideoSrc = (url) => {
     if (!url) return '';
     if (url.includes('drive.google.com/file/d/')) {

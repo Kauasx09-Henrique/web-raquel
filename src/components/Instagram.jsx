@@ -1,4 +1,3 @@
-
 import { useEffect } from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import './styles/social.css';
@@ -10,7 +9,6 @@ export default function Instagram() {
     useEffect(() => {
         const scriptId = 'zyff-instagram-script';
 
-        // Evita carregar o script mais de uma vez.
         if (document.getElementById(scriptId)) {
             return;
         }

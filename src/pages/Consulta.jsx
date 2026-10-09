@@ -48,7 +48,6 @@ export default function Consulta() {
     const [tocando, setTocando] = useState(false);
     const [proporcao, setProporcao] = useState(null);
 
-    // Descobre automaticamente a proporção real do vídeo
     const aoCarregar = (e) => {
         const { videoWidth, videoHeight } = e.currentTarget;
 
@@ -57,7 +56,7 @@ export default function Consulta() {
         }
     };
 
-    // Inicia o vídeo
+
     const assistir = () => {
         const video = videoRef.current;
 
@@ -72,7 +71,7 @@ export default function Consulta() {
                 console.error('Erro ao reproduzir vídeo:', erro);
             });
 
-        // No celular, rola até o vídeo
+
         const el = reelRef.current;
 
         if (!el) return;
@@ -95,9 +94,7 @@ export default function Consulta() {
             <div className="container">
                 <div className="consulta-card">
 
-                    {/* =========================
-                        VÍDEO
-                    ========================== */}
+
                     <motion.div
                         className="consulta-video"
                         {...entra(0)}
@@ -128,7 +125,6 @@ export default function Consulta() {
                                 onEnded={() => setTocando(false)}
                             />
 
-                            {/* Capa + botão de play */}
                             {!tocando && (
                                 <button
                                     className="reel-capa"
@@ -152,9 +148,7 @@ export default function Consulta() {
                         </div>
                     </motion.div>
 
-                    {/* =========================
-                        TEXTO
-                    ========================== */}
+
                     <div className="consulta-copy">
 
                         <motion.p
@@ -186,9 +180,7 @@ export default function Consulta() {
                             de cuidado construído junto com você.
                         </motion.p>
 
-                        {/* =========================
-                            PASSOS
-                        ========================== */}
+
                         <motion.ol
                             className="passos"
                             {...entra(0.22)}
@@ -210,9 +202,7 @@ export default function Consulta() {
                             ))}
                         </motion.ol>
 
-                        {/* =========================
-                            BOTÃO
-                        ========================== */}
+
                         <motion.div {...entra(0.28)}>
                             <button
                                 className="btn btn-light"

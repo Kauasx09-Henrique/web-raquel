@@ -77,7 +77,7 @@ export const ESPECIALIDADES = [
     texto:
       'Avaliação e tratamento da infertilidade, planejamento reprodutivo e preservação da fertilidade — com investigação do casal e decisões tomadas com clareza sobre tempo, chances e alternativas.',
     citacao: 'Ciência hoje para mais histórias amanhã.',
-    foto: CARD_REPRODUCAO, // Usando a constante aqui!
+    foto: CARD_REPRODUCAO, 
     miniatura: MINIATURA_REPRODUCAO,
     videos: [
       { titulo: 'Fertilidade: sua idade importa mais do que o tratamento?', src: VIDEO_REPRODUCAO_FERTILIDADE, capa: '/capas/infertilidade.png' },
@@ -102,7 +102,7 @@ export const ESPECIALIDADES = [
     texto:
       'Sono, humor, libido, composição corporal, saúde óssea e cardiovascular fazem parte da avaliação. O tratamento é individualizado — hormonal ou não — de acordo com seus sintomas, histórico e objetivos.',
     citacao: 'Vitalidade em todas as fases.',
-    foto: CARD_CLIMATERIO, // Usando a constante aqui!
+    foto: CARD_CLIMATERIO, 
     miniatura: MINIATURA_CLIMATERIO,
     videos: [
       { titulo: 'Climatério: o que realmente acontece com o corpo', src: VIDEO_REPRODUCAO_CLIMATERIO, capa: '/capas/climaterio.png' },
@@ -160,8 +160,8 @@ export const ESPECIALIDADES = [
     texto:
       'Indicação criteriosa, preparo pré-operatório, técnica minimamente invasiva sempre que possível e acompanhamento próximo na recuperação. Há situações em que a melhor conduta é justamente evitar a cirurgia — e isso também é discutido.',
     citacao: 'Tecnologia a serviço da sua saúde e bem-estar.',
-    foto: CARD_CIRURGIA, // Usando a constante aqui!
-    miniatura: MINIATURA_CIRURGIA, // Usando a constante aqui!
+    foto: CARD_CIRURGIA, 
+    miniatura: MINIATURA_CIRURGIA, 
     videos: [
       { titulo: 'Histeroscopia ou laparoscopia: qual a diferença?', src: VIDEO_CIRURGIA_HISTEROSCOPIA, capa: '/capas/histeroscopia-X-laparoscopia.png' },
       { titulo: 'Descobriu um cisto no ovário? Respira! Talvez você não precise operar', src: VIDEO_CIRURGIA_CISTO, capa: '/capas/cisto-ovario.png' },
@@ -184,8 +184,8 @@ export const ESPECIALIDADES = [
     texto:
       'A ultrassonografia transvaginal avalia útero, endométrio e ovários com alta definição. É fundamental na investigação de sintomas, no acompanhamento da fertilidade e no planejamento de tratamentos — realizada com cuidado, privacidade e explicação de cada etapa.',
     citacao: 'Diagnóstico preciso, cuidado próximo.',
-    foto: MINIATURA_ULTRASSONOGRAFIA, // Usando a constante aqui!
-    miniatura: CARD_ULTRASSONOGRAFIA, // Usando a constante aqui!
+    foto: MINIATURA_ULTRASSONOGRAFIA, 
+    miniatura: CARD_ULTRASSONOGRAFIA, 
     videos: [
       { titulo: 'Ultrassonografia transvaginal: como é o exame?', src: VIDEO_ULTRASSONOGRAFIA, capa: '/capas/ultrasonografia.png' },
     ],

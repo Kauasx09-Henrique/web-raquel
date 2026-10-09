@@ -3,7 +3,6 @@ import { WhatsIcon } from './Icones.jsx';
 import { whatsapp } from '../config.js';
 import './styles/whatsfab.css';
 
-// Botão redondo de WhatsApp — aparece depois que a paciente rola o hero
 export default function WhatsFab() {
   const [visivel, setVisivel] = useState(false);
 

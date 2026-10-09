@@ -21,14 +21,12 @@ const FOTOS = [
     { src: '/clinica/detalhe.jpg', legenda: 'Conforto e privacidade' },
 ];
 
-// ENDEREÇO COMPLETO — edite aqui
 const ENDERECO = {
     linha1: 'SHLS 716, Blocos 3,4,5, Centro Clínico Sudoeste, sala 210',
     linha2: 'Asa Sul — Brasília, DF',
     cep: 'CEP 70390-000',
 };
 
-// WhatsApp da clínica (os dois números)
 const TELEFONES = [
     { exibir: '(61) 99372-6416', wa: '5561993726416' },
     { exibir: '(61) 98422-7299', wa: '5561984227299' },
@@ -43,9 +41,8 @@ const INFOS = [
 const LINK_MAPA = 'https://maps.google.com/?q=Cl%C3%ADnica+Sa%C3%BAde+da+Mulher+Bras%C3%ADlia';
 
 export default function Clinica() {
-    const [aberta, setAberta] = useState(null); // índice da foto ampliada
+    const [aberta, setAberta] = useState(null);
 
-    // teclado na foto ampliada: Esc fecha, setas navegam
     useEffect(() => {
         if (aberta === null) return;
         const tecla = (e) => {
@@ -64,7 +61,6 @@ export default function Clinica() {
     return (
         <section className="clinica" id="onde-atendo">
             <div className="container">
-                {/* cabeçalho */}
                 <motion.header className="clinica-head" {...entra(0)}>
                     <div>
                         <p className="eyebrow">Onde você será atendida</p>
@@ -78,7 +74,6 @@ export default function Clinica() {
                     </p>
                 </motion.header>
 
-                {/* galeria: fachada grande + 4 fotos; clique amplia */}
                 <div className="clinica-fotos">
                     {FOTOS.map((f, i) => (
                         <motion.button
@@ -98,7 +93,6 @@ export default function Clinica() {
                     ))}
                 </div>
 
-                {/* informações + mapa */}
                 <div className="clinica-local">
                     <motion.div className="clinica-infos" {...entra(0)}>
                         <p className="eyebrow">Localização</p>
@@ -145,7 +139,6 @@ export default function Clinica() {
                         />
                     </motion.div>
 
-                    {/* endereço completo abaixo do mapa */}
                     <motion.div className="clinica-endereco" {...entra(0.12)}>
                         <MapPin size={16} strokeWidth={1.8} />
                         <p>
@@ -155,7 +148,6 @@ export default function Clinica() {
                 </div>
             </div>
 
-            {/* faixa vinho de ponta a ponta: agendar */}
             <motion.div className="clinica-agenda" {...entra(0)}>
                 <div className="container clinica-agenda-inner">
                     <div>
@@ -163,7 +155,6 @@ export default function Clinica() {
                         <p className="agenda-frase">“Um espaço para você se sentir segura, ouvida e bem cuidada.”</p>
                     </div>
                     <div className="agenda-acao">
-                        {/* abre o WhatsApp DA CLÍNICA (número em javascript/config.js) */}
                         <a className="btn btn-light" href={whatsapp('onde atendo')} target="_blank" rel="noopener noreferrer">
                             <WhatsIcon size={17} /> Falar com a clínica pelo WhatsApp
                         </a>
@@ -172,7 +163,6 @@ export default function Clinica() {
                 </div>
             </motion.div>
 
-            {/* foto ampliada */}
             <AnimatePresence>
                 {aberta !== null && (
                     <motion.div
