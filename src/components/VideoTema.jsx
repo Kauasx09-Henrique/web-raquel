@@ -1,32 +1,41 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactPlayer from 'react-player';
 import { ScaleLoader } from "react-spinners";
 
 export default function VideoTema({ src, chamada, autoPlay }) {
   const [isLoaded, setIsLoaded] = useState(false);
 
-  // 1. Se não houver vídeo, mostra um aviso elegante
+  // SALVAGUARDA (Timeout): Se o carregamento demorar mais de 3 segundos,
+  // força a exibição do player para evitar o carregamento infinito.
+  useEffect(() => {
+    if (!src) return;
+    const timer = setTimeout(() => {
+      setIsLoaded(true);
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, [src]);
+
   if (!src) {
     return (
       <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: '#000', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: '14px', fontFamily: 'sans-serif' }}>
-        Vídeo em produção...
+        Vídeo em breve...
       </div>
     );
   }
 
-  // 2. Preparar o link (tratamento de caminhos locais e Google Drive)
+  const isGoogleDrive = src.includes('drive.google.com');
   let finalUrl = src;
 
-  // Corrige os vídeos locais (remove o "." de "./aulas/fertilidade.mp4")
+  // Corrige os caminhos de vídeos locais
   if (finalUrl.startsWith('./')) {
     finalUrl = finalUrl.replace('./', '/');
   }
 
-  // Prepara links do Google Drive para o formato adequado do React Player
-  if (finalUrl.includes('drive.google.com')) {
+  // Se for Google Drive, extrai o ID do ficheiro
+  if (isGoogleDrive) {
     const match = finalUrl.match(/\/d\/([a-zA-Z0-9_-]+)/);
     if (match && match[1]) {
-      // O Drive requer o formato /preview para funcionar em iframes ou players genéricos
       finalUrl = `https://drive.google.com/file/d/${match[1]}/preview`;
     }
   }
@@ -34,7 +43,7 @@ export default function VideoTema({ src, chamada, autoPlay }) {
   return (
     <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: '#000' }}>
 
-      {/* TELA DE CARREGAMENTO (SPINNER) */}
+      {/* TELA DE CARREGAMENTO (SPINNER CENTRALIZADO) */}
       {!isLoaded && (
         <div style={{
           position: 'absolute',
@@ -54,30 +63,47 @@ export default function VideoTema({ src, chamada, autoPlay }) {
         </div>
       )}
 
-      {/* REACT PLAYER: O Reprodutor Universal */}
+      {/* ÁREA DO PLAYER */}
       <div
         style={{
           width: '100%',
           height: '100%',
-          opacity: isLoaded ? 1 : 0, /* Esconde até estar pronto */
-          transition: 'opacity 0.6s ease' /* Efeito Fade-in suave */
+          opacity: isLoaded ? 1 : 0,
+          transition: 'opacity 0.6s ease'
         }}
       >
-        <ReactPlayer
-          url={finalUrl}
-          playing={autoPlay}       // Controla se toca automaticamente
-          controls={true}          // Mostra sempre os controlos (play, pause, volume)
-          width="100%"
-          height="100%"
-          onReady={() => setIsLoaded(true)} // O Segredo: Esconde o spinner apenas quando estiver 100% pronto para tocar
-          config={{
-            file: {
-              attributes: {
-                controlsList: 'nodownload' // Esconde botão de download em MP4
+        {isGoogleDrive ? (
+          /* PARA GOOGLE DRIVE: Iframe nativo (resolve o carregamento infinito de vez) */
+          <iframe
+            src={finalUrl}
+            title={chamada || "Vídeo"}
+            allow="autoplay; fullscreen; encrypted-media"
+            allowFullScreen
+            onLoad={() => setIsLoaded(true)} /* Remove o spinner assim que o HTML do Drive carrega */
+            style={{
+              width: '100%',
+              height: '100%',
+              border: 'none'
+            }}
+          />
+        ) : (
+          /* PARA MP4 LOCAIS / OUTROS: ReactPlayer universal */
+          <ReactPlayer
+            url={finalUrl}
+            playing={autoPlay}
+            controls={true}
+            width="100%"
+            height="100%"
+            onReady={() => setIsLoaded(true)} /* Retira o spinner quando o vídeo está pronto */
+            config={{
+              file: {
+                attributes: {
+                  controlsList: 'nodownload'
+                }
               }
-            }
-          }}
-        />
+            }}
+          />
+        )}
       </div>
     </div>
   );
