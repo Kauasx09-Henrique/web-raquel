@@ -1,26 +1,24 @@
 import React from 'react';
 
 export default function VideoTema({ src, chamada, autoPlay }) {
-  if (!src) return null;
+  if (!src) {
+    return (
+      <div style={{ position: 'relative', width: '100%', height: '100%', backgroundColor: '#1a0f14', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: '14px', fontFamily: 'sans-serif' }}>
+        Vídeo em breve...
+      </div>
+    );
+  }
 
-  // Verifica se é um link externo que precisa de Iframe
-  const precisaIframe = src.includes('drive.google.com') ||
-    src.includes('youtube.com') ||
-    src.includes('youtu.be') ||
-    src.includes('vimeo.com');
+  const isGoogleDrive = src.includes('drive.google.com');
 
-  if (precisaIframe) {
+  if (isGoogleDrive) {
     let finalUrl = src;
 
-    // Tratamento especial para o Google Drive
-    if (src.includes('drive.google.com')) {
-      const match = src.match(/\/d\/([a-zA-Z0-9_-]+)/);
-      if (match && match[1]) {
-        finalUrl = `https://drive.google.com/file/d/${match[1]}/preview`;
-      }
+    const match = src.match(/\/d\/([a-zA-Z0-9_-]+)/);
+    if (match && match[1]) {
+      finalUrl = `https://drive.google.com/file/d/${match[1]}/preview`;
     }
 
-    // Remove qualquer autoplay original para controlar manualmente
     finalUrl = finalUrl.replace('?autoplay=1', '').replace('&autoplay=1', '');
 
     if (autoPlay) {
@@ -40,22 +38,21 @@ export default function VideoTema({ src, chamada, autoPlay }) {
     );
   }
 
-  // Tratamento para vídeos locais do projeto (.mp4, .webm, etc)
   return (
-    <div style={{ position: 'relative', width: '100%', height: '100%' }}>
+    <div style={{ position: 'relative', width: '100%', height: '100%', backgroundColor: '#000' }}>
       <video
         src={src}
         title={chamada || "Vídeo"}
         controls
         autoPlay={autoPlay}
-        controlsList="nodownload" // Opcional: esconde o botão de download nativo
+        controlsList="nodownload"
         style={{
           position: 'absolute',
           top: 0,
           left: 0,
           width: '100%',
           height: '100%',
-          objectFit: 'cover', /* Preenche o espaço lindamente */
+          objectFit: 'cover',
           border: 'none',
           backgroundColor: '#000'
         }}
