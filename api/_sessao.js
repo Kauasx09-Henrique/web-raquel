@@ -1,6 +1,3 @@
-// Funções compartilhadas pelas rotas /api
-// Arquivos com _ não viram rota na Vercel
-
 import crypto from 'node:crypto';
 
 const COOKIE = 'acesso_conteudos';
@@ -10,6 +7,7 @@ const DURACAO = 60 * 60 * 24 * 30; // 30 dias
 const segredo = () =>
   process.env.SESSAO_SEGREDO ||
   process.env.CODIGO_ACESSO ||
+  process.env.LOCAL ||
   '';
 
 const assinar = (valor) =>

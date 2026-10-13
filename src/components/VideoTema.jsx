@@ -5,11 +5,12 @@ export default function VideoTema({ src, chamada, autoPlay }) {
     if (!url) return '';
     let finalUrl = url;
 
-    // Converte links do Drive para o formato correto
-    if (url.includes('drive.google.com/file/d/')) {
-      const match = url.match(/\/d\/(.*?)\//);
-      const id = match ? match[1] : null;
-      finalUrl = id ? `https://drive.google.com/file/d/${id}/preview` : url;
+    // Expressão regular corrigida para capturar o ID do Drive com ou sem barra no final
+    if (url.includes('drive.google.com')) {
+      const match = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
+      if (match && match[1]) {
+        finalUrl = `https://drive.google.com/file/d/${match[1]}/preview`;
+      }
     }
 
     // Remove qualquer autoplay que venha no link original para garantir que não toca sozinho

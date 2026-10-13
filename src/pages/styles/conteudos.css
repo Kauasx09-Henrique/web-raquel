@@ -213,12 +213,15 @@
 .painel-video-container {
   position: relative;
   width: 100%;
-  padding-top: 56.25%; /* Mantém o formato perfeito de 16:9 */
+  padding-top: 56.25%; 
   border-radius: 12px;
   background-color: #000;
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-}
+  border: 2px solid #e5a4b5; 
+  box-shadow: 0 10px 30px rgba(229, 164, 181, 0.15);
+} 
+
 
 .painel-descricao {
   margin-top: 20px;
