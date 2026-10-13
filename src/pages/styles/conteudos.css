@@ -1,14 +1,9 @@
-/* ===========================================================
-   Área de conteúdos (após login)
-   =========================================================== */
-
 .conteudos { width: 100%; background: var(--bg); padding-bottom: clamp(72px, 9vw, 120px); }
 
 .conteudos-carregando { display: grid; place-items: center; min-height: calc(100vh - var(--nav-h)); color: var(--wine); }
 .girando { animation: girar 0.9s linear infinite; }
 @keyframes girar { to { transform: rotate(360deg); } }
 
-/* topo vinho */
 .conteudos-topo { width: 100%; color: #fff; background: var(--wine); }
 .conteudos-topo .conteudos-topo-inner { display: flex; justify-content: space-between; align-items: flex-end; gap: 28px 48px; flex-wrap: wrap; padding-top: clamp(64px, 8vw, 112px); padding-bottom: clamp(56px, 7vw, 96px); }
 .conteudos-topo .eyebrow { display: block; margin-bottom: 18px; color: var(--rose-2); }
@@ -19,7 +14,6 @@
 .conteudos-topo .conteudos-sair { display: inline-flex; align-items: center; gap: 8px; flex: none; padding: 12px 22px; border: 1.5px solid rgba(255, 255, 255, 0.7); border-radius: 999px; background: transparent; font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #fff; opacity: 1; }
 .conteudos-topo .conteudos-sair:hover { background: #fff; border-color: #fff; color: var(--wine); }
 
-/* filtros */
 .conteudos .conteudos-corpo { padding-top: clamp(40px, 5vw, 64px); }
 
 .conteudos-filtros { display: flex; gap: 10px; margin-bottom: clamp(28px, 3vw, 40px); overflow-x: auto; scrollbar-width: none; }
@@ -31,7 +25,6 @@
 .conteudos-filtros button.is-ativo { background: var(--wine); border-color: var(--wine); color: #fff; }
 .conteudos-filtros button.is-ativo span { background: rgba(255, 255, 255, 0.2); color: #fff; }
 
-/* grade de vídeos */
 .conteudos-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 18px; }
 
 .conteudo-card { position: relative; display: flex; flex-direction: column; justify-content: flex-end; gap: 10px; aspect-ratio: 4 / 5; padding: 24px; overflow: hidden; border-radius: 22px; text-align: left; color: #fff; background: var(--wine); transition: transform 0.55s var(--ease), box-shadow 0.55s var(--ease); }
@@ -48,7 +41,6 @@
 .conteudos-vazio { padding: 48px 0; text-align: center; color: var(--muted); }
 .conteudos-vazio small { display: block; margin-top: 8px; font-size: 13px; opacity: 0.8; }
 
-/* modal antigo: PDF e foto */
 .conteudo-modal { position: fixed; inset: 0; z-index: 300; display: grid; place-items: center; padding: 24px; background: rgba(40, 18, 26, 0.88); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
 .conteudo-modal-caixa { display: flex; flex-direction: column; gap: 16px; width: min(420px, 100%); }
 .conteudo-modal-caixa.is-pdf { width: min(900px, 100%); }
@@ -58,9 +50,8 @@
 
 .conteudo-modal-info span { font-size: 10.5px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--rose-2); }
 .conteudo-modal-info p { margin-top: 4px; font-family: var(--font-display); font-size: 22px; line-height: 1.25; color: #fff; }
-.conteudo-modal-fechar { position: absolute; top: 20px; right: 20px; display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; background: #fff; color: var(--wine); }
+.conteudo-modal-fechar { position: absolute; top: 20px; right: 20px; display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; background: #fff; color: var(--wine); cursor: pointer;}
 
-/* ===================== abas da área exclusiva ===================== */
 .conteudos-topo .conteudos-topo-inner { padding-bottom: clamp(40px, 5vw, 64px); }
 
 .cx-abas { display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; border-top: 1px solid rgba(255, 255, 255, 0.18); }
@@ -74,7 +65,6 @@
 .cx-aba-marca { position: absolute; left: 18px; right: 18px; top: -1px; height: 2px; background: #fff; }
 .cx-aba:first-child .cx-aba-marca { left: 0; }
 
-/* painel */
 .cx-intro { max-width: 640px; margin-bottom: clamp(32px, 4vw, 48px); }
 .cx-intro .eyebrow { color: var(--wine); }
 .cx-intro h2 { margin-bottom: 14px; font-size: clamp(32px, 3.6vw, 48px); color: var(--azul); }
@@ -92,7 +82,6 @@
 .cx-nota svg { flex: none; margin-top: 2px; color: var(--wine); }
 .cx-nota p { font-size: 14.5px; line-height: 1.65; color: var(--azul); }
 
-/* guia */
 .cx-guia { display: grid; grid-template-columns: minmax(200px, 300px) minmax(0, 1fr); align-items: center; gap: clamp(28px, 5vw, 72px); padding: clamp(24px, 3vw, 40px); border-radius: 16px; background: var(--surface); }
 .cx-guia-capa { position: relative; display: flex; flex-direction: column; aspect-ratio: 3 / 4; padding: 26px 24px; border-radius: 6px 12px 12px 6px; color: #fff; background: var(--wine); box-shadow: inset 10px 0 0 rgba(0, 0, 0, 0.12), 0 30px 50px -28px rgba(74, 32, 44, 0.7); transform: rotate(-2deg); transition: transform 0.7s var(--ease); }
 .cx-guia:hover .cx-guia-capa { transform: rotate(0deg) translateY(-4px); }
@@ -107,7 +96,6 @@
 
 .cx-selo-embreve { display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border: 1px solid rgba(156, 75, 94, 0.35); border-radius: 6px; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--wine); }
 
-/* antes × depois */
 .cx-comp-grade { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 380px), 1fr)); gap: 28px; }
 .cx-comp { margin: 0; }
 .cx-comp-area { position: relative; aspect-ratio: 4 / 3; overflow: hidden; border-radius: 14px; background: var(--surface); user-select: none; }
@@ -123,7 +111,6 @@
 .cx-comp figcaption strong { font-family: var(--font-display); font-size: 22px; font-weight: 500; color: var(--azul); }
 .cx-comp figcaption span { font-size: 14px; color: var(--muted); }
 
-/* casos reais */
 .cx-casos-grade { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 22px; }
 .cx-caso { display: flex; flex-direction: column; gap: 14px; }
 .cx-caso-midia { position: relative; display: block; aspect-ratio: 1 / 1; overflow: hidden; border-radius: 14px; background: var(--azul); }
@@ -141,88 +128,221 @@
 .cx-caso-info p { margin-top: 6px; font-family: var(--font-display); font-size: 19px; line-height: 1.3; color: var(--azul); }
 
 /* ===========================================================
-   NOVO PLAYER ABERTO: ÁREA IMERSIVA DE ESTUDO
+   PAINEL DE ESTUDO INLINE (RESOLUÇÃO DEFINITIVA)
+   Design Premium Hardcoded para nunca quebrar com temas do site
    =========================================================== */
-
-.conteudo-modal.imersivo { 
-  position: fixed; inset: 0; z-index: 9999; display: grid; place-items: center; 
-  padding: 2rem; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); 
-}
-.conteudo-modal-caixa-expandida { 
-  position: relative; width: 100%; max-width: 1300px; height: 85vh; background: #ffffff; 
-  border-radius: 20px; overflow: hidden; display: grid; grid-template-columns: 1.8fr 1fr; 
-  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.6); 
+.painel-estudo-wrapper {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  margin: 16px 0 48px 0;
+  clear: both; /* Garante que empurra tudo para baixo */
 }
 
-.modal-btn-fechar { 
-  position: absolute; top: 16px; right: 16px; z-index: 50; display: grid; place-items: center; 
-  width: 40px; height: 40px; border-radius: 50%; background: rgba(255, 255, 255, 0.2); 
-  color: #fff; border: none; cursor: pointer; transition: all 0.3s ease; 
-}
-.modal-btn-fechar:hover { background: #ffffff; color: var(--wine); transform: rotate(90deg); }
-
-/* Área do Vídeo */
-.modal-area-video { 
-  padding: 32px; background: var(--bg, #f8f9fa); overflow-y: auto; display: flex; flex-direction: column; 
-}
-.pub-video-wrapper { 
-  position: relative; width: 100%; padding-top: 56.25%; border-radius: 12px; 
-  background-color: #000; box-shadow: 0 10px 30px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; 
+.painel-estudo-inner {
+  position: relative;
+  background-color: #1a0f14; /* Escuro absoluto e luxuoso */
+  border-radius: 24px;
+  padding: 32px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-/* IMPORTANTE: ESTAS LINHAS RESOLVEM O ESPAÇO PRETO GIGANTE E FORÇAM O VÍDEO A CRESCER */
-.video-tema-container, .video-tema-iframe, .pub-video-wrapper > * { 
-  position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; object-fit: cover; 
+.painel-fechar-btn {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 10;
 }
 
-.conteudo-modal-info.expandido { margin-top: 24px; }
-.conteudo-modal-info.expandido span { font-size: 11px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--wine); }
-.conteudo-modal-info.expandido h2 { margin-top: 8px; font-family: var(--font-display); font-size: clamp(20px, 2.5vw, 28px); line-height: 1.2; color: var(--azul); }
-.descricao-video { margin-top: 16px; font-size: 15px; line-height: 1.6; color: var(--muted); }
-
-/* Área de Notas */
-.modal-area-notas { 
-  background: var(--wine); padding: 32px; display: flex; flex-direction: column; 
-  color: #fff; border-left: 1px solid rgba(0, 0, 0, 0.1); 
-}
-.notas-header { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; margin-top: 12px; }
-.notas-header h3 { font-size: 18px; font-family: var(--font-display); letter-spacing: 0.05em; color: #fff; }
-
-.notas-input { 
-  flex: 1; width: 100%; background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.15); 
-  border-radius: 12px; padding: 20px; color: #fff; font-family: var(--font-body); font-size: 15px; 
-  line-height: 1.6; resize: none; outline: none; transition: all 0.3s ease; 
-}
-.notas-input::placeholder { color: rgba(255, 255, 255, 0.5); }
-.notas-input:focus { border-color: #fff; background: rgba(255, 255, 255, 0.1); }
-
-.custom-scroll::-webkit-scrollbar { width: 6px; }
-.custom-scroll::-webkit-scrollbar-track { background: transparent; }
-.custom-scroll::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.3); border-radius: 10px; }
-.modal-area-video::-webkit-scrollbar { width: 8px; }
-.modal-area-video::-webkit-scrollbar-track { background: transparent; }
-.modal-area-video::-webkit-scrollbar-thumb { background: rgba(0, 0, 0, 0.15); border-radius: 10px; }
-
-.notas-acoes { display: flex; gap: 12px; margin-top: 24px; }
-.btn-nota { 
-  flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 16px; 
-  border-radius: 10px; font-weight: 700; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; 
-  border: none; cursor: pointer; transition: all 0.3s ease; 
-}
-.btn-nota.txt { background: transparent; color: #fff; border: 1px solid rgba(255, 255, 255, 0.4); }
-.btn-nota.txt:hover { background: rgba(255, 255, 255, 0.1); border-color: #fff; }
-.btn-nota.pdf { background: #fff; color: var(--wine); }
-.btn-nota.pdf:hover { transform: translateY(-2px); box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); }
-
-/* Responsividade */
-@media (max-width: 1024px) {
-  .conteudo-modal.imersivo { padding: 1rem; }
-  .conteudo-modal-caixa-expandida { grid-template-columns: 1fr; height: 95vh; overflow-y: auto; overflow-x: hidden; }
-  .modal-area-video { padding: 20px; }
-  .modal-area-notas { padding: 20px; min-height: 400px; }
-  .modal-btn-fechar { background: var(--wine); color: #fff; }
+.painel-fechar-btn:hover {
+  background: #ffffff;
+  color: #1a0f14;
 }
 
+.painel-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr; /* Layout elegante 2 colunas */
+  gap: 32px;
+  align-items: stretch;
+}
+
+/* --- Coluna do Vídeo --- */
+.painel-video-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.painel-header {
+  margin-bottom: 24px;
+  padding-right: 120px; /* Impede que o texto fique por baixo do botão fechar */
+}
+
+.painel-tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #e5a4b5; /* Rosa luxo */
+  margin-bottom: 8px;
+}
+
+.painel-titulo {
+  font-family: var(--font-display, serif);
+  font-size: clamp(24px, 3vw, 32px);
+  line-height: 1.2;
+  color: #ffffff;
+  margin: 0;
+}
+
+.painel-video-container {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* Mantém o formato perfeito de 16:9 */
+  border-radius: 12px;
+  background-color: #000;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.painel-descricao {
+  margin-top: 20px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* --- Coluna das Notas --- */
+.painel-notas-col {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.notas-header-clean {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #ffffff;
+  margin-bottom: 20px;
+}
+
+.notas-header-clean h3 {
+  font-family: var(--font-display, serif);
+  font-size: 18px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.notas-textarea {
+  flex: 1;
+  width: 100%;
+  min-height: 200px;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 16px;
+  color: #ffffff;
+  font-family: var(--font-body, sans-serif);
+  font-size: 14px;
+  line-height: 1.6;
+  resize: none;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.notas-textarea::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.notas-textarea:focus {
+  border-color: #e5a4b5;
+}
+
+.notas-botoes {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.btn-salvar {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-salvar.txt {
+  background: transparent;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.btn-salvar.txt:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #ffffff;
+}
+
+.btn-salvar.pdf {
+  background: #ffffff;
+  color: #1a0f14;
+}
+
+.btn-salvar.pdf:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsividade Absoluta do Painel Inline */
+@media (max-width: 900px) {
+  .painel-grid {
+    grid-template-columns: 1fr;
+  }
+  .painel-estudo-inner {
+    padding: 24px;
+  }
+  .painel-fechar-btn {
+    position: relative;
+    top: 0;
+    right: 0;
+    margin-bottom: 24px;
+    width: 100%;
+    justify-content: center;
+  }
+  .painel-header {
+    padding-right: 0;
+  }
+}
+
+/* Responsividade Base (Já Existente) */
 @media (max-width: 760px) {
   .cx-guia { grid-template-columns: 1fr; }
   .cx-guia-capa { max-width: 220px; }

@@ -14,7 +14,7 @@ const entra = (delay = 0) => ({
 });
 
 const FOTOS = [
-    { src: '/clinica/fachada.jpeg', legenda: 'Fachada' },
+    { src: '/clinica/fachada.png', legenda: 'Fachada' },
     { src: '/clinica/recepcao.jpg', legenda: 'Recepção' },
     { src: '/clinica/consultorio.jpg', legenda: 'Consultório' },
     { src: '/clinica/atendimento.png', legenda: ' sala de atendimento' },

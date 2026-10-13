@@ -5,11 +5,10 @@ import {
   Play, X, LogOut, Loader2, Sprout, Flower2, Sparkles, Microscope, Clapperboard,
   BookOpen, ArrowUpRight, Clock, Eye, ShieldCheck, MoveHorizontal,
 } from 'lucide-react';
-import VideoTema from '../components/VideoTema.jsx';
 import { driveEmbed, driveImagem } from '../components/drive.js';
 import './styles/especialidade.css';
 import './styles/conteudos.css';
-import VideoModal from './VideoModal';
+import AreaEstudo from './AreaEstudo';
 
 const EASE = [0.16, 1, 0.3, 1];
 
@@ -150,9 +149,11 @@ export default function Conteudos() {
   const [revelados, setRevelados] = useState({});
 
   const aba = ABAS.some((a) => a.id === params.get('aba')) ? params.get('aba') : 'reproducao';
+
   const trocarAba = (id) => {
     setParams({ aba: id }, { replace: true });
     setCategoria('Todos');
+    setAberto(null);
   };
 
   useEffect(() => {
@@ -171,8 +172,9 @@ export default function Conteudos() {
     return () => { ativo = false; };
   }, [navigate]);
 
+  // Modais de foto/pdf ainda fecham no ESC
   useEffect(() => {
-    if (!aberto) return;
+    if (!aberto || aberto.tipo === 'video') return;
     const esc = (e) => e.key === 'Escape' && setAberto(null);
     window.addEventListener('keydown', esc);
     document.body.style.overflow = 'hidden';
@@ -232,6 +234,7 @@ export default function Conteudos() {
       <section className="container conteudos-corpo">
         <AnimatePresence mode="wait">
           <motion.div key={aba} className="cx-painel" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.45, ease: EASE }}>
+
             <header className="cx-intro">
               <p className="eyebrow">{intro.eyebrow}</p>
               <h2>{intro.titulo}</h2>
@@ -241,6 +244,13 @@ export default function Conteudos() {
             {(aba === 'reproducao' || aba === 'climaterio') && (
               <>
                 <Guia guia={dados.guias[aba]} onAbrir={setAberto} />
+
+                <AnimatePresence>
+                  {aberto && aberto.tipo === 'video' && (
+                    <AreaEstudo key="estudo-inline" conteudo={aberto} fechar={() => setAberto(null)} />
+                  )}
+                </AnimatePresence>
+
                 <h3 className="cx-subtitulo">Vídeos sobre {abaAtual.rotulo.toLowerCase()}</h3>
                 <GradeVideos videos={videosDoTema} onAbrir={setAberto} />
               </>
@@ -252,6 +262,13 @@ export default function Conteudos() {
                 {dados.antesDepois.length ? (
                   <div className="cx-comp-grade">{dados.antesDepois.map((item) => <Comparador key={item.id} item={item} />)}</div>
                 ) : <EmBreve />}
+
+                <AnimatePresence>
+                  {aberto && aberto.tipo === 'video' && (
+                    <AreaEstudo key="estudo-inline" conteudo={aberto} fechar={() => setAberto(null)} />
+                  )}
+                </AnimatePresence>
+
                 <h3 className="cx-subtitulo">Vídeos sobre saúde íntima</h3>
                 <GradeVideos videos={videosDoTema} onAbrir={setAberto} />
               </>
@@ -260,6 +277,25 @@ export default function Conteudos() {
             {aba === 'casos' && (
               <>
                 <div className="cx-nota"><Eye size={18} strokeWidth={1.6} /><p>Conteúdo médico real. Imagens desfocadas até escolha de visualização.</p></div>
+                {dados.casos.length > 0 && (
+                  <div className="conteudos-filtros" role="tablist">
+                    {categorias.map((c) => (
+                      <button
+                        key={c} type="button" role="tab" aria-selected={categoria === c}
+                        className={categoria === c ? 'is-ativo' : undefined} onClick={() => setCategoria(c)}
+                      >
+                        {c}<span>{c === 'Todos' ? dados.casos.length : dados.casos.filter((x) => x.categoria === c).length}</span>
+                      </button>
+                    ))}
+                  </div>
+                )}
+
+                <AnimatePresence>
+                  {aberto && aberto.tipo === 'video' && (
+                    <AreaEstudo key="estudo-inline" conteudo={aberto} fechar={() => setAberto(null)} />
+                  )}
+                </AnimatePresence>
+
                 {casosVisiveis.length ? (
                   <motion.div layout className="cx-casos-grade">
                     <AnimatePresence mode="popLayout">
@@ -272,11 +308,21 @@ export default function Conteudos() {
               </>
             )}
 
-            {aba === 'videos' && <GradeVideos videos={dados.conteudos} onAbrir={setAberto} />}
+            {aba === 'videos' && (
+              <>
+                <AnimatePresence>
+                  {aberto && aberto.tipo === 'video' && (
+                    <AreaEstudo key="estudo-inline" conteudo={aberto} fechar={() => setAberto(null)} />
+                  )}
+                </AnimatePresence>
+                <GradeVideos videos={dados.conteudos} onAbrir={setAberto} />
+              </>
+            )}
           </motion.div>
         </AnimatePresence>
       </section>
 
+      {/* APENAS PARA PDF E FOTO (MODAL ANTIGO MANTIDO INTACTO) */}
       <AnimatePresence>
         {aberto && aberto.tipo !== 'video' && (
           <motion.div className="conteudo-modal" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setAberto(null)}>
@@ -291,10 +337,6 @@ export default function Conteudos() {
             </motion.div>
             <button type="button" className="conteudo-modal-fechar" onClick={() => setAberto(null)} aria-label="Fechar"><X size={20} /></button>
           </motion.div>
-        )}
-
-        {aberto && aberto.tipo === 'video' && (
-          <VideoModal key="modal-video" conteudo={aberto} fecharModal={() => setAberto(null)} />
         )}
       </AnimatePresence>
     </main>

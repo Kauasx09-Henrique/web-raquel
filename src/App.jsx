@@ -14,7 +14,9 @@ import Clinica from './pages/Clinica.jsx';
 import Especialidade from './pages/Especialidades.jsx';
 import Login from './pages/Login.jsx';
 import Conteudos from './pages/Conteudos.jsx';
-import videoTema from './components/VideoTema.jsx';
+
+// Correção: Componentes em React têm de começar com letra maiúscula
+import VideoTema from './components/VideoTema.jsx';
 
 import Instagram from './components/Instagram.jsx';
 import Doctoralia from './components/Doctoralia.jsx';
@@ -68,10 +70,10 @@ function PaginaInicial() {
     <main>
       <Home />
       <Sobre />
-      <Instagram />
       <Consulta />
       <Areas />
       <Doctoralia />
+      <Instagram />
       <Clinica />
     </main>
   );
@@ -97,8 +99,11 @@ export default function App() {
         />
         <Route path="/login" element={<Login />} />
         <Route path="/conteudos" element={<Conteudos />} />
+
+        {/* Correção: <VideoTema /> com a letra maiúscula correta */}
+        <Route path="/video/:id" element={<VideoTema />} />
+
         <Route path="*" element={<Navigate to="/" replace />} />
-        <Route path="/video/:id" element={<videoTema />} />
       </Routes>
 
       <Footer />
