@@ -127,10 +127,7 @@
 .cx-caso-midia:hover .cx-caso-play { transform: translate(-50%, -50%) scale(1.1); }
 .cx-caso-info p { margin-top: 6px; font-family: var(--font-display); font-size: 19px; line-height: 1.3; color: var(--azul); }
 
-/* ===========================================================
-   PAINEL DE ESTUDO INLINE (RESOLUÇÃO DEFINITIVA)
-   Design Premium Hardcoded para nunca quebrar com temas do site
-   =========================================================== */
+
 .painel-estudo-wrapper {
   display: block;
   width: 100%;
@@ -141,11 +138,11 @@
 
 .painel-estudo-inner {
   position: relative;
-  background-color: #1a0f14; /* Escuro absoluto e luxuoso */
+  background-color: var(--wine, #9c4b5e); 
   border-radius: 24px;
   padding: 32px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 20px 40px rgba(156, 75, 94, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .painel-fechar-btn {
@@ -198,7 +195,7 @@
   font-weight: 700;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: #e5a4b5; /* Rosa luxo */
+  color: #ffccd5; /* Rosa mais claro */
   margin-bottom: 8px;
 }
 
@@ -213,14 +210,13 @@
 .painel-video-container {
   position: relative;
   width: 100%;
-  padding-top: 56.25%; 
+  padding-top: 56.25%; /* Mantém o formato perfeito de 16:9 */
   border-radius: 12px;
-  background-color: #9C4B5E;
+  background-color: #000;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
   border: 2px solid #e5a4b5; 
   box-shadow: 0 10px 30px rgba(229, 164, 181, 0.15);
-} 
+}
 
 
 .painel-descricao {
@@ -230,10 +226,9 @@
   color: rgba(255, 255, 255, 0.7);
 }
 
-/* --- Coluna das Notas --- */
 .painel-notas-col {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(0, 0, 0, 0.15); 
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 16px;
   padding: 24px;
   display: flex;
