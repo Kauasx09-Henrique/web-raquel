@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
+import ReactPlayer from 'react-player';
 import { ScaleLoader } from "react-spinners";
 
 export default function VideoTema({ src, chamada, autoPlay }) {
   const [isLoaded, setIsLoaded] = useState(false);
 
-  // 1. Se não houver vídeo, mostra um fundo de aviso
+  // 1. Se não houver vídeo, mostra um aviso elegante
   if (!src) {
     return (
       <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: '#000', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: '14px', fontFamily: 'sans-serif' }}>
@@ -13,37 +14,33 @@ export default function VideoTema({ src, chamada, autoPlay }) {
     );
   }
 
-  // 2. Preparar e limpar o link
-  const isGoogleDrive = src.includes('drive.google.com');
+  // 2. Preparar o link (tratamento de caminhos locais e Google Drive)
   let finalUrl = src;
 
-  if (isGoogleDrive) {
-    const match = src.match(/\/d\/([a-zA-Z0-9_-]+)/);
+  // Corrige os vídeos locais (remove o "." de "./aulas/fertilidade.mp4")
+  if (finalUrl.startsWith('./')) {
+    finalUrl = finalUrl.replace('./', '/');
+  }
+
+  // Prepara links do Google Drive para o formato adequado do React Player
+  if (finalUrl.includes('drive.google.com')) {
+    const match = finalUrl.match(/\/d\/([a-zA-Z0-9_-]+)/);
     if (match && match[1]) {
+      // O Drive requer o formato /preview para funcionar em iframes ou players genéricos
       finalUrl = `https://drive.google.com/file/d/${match[1]}/preview`;
-    }
-    finalUrl = finalUrl.replace('?autoplay=1', '').replace('&autoplay=1', '');
-    if (autoPlay) {
-      finalUrl += finalUrl.includes('?') ? '&autoplay=1' : '?autoplay=1';
-    }
-  } else {
-    // Corrige os vídeos locais (ex: remove o "." de "./aulas/fertilidade.mp4")
-    if (finalUrl.startsWith('./')) {
-      finalUrl = finalUrl.replace('./', '/');
     }
   }
 
   return (
-    /* CAIXA PRINCIPAL DO VÍDEO (AGORA CORRIGIDA COM POSITION ABSOLUTE) */
     <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: '#000' }}>
 
-      {/* TELA DE CARREGAMENTO ROSA (SPINNER CENTRALIZADO) */}
+      {/* TELA DE CARREGAMENTO (SPINNER) */}
       {!isLoaded && (
         <div style={{
           position: 'absolute',
           top: '50%',
           left: '50%',
-          transform: 'translate(-50%, -50%)', /* Centraliza perfeitamente no meio do quadro preto */
+          transform: 'translate(-50%, -50%)',
           zIndex: 10,
           display: 'flex',
           flexDirection: 'column',
@@ -57,47 +54,31 @@ export default function VideoTema({ src, chamada, autoPlay }) {
         </div>
       )}
 
-      {/* RENDERIZAÇÃO DO VÍDEO / IFRAME DO GOOGLE DRIVE */}
-      {isGoogleDrive ? (
-        <iframe
-          src={finalUrl}
-          title={chamada || "Vídeo"}
-          allow={autoPlay ? "autoplay; fullscreen; encrypted-media" : "fullscreen; encrypted-media"}
-          allowFullScreen
-          onLoad={() => setIsLoaded(true)} /* Avisa que carregou para sumir o spinner */
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%',
-            border: 'none',
-            opacity: isLoaded ? 1 : 0, /* Esconde o iframe até estar pronto */
-            transition: 'opacity 0.6s ease' /* Efeito Fade-in suave */
+      {/* REACT PLAYER: O Reprodutor Universal */}
+      <div
+        style={{
+          width: '100%',
+          height: '100%',
+          opacity: isLoaded ? 1 : 0, /* Esconde até estar pronto */
+          transition: 'opacity 0.6s ease' /* Efeito Fade-in suave */
+        }}
+      >
+        <ReactPlayer
+          url={finalUrl}
+          playing={autoPlay}       // Controla se toca automaticamente
+          controls={true}          // Mostra sempre os controlos (play, pause, volume)
+          width="100%"
+          height="100%"
+          onReady={() => setIsLoaded(true)} // O Segredo: Esconde o spinner apenas quando estiver 100% pronto para tocar
+          config={{
+            file: {
+              attributes: {
+                controlsList: 'nodownload' // Esconde botão de download em MP4
+              }
+            }
           }}
         />
-      ) : (
-        /* RENDERIZAÇÃO DE VÍDEO LOCAL (.MP4) */
-        <video
-          src={finalUrl}
-          title={chamada || "Vídeo"}
-          controls
-          autoPlay={autoPlay}
-          controlsList="nodownload"
-          onCanPlay={() => setIsLoaded(true)} /* Avisa que carregou para sumir o spinner */
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-            border: 'none',
-            opacity: isLoaded ? 1 : 0, /* Esconde o vídeo até estar pronto */
-            transition: 'opacity 0.6s ease'
-          }}
-        />
-      )}
+      </div>
     </div>
   );
 }
