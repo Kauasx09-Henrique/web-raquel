@@ -1,7 +1,7 @@
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import { Analytics } from '@vercel/analytics/react';
-import { SpeedInsights } from "@vercel/speed-insights/react"
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import Navbar from './components/Navbar.jsx';
 import Footer from './components/Footer.jsx';
 import WhatsFab from './components/WhatsFab.jsx';
@@ -14,9 +14,6 @@ import Clinica from './pages/Clinica.jsx';
 import Especialidade from './pages/Especialidades.jsx';
 import Login from './pages/Login.jsx';
 import Conteudos from './pages/Conteudos.jsx';
-import { injectSpeedInsights } from '@vercel/speed-insights';
-
-injectSpeedInsights();
 
 // Correção: Componentes em React têm de começar com letra maiúscula
 import VideoTema from './components/VideoTema.jsx';
