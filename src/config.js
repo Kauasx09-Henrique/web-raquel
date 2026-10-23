@@ -1,11 +1,11 @@
 /* Tudo que muda de clínica para clínica fica aqui. */
 
 // WhatsApp DA CLÍNICA (não o pessoal): 55 + DDD + número, só dígitos
-export const WHATSAPP_CLINICA = '+556199372-6416';
+export const WHATSAPP_CLINICA = '+5561993726416';
 
 // Cada botão manda uma mensagem com a origem, para a secretaria saber de onde veio
-export function whatsapp(origem) {
-  const texto = 'Olá! Gostaria de agendar uma consulta com a Dra. Raquel Guimarães. (site — ' + origem + ')';
+export function whatsapp() {
+  const texto = 'Olá! Gostaria de agendar uma consulta com a Dra. Raquel Guimarães.';
   return 'https://wa.me/' + WHATSAPP_CLINICA + '?text=' + encodeURIComponent(texto);
 }
 
