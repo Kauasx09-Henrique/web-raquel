@@ -14,6 +14,9 @@ import Clinica from './pages/Clinica.jsx';
 import Especialidade from './pages/Especialidades.jsx';
 import Login from './pages/Login.jsx';
 import Conteudos from './pages/Conteudos.jsx';
+import { injectSpeedInsights } from '@vercel/speed-insights';
+
+injectSpeedInsights();
 
 // Correção: Componentes em React têm de começar com letra maiúscula
 import VideoTema from './components/VideoTema.jsx';
