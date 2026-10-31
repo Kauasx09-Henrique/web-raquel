@@ -1,0 +1,124 @@
+/* ===========================================================
+   Painel da médica (/painel) — não aparece no menu
+   =========================================================== */
+
+.painel { width: 100%; min-height: calc(100vh - var(--nav-h)); background: var(--bg); padding-bottom: clamp(64px, 8vw, 112px); }
+
+.painel-centro { display: grid; place-items: center; padding: 48px 20px; color: var(--wine); }
+
+/* login / erro */
+.painel-login {
+  display: flex;
+  flex-direction: column;
+  width: min(420px, 100%);
+  padding: clamp(28px, 4vw, 44px);
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 30px 60px -40px rgba(74, 32, 44, 0.45);
+}
+.painel-login-icone { display: grid; place-items: center; width: 48px; height: 48px; margin-bottom: 22px; border-radius: 50%; background: var(--surface); color: var(--wine); }
+.painel-login .eyebrow { color: var(--wine); }
+.painel-login h1 { margin-bottom: 10px; font-size: clamp(30px, 3.4vw, 40px); color: var(--azul); }
+.painel-login-txt { margin-bottom: 24px; font-size: 15px; line-height: 1.65; color: var(--muted); }
+.painel-login input {
+  width: 100%;
+  padding: 15px 16px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  font: inherit;
+  font-size: 16px;
+  color: var(--azul);
+  background: var(--bg);
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+.painel-login input:focus { border-color: var(--wine); }
+.painel-erro { min-height: 22px; margin: 8px 0 12px; font-size: 13.5px; color: var(--wine); }
+.painel-login .btn { justify-content: center; gap: 10px; }
+
+/* topo */
+.painel-topo { width: 100%; background: var(--surface); }
+.painel-topo .painel-topo-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  padding-top: clamp(48px, 6vw, 88px);
+  padding-bottom: clamp(36px, 4vw, 56px);
+}
+.painel-topo .eyebrow { color: var(--wine); }
+.painel-topo h1 { font-size: clamp(34px, 4.2vw, 56px); color: var(--azul); }
+.painel-topo h1 em { font-style: italic; color: var(--wine); }
+.painel-acoes { display: flex; flex-wrap: wrap; gap: 12px; }
+.painel-acoes .btn { gap: 8px; }
+
+.painel .painel-corpo { display: flex; flex-direction: column; gap: 24px; padding-top: clamp(28px, 3.4vw, 44px); }
+
+/* aviso sem banco */
+.painel-aviso { display: flex; align-items: flex-start; gap: 18px; padding: 26px 28px; border: 1px dashed var(--rose); border-radius: 14px; color: var(--wine); }
+.painel-aviso strong { display: block; margin-bottom: 6px; font-family: var(--font-display); font-size: 22px; font-weight: 500; color: var(--azul); }
+.painel-aviso p { max-width: 62ch; font-size: 15px; line-height: 1.7; color: var(--muted); }
+.painel-aviso b { color: var(--azul); }
+
+/* números */
+.painel-cards { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
+.painel-card { display: flex; flex-direction: column; padding: 24px; border: 1px solid var(--line); border-radius: 14px; background: #fff; }
+.painel-card:first-child { border-color: var(--wine); background: var(--wine); color: #fff; }
+.painel-card-icone { display: grid; place-items: center; width: 38px; height: 38px; margin-bottom: 20px; border-radius: 50%; background: var(--surface); color: var(--wine); }
+.painel-card:first-child .painel-card-icone { background: rgba(255, 255, 255, 0.16); color: #fff; }
+.painel-card-rotulo { font-size: 10.5px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); }
+.painel-card:first-child .painel-card-rotulo { color: rgba(255, 255, 255, 0.82); }
+.painel-card-valor { margin-top: 8px; font-family: var(--font-display); font-size: clamp(38px, 3.8vw, 52px); font-weight: 500; line-height: 1; color: var(--azul); }
+.painel-card:first-child .painel-card-valor { color: #fff; }
+.painel-card-nota { margin-top: 10px; font-size: 13px; color: var(--muted); }
+.painel-card:first-child .painel-card-nota { color: rgba(255, 255, 255, 0.82); }
+
+/* blocos */
+.painel-duas { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: 24px; }
+.painel-bloco { padding: clamp(22px, 2.6vw, 32px); border: 1px solid var(--line); border-radius: 14px; background: #fff; }
+.painel-bloco h2 { margin-bottom: 22px; font-family: var(--font-body); font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--wine); }
+
+.painel-grafico { display: flex; align-items: flex-end; gap: 4px; height: 200px; }
+.painel-barra { position: relative; display: flex; align-items: flex-end; flex: 1; height: 100%; border-radius: 4px; background: var(--surface); }
+.painel-barra span { display: block; width: 100%; min-height: 0; border-radius: 4px; background: var(--rose); transition: height 0.8s var(--ease), background 0.3s ease; }
+.painel-barra:last-child span, .painel-barra:hover span { background: var(--wine); }
+.painel-grafico-eixo { display: flex; justify-content: space-between; margin-top: 10px; font-size: 12px; color: var(--muted); }
+
+.painel-temas { display: flex; flex-direction: column; gap: 18px; list-style: none; }
+.painel-tema-linha { display: flex; justify-content: space-between; gap: 12px; margin-bottom: 8px; font-size: 14.5px; color: var(--azul); }
+.painel-tema-linha strong { font-family: var(--font-display); font-size: 20px; font-weight: 500; line-height: 1; }
+.painel-tema-trilho { display: block; height: 6px; overflow: hidden; border-radius: 999px; background: var(--surface); }
+.painel-tema-trilho span { display: block; height: 100%; border-radius: 999px; background: var(--wine); transition: width 0.8s var(--ease); }
+.painel-temas small { display: block; margin-top: 6px; font-size: 12px; color: var(--muted); }
+
+.painel-recentes { list-style: none; max-height: 420px; overflow-y: auto; }
+.painel-recentes li {
+  display: grid;
+  grid-template-columns: 130px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 16px;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 14.5px;
+}
+.painel-recentes li:last-child { border-bottom: 0; }
+.painel-rec-hora { font-variant-numeric: tabular-nums; color: var(--muted); }
+.painel-rec-tema { color: var(--azul); font-weight: 600; }
+.painel-rec-disp { padding: 4px 10px; border-radius: 6px; font-size: 11.5px; color: var(--wine); background: var(--surface); }
+
+.painel-vazio { font-size: 15px; color: var(--muted); }
+.painel-nota { max-width: 72ch; font-size: 13px; line-height: 1.65; color: var(--muted); }
+
+@media (max-width: 960px) {
+  .painel-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .painel-duas { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 560px) {
+  .painel-cards { gap: 12px; }
+  .painel-card { padding: 18px; }
+  .painel-grafico { height: 150px; gap: 2px; }
+  .painel-recentes li { grid-template-columns: 1fr auto; gap: 4px 12px; }
+  .painel-rec-hora { grid-column: 1 / -1; font-size: 12.5px; }
+}

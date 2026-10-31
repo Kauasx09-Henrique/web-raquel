@@ -3,15 +3,17 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
-  },
+"scripts": {
+  "dev": "vite",
+  "dev:api": "node --env-file=.env server-local.js",
+  "build": "vite build",
+  "lint": "eslint .",
+  "preview": "vite preview"
+},
   "dependencies": {
     "@vercel/analytics": "^2.0.1",
     "@vercel/speed-insights": "^2.0.0",
+    "express": "^5.3.0",
     "framer-motion": "^13.4.0",
     "jspdf": "^4.2.1",
     "lucide-react": "^1.54.0",

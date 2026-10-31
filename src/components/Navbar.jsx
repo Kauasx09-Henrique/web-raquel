@@ -18,6 +18,7 @@ export default function Navbar() {
   const [aberto, setAberto] = useState(false);
   const [rolou, setRolou] = useState(false);
   const [logada, setLogada] = useState(false);
+  const [admin, setAdmin] = useState(false);
   const [saindo, setSaindo] = useState(false);
 
   const navigate = useNavigate();
@@ -37,12 +38,17 @@ export default function Navbar() {
     };
   }, [aberto]);
 
+  // Verifica a sessão sempre que muda de página (ex.: depois do login)
   useEffect(() => {
     let ativo = true;
 
     fetch('/api/sessao', { credentials: 'include', cache: 'no-store' })
       .then((r) => (r.ok ? r.json() : { logada: false }))
-      .then((d) => ativo && setLogada(d.logada === true))
+      .then((d) => {
+        if (!ativo) return;
+        setLogada(d.logada === true);
+        setAdmin(d.escopo === 'admin');
+      })
       .catch(() => ativo && setLogada(false));
 
     return () => {
@@ -83,8 +89,8 @@ export default function Navbar() {
           ))}
 
           {logada && (
-            <Link to="/conteudos" onClick={fechar}>
-              Área exclusiva
+            <Link to={admin ? '/painel' : '/conteudos'} onClick={fechar}>
+              {admin ? 'Painel' : 'Área exclusiva'}
             </Link>
           )}
 

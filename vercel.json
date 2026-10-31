@@ -1,7 +1,8 @@
+
 {
   "rewrites": [
     {
-      "source": "/((?!videos/|fotos/|fonts/|assets/).*)",
+      "source": "/((?!api/|videos/|fotos/|fonts/|assets/).*)",
       "destination": "/index.html"
     }
   ],

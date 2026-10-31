@@ -148,7 +148,9 @@ export default function Conteudos() {
   const [categoria, setCategoria] = useState('Todos');
   const [revelados, setRevelados] = useState({});
 
-  const aba = ABAS.some((a) => a.id === params.get('aba')) ? params.get('aba') : 'reproducao';
+  // abas liberadas pelo código usado no login (vem da API)
+  const permitidas = dados && Array.isArray(dados.abas) ? ABAS.filter((a) => dados.abas.includes(a.id)) : ABAS;
+  const aba = permitidas.some((a) => a.id === params.get('aba')) ? params.get('aba') : (permitidas[0] || ABAS[0]).id;
 
   const trocarAba = (id) => {
     setParams({ aba: id }, { replace: true });
@@ -163,11 +165,11 @@ export default function Conteudos() {
         if (r.status === 401) { navigate('/login', { replace: true }); return null; }
         return r.json().then((d) => { if (!r.ok || !Array.isArray(d.conteudos)) throw new Error(`erro ${r.status}`); return d; });
       })
-      .then((d) => ativo && d && setDados({ conteudos: d.conteudos, guias: d.guias || {}, antesDepois: d.antesDepois || [], casos: d.casos || [] }))
+      .then((d) => ativo && d && setDados({ conteudos: d.conteudos, guias: d.guias || {}, antesDepois: d.antesDepois || [], casos: d.casos || [], abas: d.abas }))
       .catch((e) => {
         if (!ativo) return;
         setFalha(e.message || 'erro desconhecido');
-        setDados({ conteudos: [], guias: {}, antesDepois: [], casos: [] });
+        setDados({ conteudos: [], guias: {}, antesDepois: [], casos: [], abas: [] });
       });
     return () => { ativo = false; };
   }, [navigate]);
@@ -215,7 +217,7 @@ export default function Conteudos() {
 
         <div className="container">
           <nav className="cx-abas" role="tablist">
-            {ABAS.map((a) => {
+            {permitidas.map((a) => {
               const Icone = a.icone;
               return (
                 <button

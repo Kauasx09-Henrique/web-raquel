@@ -34,20 +34,21 @@ export default function Login() {
         body: JSON.stringify({ codigo }),
       });
 
+      const info = await r.json().catch(() => ({}));
+
       if (r.ok) {
         await Swal.fire({
           icon: 'success',
           title: 'Acesso liberado!',
-          text: 'Você será redirecionado para os conteúdos.',
+          text: info.escopo === 'admin' ? 'Você será redirecionada para o painel.' : 'Você será redirecionado para os conteúdos.',
           timer: 2000,
           showConfirmButton: false,
           iconColor: '#9C4B5E'
         });
-        navigate('/conteudos', { replace: true });
+        navigate(info.destino || '/conteudos', { replace: true });
         return;
       }
 
-      const info = await r.json().catch(() => ({}));
       const mensagemErro = r.status === 401
         ? 'Código incorreto. Confira e tente novamente.'
         : `Não foi possível entrar agora (erro ${r.status}${info.erro ? ': ' + info.erro : ''}).`;
