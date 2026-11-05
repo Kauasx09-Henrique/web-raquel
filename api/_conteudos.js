@@ -5,9 +5,9 @@ export const CONTEUDOS = [
   { id: 'contra-2', tema: 'Contracepção', titulo: 'A sua filha adolescente já escolheu um método contraceptivo?', src: 'https://drive.google.com/file/d/1hnxDu51Mrmsv3RMSt6YFqVD4h8soSIfg/view' },
 
   // Reprodução Humana
-  { id: 'repro-1', tema: 'Reprodução Humana', titulo: 'Fertilidade: sua idade importa mais do que o tratamento?', src: './aulas/fertilidade.mp4' },
-  { id: 'repro-2', tema: 'Reprodução Humana', titulo: 'Congelamento de óvulos: quando considerar?', src: 'https://drive.google.com/file/d/1I_avoIn1fQLuu_Edv-Pg0lqqKsYUpk96/view' },
-  { id: 'repro-3', tema: 'Reprodução Humana', titulo: 'Infertilidade: quando a causa está no homem?', src: 'https://drive.google.com/file/d/1pnvoGgMMn6ewaNf7hovKFedg1WpOcMHr/view' },
+  { id: 'repro-1', tema: 'Reprodução Humana', titulo: 'Fertilidade: sua idade importa mais do que o tratamento?', src: './fertilidade/aulas/fertilidade.mp4' },
+  { id: 'repro-2', tema: 'Reprodução Humana', titulo: 'Congelamento de óvulos: quando considerar?', src: './fertilidade/aulas/video02.mp4' },
+  { id: 'repro-3', tema: 'Reprodução Humana', titulo: 'Infertilidade: quando a causa está no homem?', src: './fertilidade/aulas/video03.mp4' },
   { id: 'repro-4', tema: 'Reprodução Humana', titulo: 'O que acontece no processo da estimulação ovariana?', src: '' }, // ← link
 
   // Climatério

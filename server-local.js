@@ -3,6 +3,9 @@ import express from 'express';
 import loginHandler from './api/login.js';
 import conteudosHandler from './api/conteudos.js';
 
+
+
+
 const app = express();
 
 app.use(express.json());
