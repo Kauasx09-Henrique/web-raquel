@@ -1,9 +1,9 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Play, X, LogOut, Loader2, Sprout, Flower2, Sparkles, Microscope, Clapperboard,
-  BookOpen, ArrowUpRight, Clock, Eye, ShieldCheck, MoveHorizontal,
+  BookOpen, ArrowUpRight, Clock, Eye, ShieldCheck, MoveHorizontal, Volume2, VolumeX,
 } from 'lucide-react';
 import { driveEmbed, driveImagem } from '../components/drive.js';
 import './styles/especialidade.css';
@@ -61,17 +61,93 @@ function GradeVideos({ videos, onAbrir }) {
   );
 }
 
+// Guia: poster como capa → no hover desfoca e o vídeo aparece nítido
 function Guia({ guia, onAbrir }) {
+  const videoRef = useRef(null);
+  const ativoRef = useRef(false);
+  const ponteiroRef = useRef('mouse');
+  const [tocando, setTocando] = useState(false);
+  const [mudo, setMudo] = useState(true);
+
   if (!guia) return null;
   const pronto = !!guia.link;
+  const temVideo = !!guia.video;
+  const nome = guia.titulo.replace(/^Guia (d[aoe] )?/i, '');
+
+  const ligar = () => {
+    const v = videoRef.current;
+    if (!temVideo || !v || ativoRef.current) return;
+    ativoRef.current = true;
+    v.play()
+      .then(() => (ativoRef.current ? setTocando(true) : v.pause()))
+      .catch(() => (ativoRef.current = false));
+  };
+
+  const desligar = () => {
+    ativoRef.current = false;
+    setTocando(false);
+    videoRef.current?.pause();
+  };
+
+  const alternarSom = (e) => {
+    e.stopPropagation();
+    const v = videoRef.current;
+    if (!v) return;
+    v.muted = !v.muted;
+    setMudo(v.muted);
+    if (!ativoRef.current) ligar();
+  };
+
   return (
-    <motion.article className="cx-guia" initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, ease: EASE }}>
-      <div className="cx-guia-capa" aria-hidden="true">
-        <span className="cx-guia-estrela">✦</span>
-        <span className="cx-guia-capa-rotulo">Guia</span>
-        <span className="cx-guia-capa-titulo">{guia.titulo.replace(/^Guia (d[aoe] )?/i, '')}</span>
-        <span className="cx-guia-capa-rodape">Dra. Raquel Meirelles Guimarães</span>
+    <motion.article
+      className="cx-guia"
+      initial={{ opacity: 0, y: 24 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.7, ease: EASE }}
+    >
+      <div
+        className={'cx-guia-midia' + (tocando ? ' is-tocando' : '') + (guia.poster ? '' : ' sem-poster')}
+        onPointerEnter={(e) => { ponteiroRef.current = e.pointerType; if (e.pointerType === 'mouse') ligar(); }}
+        onPointerLeave={(e) => e.pointerType === 'mouse' && desligar()}
+        onPointerDown={(e) => (ponteiroRef.current = e.pointerType)}
+        onClick={() => ponteiroRef.current !== 'mouse' && (tocando ? desligar() : ligar())}
+      >
+        {guia.poster ? (
+          <img className="cx-guia-poster" src={guia.poster} alt={guia.titulo} />
+        ) : (
+          <span className="cx-guia-poster cx-guia-poster-vazio" aria-hidden="true">
+            <span>Guia</span>
+            <strong>{nome}</strong>
+          </span>
+        )}
+
+        {temVideo && (
+          <>
+            <video
+              ref={videoRef}
+              className="cx-guia-video"
+              src={guia.video}
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              aria-hidden="true"
+            />
+            <span className="cx-guia-selo">
+              <Play size={10} fill="currentColor" strokeWidth={0} /> Prévia
+            </span>
+            <button
+              type="button"
+              className="cx-guia-som"
+              onClick={alternarSom}
+              aria-label={mudo ? 'Ligar o som' : 'Desligar o som'}
+            >
+              {mudo ? <VolumeX size={16} strokeWidth={1.8} /> : <Volume2 size={16} strokeWidth={1.8} />}
+            </button>
+          </>
+        )}
       </div>
+
       <div className="cx-guia-txt">
         <span className="cx-rotulo"><BookOpen size={14} strokeWidth={1.8} /> Material exclusivo</span>
         <h3>{guia.titulo}</h3>

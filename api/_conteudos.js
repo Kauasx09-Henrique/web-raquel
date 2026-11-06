@@ -5,9 +5,9 @@ export const CONTEUDOS = [
   { id: 'contra-2', tema: 'Contracepção', titulo: 'A sua filha adolescente já escolheu um método contraceptivo?', src: 'https://drive.google.com/file/d/1hnxDu51Mrmsv3RMSt6YFqVD4h8soSIfg/view' },
 
   // Reprodução Humana
-  { id: 'repro-1', tema: 'Reprodução Humana', titulo: 'Fertilidade: sua idade importa mais do que o tratamento?', src: './fertilidade/aulas/fertilidade.mp4' },
-  { id: 'repro-2', tema: 'Reprodução Humana', titulo: 'Congelamento de óvulos: quando considerar?', src: './fertilidade/aulas/video02.mp4' },
-  { id: 'repro-3', tema: 'Reprodução Humana', titulo: 'Infertilidade: quando a causa está no homem?', src: './fertilidade/aulas/video03.mp4' },
+  { id: 'repro-1', tema: 'Reprodução Humana', titulo: 'Como o corpo feminino e masculino funcionam', src: './aulas/fertilidade/fertilidade.mp4' },
+  { id: 'repro-2', tema: 'Reprodução Humana', titulo: 'Como você pode otimizar a fertilidade', src: './aulas/fertilidade/video02.mp4' },
+  { id: 'repro-3', tema: 'Reprodução Humana', titulo: 'Momento certo para procurar auxílio na reprodução', src: './aulas/fertilidade/video03.mp4' },
   { id: 'repro-4', tema: 'Reprodução Humana', titulo: 'O que acontece no processo da estimulação ovariana?', src: '' }, // ← link
 
   // Climatério
@@ -29,7 +29,9 @@ export const GUIAS = {
   reproducao: {
     titulo: 'Guia da Fertilidade',
     descricao: 'Tudo o que você precisa saber antes e durante a investigação da fertilidade: exames, reserva ovariana, tratamentos e próximos passos.',
-    link: '', // ← link do PDF no Drive
+    link: '', // em produção
+      video: './aulas/fertilidade/fertilidade.mp4',   // ← novo
+  poster: './aulas/capas/fertilidade169.png',  // opcional
   },
   climaterio: {
     titulo: 'Guia do Climatério',
