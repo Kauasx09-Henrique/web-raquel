@@ -134,6 +134,21 @@
 
 .cx-selo-embreve { display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border: 1px solid rgba(156, 75, 94, 0.35); border-radius: 6px; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--wine); }
 
+/* chamada no lugar de "Em produção" */
+.cx-guia-chamada { display: inline-flex; align-items: center; gap: 12px; font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--wine); transition: color 0.3s ease; }
+.cx-guia-chamada-icone { display: grid; place-items: center; width: 34px; height: 34px; border: 1px solid rgba(156, 75, 94, 0.35); border-radius: 50%; transition: transform 0.5s var(--ease), background 0.3s ease, color 0.3s ease, border-color 0.3s ease; }
+.cx-guia-chamada:hover { color: var(--azul); }
+.cx-guia-chamada:hover .cx-guia-chamada-icone { transform: translateY(3px); color: #fff; background: var(--wine); border-color: var(--wine); }
+
+/* cabeçalho das etapas do guia */
+.cx-etapas-head { margin: clamp(48px, 6vw, 72px) 0 24px; padding-top: 28px; border-top: 1px solid var(--line); scroll-margin-top: calc(var(--nav-h) + 24px); }
+.cx-etapas-head h3 { margin: 12px 0 8px; font-size: clamp(26px, 2.6vw, 34px); color: var(--azul); }
+.cx-etapas-head h3 em { font-style: italic; color: var(--wine); }
+.cx-etapas-head p { max-width: 52ch; font-size: 15px; line-height: 1.7; color: var(--muted); }
+
+/* selo "Etapa N" nos cards */
+.conteudo-etapa { position: absolute; top: 22px; left: 22px; padding: 7px 12px; border-radius: 6px; font-size: 10.5px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--wine); background: #fff; }
+
 /* ===================== ANTES × DEPOIS ===================== */
 .cx-comp-grade { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 380px), 1fr)); gap: 28px; }
 .cx-comp { margin: 0; }
@@ -233,6 +248,7 @@
   .conteudo-titulo { font-size: 17px; }
   .conteudo-num { font-size: 40px; left: 14px; top: 12px; }
   .conteudo-play { width: 38px; height: 38px; top: 14px; right: 14px; }
+  .conteudo-etapa { top: 14px; left: 14px; padding: 5px 9px; font-size: 9.5px; letter-spacing: 0.14em; }
 }
 
 @media (prefers-reduced-motion: reduce) {

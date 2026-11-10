@@ -3,7 +3,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Play, X, LogOut, Loader2, Sprout, Flower2, Sparkles, Microscope, Clapperboard,
-  BookOpen, ArrowUpRight, Clock, Eye, ShieldCheck, MoveHorizontal, Volume2, VolumeX,
+  BookOpen, ArrowUpRight, Clock, Eye, ShieldCheck, MoveHorizontal, Volume2, VolumeX, ArrowDown,
 } from 'lucide-react';
 import { driveEmbed, driveImagem } from '../components/drive.js';
 import './styles/especialidade.css';
@@ -37,10 +37,10 @@ function EmBreve({ texto = 'Conteúdo em preparação. Em breve por aqui.' }) {
   );
 }
 
-function GradeVideos({ videos, onAbrir }) {
+function GradeVideos({ videos, onAbrir, etapas = false }) {
   if (!videos.length) return <EmBreve texto="Os vídeos deste tema estão em produção." />;
   return (
-    <div className="conteudos-grid">
+    <div className={'conteudos-grid' + (etapas ? ' is-etapas' : '')}>
       {videos.map((c, i) => (
         <motion.button
           key={c.id}
@@ -51,7 +51,11 @@ function GradeVideos({ videos, onAbrir }) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: i * 0.04, ease: EASE }}
         >
-          <span className="conteudo-num">{String(i + 1).padStart(2, '0')}</span>
+          {etapas ? (
+            <span className="conteudo-etapa">Etapa {i + 1}</span>
+          ) : (
+            <span className="conteudo-num">{String(i + 1).padStart(2, '0')}</span>
+          )}
           <span className="conteudo-play"><Play size={16} fill="currentColor" strokeWidth={0} /></span>
           <span className="conteudo-tema">{c.tema}</span>
           <span className="conteudo-titulo">{c.titulo}</span>
@@ -134,7 +138,7 @@ function Guia({ guia, onAbrir }) {
               aria-hidden="true"
             />
             <span className="cx-guia-selo">
-              <Play size={10} fill="currentColor" strokeWidth={0} /> Prévia
+              <Play size={10} fill="currentColor" strokeWidth={0} /> Prévia do guia
             </span>
             <button
               type="button"
@@ -158,7 +162,10 @@ function Guia({ guia, onAbrir }) {
             <a className="btn-link" href={guia.link} target="_blank" rel="noopener noreferrer">Abrir num novo separador <span className="btn-link-icone"><ArrowUpRight size={16} strokeWidth={2} /></span></a>
           </div>
         ) : (
-          <span className="cx-selo-embreve"><Clock size={14} strokeWidth={1.8} /> Em produção</span>
+          <a className="cx-guia-chamada" href="#guia-etapas">
+            Veja os vídeos preparados para você abaixo
+            <span className="cx-guia-chamada-icone"><ArrowDown size={15} strokeWidth={2} /></span>
+          </a>
         )}
       </div>
     </motion.article>
@@ -329,8 +336,21 @@ export default function Conteudos() {
                   )}
                 </AnimatePresence>
 
-                <h3 className="cx-subtitulo">Vídeos sobre {abaAtual.rotulo.toLowerCase()}</h3>
-                <GradeVideos videos={videosDoTema} onAbrir={setAberto} />
+                {dados.guias[aba] ? (
+                  <>
+                    <header className="cx-etapas-head" id="guia-etapas">
+                      <span className="cx-rotulo"><BookOpen size={14} strokeWidth={1.8} /> {dados.guias[aba].titulo}</span>
+                      <h3>Assista em <em>etapas</em></h3>
+                      <p>Os vídeos abaixo fazem parte do guia. Siga a ordem: comece pela Etapa 1.</p>
+                    </header>
+                    <GradeVideos videos={videosDoTema} onAbrir={setAberto} etapas />
+                  </>
+                ) : (
+                  <>
+                    <h3 className="cx-subtitulo">Vídeos sobre {abaAtual.rotulo.toLowerCase()}</h3>
+                    <GradeVideos videos={videosDoTema} onAbrir={setAberto} />
+                  </>
+                )}
               </>
             )}
 
